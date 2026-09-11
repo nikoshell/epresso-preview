@@ -68,6 +68,87 @@
 
     (function() {
         "use strict";
+        if (window.__epressoSidebarHover) return;
+        window.__epressoSidebarHover = true;
+        var targets = "a, summary, .tree-head";
+        Array.prototype.forEach.call(document.querySelectorAll(".sidebar nav"), function(nav) {
+            var hover = nav.querySelector(".tree-hover");
+            if (!hover) return;
+            nav.classList.add("nav-slide");
+
+            function move(el) {
+                var navRect = nav.getBoundingClientRect();
+                var elRect = el.getBoundingClientRect();
+                hover.style.height = elRect.height + "px";
+                hover.style.transform = "translateY(" + (elRect.top - navRect.top) + "px)";
+                hover.classList.add("is-visible");
+            }
+
+            function hide() {
+                hover.classList.remove("is-visible");
+            }
+
+            function highlight(event) {
+                var el = event.target.closest ? event.target.closest(targets) : null;
+                // Hub links live inside a summary/.tree-head row; use the row so
+                // the hover highlight matches the active row highlight.
+                if (el && el.tagName === "A") {
+                    var row = el.closest("summary, .tree-head");
+                    if (row) el = row;
+                }
+                // Never move the sliding highlight onto the active item; it
+                // keeps its own (accent) highlight.
+                if (el && el.classList.contains("active")) {
+                    hide();
+                    return;
+                }
+                if (el && nav.contains(el)) move(el);
+                else hide();
+            }
+            nav.addEventListener("mouseover", highlight);
+            nav.addEventListener("focusin", highlight);
+            nav.addEventListener("mouseleave", hide);
+            nav.addEventListener("focusout", hide);
+        });
+    })();
+
+    (function() {
+        "use strict";
+        if (window.__epressoSidebarToggle) return;
+        window.__epressoSidebarToggle = true;
+        var sidebar = document.getElementById("sidebar-nav");
+        var scrim = document.querySelector(".sidebar-scrim");
+        if (!sidebar) return;
+
+        function setOpen(open) {
+            sidebar.classList.toggle("is-open", open);
+            if (scrim) scrim.classList.toggle("is-open", open);
+            var btn = document.getElementById("sidebar-toggle");
+            if (btn) {
+                btn.setAttribute("aria-expanded", open ? "true" : "false");
+                btn.setAttribute("aria-label", open ? "Hide navigation" : "Show navigation");
+            }
+        }
+        /* Delegated: the toggle lives in the ToC bar, which is rendered after
+           this script. */
+        document.addEventListener("click", function(e) {
+            var btn = e.target.closest ? e.target.closest("#sidebar-toggle") : null;
+            if (btn) setOpen(!sidebar.classList.contains("is-open"));
+        });
+        if (scrim) scrim.addEventListener("click", function() { setOpen(false); });
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") setOpen(false);
+        });
+        sidebar.addEventListener("click", function(e) {
+            var a = e.target.closest ? e.target.closest("a") : null;
+            if (a && window.matchMedia("(max-width: 860px)").matches) setOpen(false);
+        });
+    })();
+
+;
+
+    (function() {
+        "use strict";
         var copyIcon =
             '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg>';
         var checkIcon =
@@ -381,72 +462,6 @@
 
     (function() {
         "use strict";
-        if (window.__epressoTocSpy) return;
-        window.__epressoTocSpy = true;
-        var tocs = Array.prototype.slice.call(document.querySelectorAll(".toc"));
-        var links = [];
-        var seen = {};
-        var headings = [];
-        tocs.forEach(function(toc) {
-            /* Progressive enhancement: hide the static per-item marker and let the
-               shared indicator slide between active items instead. */
-            toc.classList.add("toc--animated");
-        });
-        Array.prototype.forEach.call(document.querySelectorAll(".toc a"), function(a) {
-            a.__tocTarget = a.getAttribute("href").slice(1);
-            links.push(a);
-            if (!seen[a.__tocTarget]) {
-                seen[a.__tocTarget] = true;
-                var el = document.getElementById(a.__tocTarget);
-                if (el) headings.push(el);
-            }
-        });
-        if (!links.length || !headings.length) return;
-
-        function setActive(idx) {
-            var target = idx >= 0 && idx < headings.length ? headings[idx].id : null;
-            links.forEach(function(a) {
-                a.classList.toggle("active", a.__tocTarget === target);
-            });
-            tocs.forEach(function(toc) {
-                var indicator = toc.querySelector(".toc-indicator");
-                var list = toc.querySelector("ul");
-                var active = toc.querySelector("a.active");
-                if (!indicator || !list) return;
-                if (!active) {
-                    indicator.classList.remove("is-visible");
-                    return;
-                }
-                var tocRect = toc.getBoundingClientRect();
-                var listRect = list.getBoundingClientRect();
-                var activeRect = active.getBoundingClientRect();
-                /* Inset the marker vertically to match the static ::before
-                   (4px top/bottom of the link box). */
-                indicator.style.left = (listRect.left - tocRect.left) + "px";
-                indicator.style.height = Math.max(activeRect.height - 8, 0) + "px";
-                indicator.style.transform = "translateY(" + (activeRect.top - tocRect.top + 4) + "px)";
-                indicator.classList.add("is-visible");
-            });
-        }
-
-        function onScroll() {
-            var offset = 90; /* sticky header + a little */
-            var current = -1;
-            headings.forEach(function(h, i) {
-                if (h.getBoundingClientRect().top <= offset) current = i;
-            });
-            setActive(current);
-        }
-        window.addEventListener("scroll", onScroll, {
-            passive: true
-        });
-        onScroll();
-    })();
-
-;
-
-    (function() {
-        "use strict";
         var lb = document.getElementById("lightbox");
         if (!lb) return;
         var img = lb.querySelector(".lightbox-img");
@@ -499,34 +514,129 @@
 
     (function() {
         "use strict";
-        if (window.__epressoSidebarHover) return;
-        window.__epressoSidebarHover = true;
-        var targets = "a, summary, .tree-head";
-        Array.prototype.forEach.call(document.querySelectorAll(".sidebar nav"), function(nav) {
-            var hover = nav.querySelector(".tree-hover");
-            if (!hover) return;
-            nav.classList.add("nav-slide");
-
-            function move(el) {
-                var navRect = nav.getBoundingClientRect();
-                var elRect = el.getBoundingClientRect();
-                hover.style.height = elRect.height + "px";
-                hover.style.transform = "translateY(" + (elRect.top - navRect.top) + "px)";
-                hover.classList.add("is-visible");
+        if (window.__epressoTocSpy) return;
+        window.__epressoTocSpy = true;
+        var tocs = Array.prototype.slice.call(document.querySelectorAll(".toc"));
+        var links = [];
+        var seen = {};
+        var headings = [];
+        tocs.forEach(function(toc) {
+            /* Progressive enhancement: hide the static per-item marker and let the
+               shared indicator slide between active items instead. */
+            toc.classList.add("toc--animated");
+        });
+        Array.prototype.forEach.call(document.querySelectorAll(".toc a"), function(a) {
+            a.__tocTarget = a.getAttribute("href").slice(1);
+            links.push(a);
+            if (!seen[a.__tocTarget]) {
+                seen[a.__tocTarget] = true;
+                var el = document.getElementById(a.__tocTarget);
+                if (el) headings.push(el);
             }
+        });
+        if (!links.length || !headings.length) return;
 
-            function hide() {
-                hover.classList.remove("is-visible");
-            }
+        function setActive(idx) {
+            var target = idx >= 0 && idx < headings.length ? headings[idx].id : null;
+            links.forEach(function(a) {
+                a.classList.toggle("active", a.__tocTarget === target);
+            });
+            tocs.forEach(function(toc) {
+                var active = toc.querySelector("a.active");
+                var current = toc.querySelector(".toc-current");
+                if (current) current.textContent = active ? active.textContent : "On this page";
+                var indicator = toc.querySelector(".toc-indicator");
+                var list = toc.querySelector("ul");
+                if (!indicator || !list) return;
+                if (!active) {
+                    indicator.classList.remove("is-visible");
+                    return;
+                }
+                var tocRect = toc.getBoundingClientRect();
+                var listRect = list.getBoundingClientRect();
+                var activeRect = active.getBoundingClientRect();
+                /* Inset the marker vertically to match the static ::before
+                   (4px top/bottom of the link box). */
+                indicator.style.left = (listRect.left - tocRect.left) + "px";
+                indicator.style.height = Math.max(activeRect.height - 8, 0) + "px";
+                indicator.style.transform = "translateY(" + (activeRect.top - tocRect.top + 4) + "px)";
+                indicator.classList.add("is-visible");
+            });
+        }
 
-            function highlight(event) {
-                var el = event.target.closest ? event.target.closest(targets) : null;
-                if (el && nav.contains(el)) move(el);
-                else hide();
+        function onScroll() {
+            var offset = 90; /* sticky header + a little */
+            var current = -1;
+            headings.forEach(function(h, i) {
+                if (h.getBoundingClientRect().top <= offset) current = i;
+            });
+            setActive(current);
+            updateRing();
+        }
+
+        /* Reading-progress ring in the inline popover trigger. */
+        var RING_C = 47.12388980384689;
+        var ring = document.querySelector(".toc--inline .toc-ring-progress");
+        var ringBar = document.querySelector(".toc--inline .toc-ring");
+
+        function updateRing() {
+            if (!ring) return;
+            var art = document.querySelector("article.doc") || document.querySelector("main.content");
+            if (!art) return;
+            var r = art.getBoundingClientRect();
+            var total = r.height - window.innerHeight;
+            var p = total > 0 ? Math.min(Math.max(-r.top / total, 0), 1) : (r.top <= 0 ? 1 : 0);
+            ring.style.strokeDashoffset = (RING_C * (1 - p)).toFixed(2);
+            if (ringBar) ringBar.setAttribute("aria-valuenow", p.toFixed(3));
+        }
+        window.addEventListener("scroll", onScroll, {
+            passive: true
+        });
+        onScroll();
+
+        /* Collapse the inline popover after choosing a heading, or on an
+           outside click. */
+        document.addEventListener("click", function(e) {
+            var a = e.target.closest ? e.target.closest(".toc--inline a") : null;
+            if (a) {
+                var d = a.closest("details");
+                if (d) d.open = false;
+                return;
             }
-            nav.addEventListener("mouseover", highlight);
-            nav.addEventListener("focusin", highlight);
-            nav.addEventListener("mouseleave", hide);
-            nav.addEventListener("focusout", hide);
+            Array.prototype.forEach.call(document.querySelectorAll(".toc--inline details[open]"), function(d) {
+                if (!d.contains(e.target)) d.open = false;
+            });
+        });
+    })();
+
+;
+
+    (function() {
+        "use strict";
+        if (window.__epressoNavToggle) return;
+        window.__epressoNavToggle = true;
+        var btn = document.getElementById("nav-toggle");
+        var menu = document.getElementById("nav-menu");
+        if (!btn || !menu) return;
+
+        function setOpen(open) {
+            menu.classList.toggle("is-open", open);
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+            btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        }
+        btn.addEventListener("click", function() {
+            setOpen(!menu.classList.contains("is-open"));
+        });
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") setOpen(false);
+        });
+        menu.addEventListener("click", function(e) {
+            var a = e.target.closest ? e.target.closest("a") : null;
+            if (a) setOpen(false);
+        });
+        document.addEventListener("click", function(e) {
+            if (!menu.classList.contains("is-open")) return;
+            if (e.target.closest && (e.target.closest("#nav-toggle") || e.target.closest("#nav-menu"))) return;
+            setOpen(false);
         });
     })();

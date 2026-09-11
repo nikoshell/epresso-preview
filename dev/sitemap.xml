@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://nikoshell.github.io/epresso/</loc></url>
-<url><loc>https://nikoshell.github.io/epresso/basics/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/basics/components/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/basics/layouts/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/basics/pages/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/basics/project-structure/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/basics/routing/</loc></url>
-<url><loc>https://nikoshell.github.io/epresso/concepts/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/concepts/how-it-works/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/concepts/islands/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/concepts/no-javascript/</loc></url>
@@ -16,19 +14,15 @@
 <url><loc>https://nikoshell.github.io/epresso/develop-and-build/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/develop-and-build/cli/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/editor-setup/</loc></url>
-<url><loc>https://nikoshell.github.io/epresso/guides/</loc></url>
-<url><loc>https://nikoshell.github.io/epresso/guides/behavior/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/behavior/prefetch/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/behavior/security/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/behavior/typescript/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/behavior/view-transitions/</loc></url>
-<url><loc>https://nikoshell.github.io/epresso/guides/build/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/build/configuration/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/build/dev-toolbar/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/build/environment-variables/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/build/incremental/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/build/testing/</loc></url>
-<url><loc>https://nikoshell.github.io/epresso/guides/content/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/content/content-collections/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/content/data-fetching/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/content/endpoints/</loc></url>
@@ -37,13 +31,10 @@
 <url><loc>https://nikoshell.github.io/epresso/guides/content/markdown/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/content/mdx/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/content/rss/</loc></url>
-<url><loc>https://nikoshell.github.io/epresso/guides/extending/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/extending/middleware/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/extending/plugins/</loc></url>
-<url><loc>https://nikoshell.github.io/epresso/guides/styling/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/styling/fonts/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/styling/images/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/guides/styling/styling/</loc></url>
-<url><loc>https://nikoshell.github.io/epresso/reference/</loc></url>
 <url><loc>https://nikoshell.github.io/epresso/reference/template-directives/</loc></url>
 </urlset>
