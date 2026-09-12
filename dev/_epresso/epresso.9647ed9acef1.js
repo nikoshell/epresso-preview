@@ -1,210 +1,6 @@
 
     (function() {
         "use strict";
-        var KEY = "epresso-theme";
-        var MODES = ["light", "dark", "system"];
-
-        function saved() {
-            try {
-                var s = localStorage.getItem(KEY);
-                if (MODES.indexOf(s) !== -1) return s;
-            } catch (e) {
-            /* unavailable — fall through */ }
-            return "system";
-        }
-
-        function effective(mode) {
-            if (mode !== "system") return mode;
-            return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
-        }
-
-        function showIcon(b, t) {
-            var light = b.querySelector(".icon-light");
-            var dark = b.querySelector(".icon-dark");
-            if (light) light.style.display = t === "light" ? "block" : "none";
-            if (dark) dark.style.display = t === "dark" ? "block" : "none";
-        }
-
-        function apply(mode) {
-            var t = effective(mode);
-            document.documentElement.setAttribute("data-theme", t);
-            document.documentElement.setAttribute("data-theme-mode", mode);
-            var label = mode === "system" ? "Theme: " + t + " (auto)" : "Theme: " + mode;
-            var b = document.getElementById("theme-toggle");
-            if (b) {
-                b.setAttribute("aria-label", label);
-                b.setAttribute("title", label);
-                showIcon(b, t);
-            }
-        }
-        apply(saved());
-        var btn = document.getElementById("theme-toggle");
-        if (btn) btn.addEventListener("click", function() {
-            var cur = saved();
-            var next = MODES[(MODES.indexOf(cur) + 1) % MODES.length];
-            try {
-                localStorage.setItem(KEY, next);
-            } catch (e) {}
-            apply(next);
-        });
-    })();
-
-;
-
-    (function() {
-        "use strict";
-        var so = document.getElementById("search-open");
-        if (so) so.addEventListener("click", function() {
-            var o = document.getElementById("search-overlay");
-            if (o) o.classList.add("open");
-            var i = document.getElementById("search-input");
-            if (i) setTimeout(function() {
-                i.focus();
-            }, 0);
-        });
-    })();
-
-;
-
-    (function() {
-        "use strict";
-        if (window.__epressoSidebarHover) return;
-        window.__epressoSidebarHover = true;
-        var targets = "a, summary, .tree-head";
-        Array.prototype.forEach.call(document.querySelectorAll(".sidebar nav"), function(nav) {
-            var hover = nav.querySelector(".tree-hover");
-            if (!hover) return;
-            nav.classList.add("nav-slide");
-
-            function move(el) {
-                var navRect = nav.getBoundingClientRect();
-                var elRect = el.getBoundingClientRect();
-                hover.style.height = elRect.height + "px";
-                hover.style.transform = "translateY(" + (elRect.top - navRect.top) + "px)";
-                hover.classList.add("is-visible");
-            }
-
-            function hide() {
-                hover.classList.remove("is-visible");
-            }
-
-            function highlight(event) {
-                var el = event.target.closest ? event.target.closest(targets) : null;
-                // Hub links live inside a summary/.tree-head row; use the row so
-                // the hover highlight matches the active row highlight.
-                if (el && el.tagName === "A") {
-                    var row = el.closest("summary, .tree-head");
-                    if (row) el = row;
-                }
-                // Never move the sliding highlight onto the active item; it
-                // keeps its own (accent) highlight.
-                if (el && el.classList.contains("active")) {
-                    hide();
-                    return;
-                }
-                if (el && nav.contains(el)) move(el);
-                else hide();
-            }
-            nav.addEventListener("mouseover", highlight);
-            nav.addEventListener("focusin", highlight);
-            nav.addEventListener("mouseleave", hide);
-            nav.addEventListener("focusout", hide);
-        });
-    })();
-
-    (function() {
-        "use strict";
-        if (window.__epressoSidebarToggle) return;
-        window.__epressoSidebarToggle = true;
-        var sidebar = document.getElementById("sidebar-nav");
-        var scrim = document.querySelector(".sidebar-scrim");
-        if (!sidebar) return;
-
-        function setOpen(open) {
-            sidebar.classList.toggle("is-open", open);
-            if (scrim) scrim.classList.toggle("is-open", open);
-            var btn = document.getElementById("sidebar-toggle");
-            if (btn) {
-                btn.setAttribute("aria-expanded", open ? "true" : "false");
-                btn.setAttribute("aria-label", open ? "Hide navigation" : "Show navigation");
-            }
-        }
-        /* Delegated: the toggle lives in the ToC bar, which is rendered after
-           this script. */
-        document.addEventListener("click", function(e) {
-            var btn = e.target.closest ? e.target.closest("#sidebar-toggle") : null;
-            if (btn) setOpen(!sidebar.classList.contains("is-open"));
-        });
-        if (scrim) scrim.addEventListener("click", function() { setOpen(false); });
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "Escape") setOpen(false);
-        });
-        sidebar.addEventListener("click", function(e) {
-            var a = e.target.closest ? e.target.closest("a") : null;
-            if (a && window.matchMedia("(max-width: 860px)").matches) setOpen(false);
-        });
-    })();
-
-;
-
-    (function() {
-        "use strict";
-        var copyIcon =
-            '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg>';
-        var checkIcon =
-            '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>';
-
-        document.querySelectorAll("pre.highlight").forEach(function(pre) {
-            var head = pre.querySelector(".code-head");
-            var body = pre.querySelector(".code-body");
-            if (!head || !body) return;
-            var linesBtn = head.querySelector(".code-lines-btn");
-            var copyBtn = head.querySelector(".code-copy");
-
-            if (linesBtn) {
-                linesBtn.addEventListener("click", function() {
-                    var on = body.classList.toggle("no-numbers");
-                    linesBtn.setAttribute("aria-pressed", String(!on));
-                    linesBtn.setAttribute("aria-label", on ? "Show line numbers" : "Hide line numbers");
-                    linesBtn.setAttribute("title", on ? "Show line numbers" : "Hide line numbers");
-                });
-            }
-
-            body.addEventListener("click", function(e) {
-                var line = e.target.closest(".code-line");
-                if (line) line.classList.toggle("selected");
-            });
-
-            if (copyBtn) {
-                copyBtn.addEventListener("click", function() {
-                    var sel = body.querySelectorAll(".code-line.selected");
-                    var text = sel.length ?
-                    Array.prototype.map.call(sel, function(l) {
-                        return l.innerText;
-                    }).join("\n") :
-                        body.innerText;
-                    text = text.replace(/\n$/, "");
-                    (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
-                        .then(function() {
-                            copyBtn.innerHTML = checkIcon;
-                            copyBtn.classList.add("copied");
-                            copyBtn.setAttribute("aria-label", "Copied");
-                            setTimeout(function() {
-                                copyBtn.innerHTML = copyIcon;
-                                copyBtn.classList.remove("copied");
-                                copyBtn.setAttribute("aria-label", "Copy code");
-                            }, 1600);
-                        })
-                        .catch(function() {});
-                });
-            }
-        });
-    })();
-
-;
-
-    (function() {
-        "use strict";
         var overlay = document.getElementById("search-overlay");
         var input = document.getElementById("search-input");
         var results = document.getElementById("search-results");
@@ -321,6 +117,8 @@
 
         function open() {
             if (!overlay) return;
+            /* Close any other overlay first (sidebar / menu). */
+            if (window.epressoPanelOpened) window.epressoPanelOpened("search");
             current = -1;
             overlay.classList.add("open");
             if (input) {
@@ -456,6 +254,240 @@
                 });
             });
         }
+
+        /* The header's search button opens this overlay: owned here so the panel
+           can coordinate with the other overlays. */
+        document.addEventListener("click", function(e) {
+            var btn = e.target.closest ? e.target.closest("#search-open") : null;
+            if (btn) open();
+        });
+
+        /* Only one overlay at a time. */
+        document.addEventListener("epresso:panel-open", function(e) {
+            if (e.detail !== "search") close();
+        });
+    })();
+
+;
+
+    (function() {
+        "use strict";
+        var KEY = "epresso-theme";
+        var MODES = ["system", "light", "dark"];
+        var group = document.getElementById("theme-switch");
+        if (!group) return;
+        var buttons = group.querySelectorAll("[data-theme-mode]");
+
+        function saved() {
+            try {
+                var s = localStorage.getItem(KEY);
+                if (MODES.indexOf(s) !== -1) return s;
+            } catch (e) {
+            /* unavailable — fall through */ }
+            return "system";
+        }
+
+        function systemTheme() {
+            return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+        }
+
+        function apply(mode) {
+            var resolved = mode === "system" ? systemTheme() : mode;
+            document.documentElement.setAttribute("data-theme", resolved);
+            document.documentElement.setAttribute("data-theme-mode", mode);
+            Array.prototype.forEach.call(buttons, function(b) {
+                var on = b.getAttribute("data-theme-mode") === mode;
+                b.setAttribute("aria-pressed", on ? "true" : "false");
+            });
+        }
+        Array.prototype.forEach.call(buttons, function(b) {
+            b.addEventListener("click", function() {
+                var mode = b.getAttribute("data-theme-mode");
+                try {
+                    localStorage.setItem(KEY, mode);
+                } catch (e) {}
+                apply(mode);
+            });
+        });
+        apply(saved());
+
+        /* Follow the OS while in system mode. */
+        var mq = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+        if (mq) {
+            var onSystemChange = function() {
+                if (saved() === "system") apply("system");
+            };
+            if (mq.addEventListener) mq.addEventListener("change", onSystemChange);
+            else if (mq.addListener) mq.addListener(onSystemChange);
+        }
+    })();
+
+;
+
+    (function() {
+        "use strict";
+        var copyIcon =
+            '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></svg>';
+        var checkIcon =
+            '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></svg>';
+
+        document.querySelectorAll("pre.highlight").forEach(function(pre) {
+            var head = pre.querySelector(".code-head");
+            var body = pre.querySelector(".code-body");
+            if (!head || !body) return;
+            var linesBtn = head.querySelector(".code-lines-btn");
+            var copyBtn = head.querySelector(".code-copy");
+
+            if (linesBtn) {
+                linesBtn.addEventListener("click", function() {
+                    var on = body.classList.toggle("no-numbers");
+                    linesBtn.setAttribute("aria-pressed", String(!on));
+                    linesBtn.setAttribute("aria-label", on ? "Show line numbers" : "Hide line numbers");
+                    linesBtn.setAttribute("title", on ? "Show line numbers" : "Hide line numbers");
+                });
+            }
+
+            body.addEventListener("click", function(e) {
+                var line = e.target.closest(".code-line");
+                if (line) line.classList.toggle("selected");
+            });
+
+            if (copyBtn) {
+                copyBtn.addEventListener("click", function() {
+                    var sel = body.querySelectorAll(".code-line.selected");
+                    var text = sel.length ?
+                    Array.prototype.map.call(sel, function(l) {
+                        return l.innerText;
+                    }).join("\n") :
+                        body.innerText;
+                    text = text.replace(/\n$/, "");
+                    (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
+                        .then(function() {
+                            copyBtn.innerHTML = checkIcon;
+                            copyBtn.classList.add("copied");
+                            copyBtn.setAttribute("aria-label", "Copied");
+                            setTimeout(function() {
+                                copyBtn.innerHTML = copyIcon;
+                                copyBtn.classList.remove("copied");
+                                copyBtn.setAttribute("aria-label", "Copy code");
+                            }, 1600);
+                        })
+                        .catch(function() {});
+                });
+            }
+        });
+    })();
+
+;
+
+    (function() {
+        "use strict";
+        if (window.__epressoSidebarHover) return;
+        window.__epressoSidebarHover = true;
+        var targets = "a, summary, .tree-head";
+        Array.prototype.forEach.call(document.querySelectorAll(".sidebar nav"), function(nav) {
+            var hover = nav.querySelector(".tree-hover");
+            if (!hover) return;
+            nav.classList.add("nav-slide");
+
+            function move(el) {
+                var navRect = nav.getBoundingClientRect();
+                var elRect = el.getBoundingClientRect();
+                hover.style.height = elRect.height + "px";
+                hover.style.transform = "translateY(" + (elRect.top - navRect.top) + "px)";
+                hover.classList.add("is-visible");
+            }
+
+            function hide() {
+                hover.classList.remove("is-visible");
+            }
+
+            function highlight(event) {
+                var el = event.target.closest ? event.target.closest(targets) : null;
+                // Hub links live inside a summary/.tree-head row; use the row so
+                // the hover highlight matches the active row highlight.
+                if (el && el.tagName === "A") {
+                    var row = el.closest("summary, .tree-head");
+                    if (row) el = row;
+                }
+                // Never move the sliding highlight onto the active item; it
+                // keeps its own (accent) highlight.
+                if (el && el.classList.contains("active")) {
+                    hide();
+                    return;
+                }
+                if (el && nav.contains(el)) move(el);
+                else hide();
+            }
+            nav.addEventListener("mouseover", highlight);
+            nav.addEventListener("focusin", highlight);
+            nav.addEventListener("mouseleave", hide);
+            nav.addEventListener("focusout", hide);
+        });
+    })();
+
+    (function() {
+        "use strict";
+        if (window.__epressoSidebarToggle) return;
+        window.__epressoSidebarToggle = true;
+        var sidebar = document.getElementById("sidebar-nav");
+        var scrim = document.querySelector(".sidebar-scrim");
+        if (!sidebar) return;
+
+        var mq = window.matchMedia("(max-width: 860px)");
+        var FOCUSABLE = 'a[href], button:not([disabled]), summary, input, [tabindex]:not([tabindex="-1"])';
+
+        function setOpen(open) {
+            sidebar.classList.toggle("is-open", open);
+            if (scrim) scrim.classList.toggle("is-open", open);
+            document.body.classList.toggle("nav-open", open);
+            /* Keep closed off-canvas content out of the tab order. */
+            sidebar.inert = mq.matches && !open;
+            var triggers = document.querySelectorAll(".sidebar-toggle");
+            Array.prototype.forEach.call(triggers, function(b) {
+                b.setAttribute("aria-expanded", open ? "true" : "false");
+                b.setAttribute("aria-label", open ? "Hide navigation" : "Show navigation");
+            });
+            if (open) {
+                var first = sidebar.querySelector(FOCUSABLE);
+                if (first) first.focus();
+            } else if (triggers.length && sidebar.contains(document.activeElement)) {
+                triggers[0].focus();
+            }
+            if (open && window.epressoPanelOpened) window.epressoPanelOpened("sidebar");
+        }
+        /* Only one overlay at a time (search / menu). */
+        document.addEventListener("epresso:panel-open", function(e) {
+            if (e.detail !== "sidebar") setOpen(false);
+        });
+
+        function syncState() {
+            if (!mq.matches && sidebar.classList.contains("is-open")) setOpen(false);
+            sidebar.inert = mq.matches && !sidebar.classList.contains("is-open");
+        }
+        syncState();
+        if (mq.addEventListener) mq.addEventListener("change", syncState);
+        /* Delegated: the toggle lives in the ToC bar, which is rendered after
+           this script. */
+        document.addEventListener("click", function(e) {
+            var btn = e.target.closest ? e.target.closest(".sidebar-toggle") : null;
+            if (btn) setOpen(!sidebar.classList.contains("is-open"));
+        });
+        if (scrim) scrim.addEventListener("click", function() { setOpen(false); });
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") { setOpen(false); return; }
+            /* Trap focus inside the open drawer. */
+            if (e.key !== "Tab" || !sidebar.classList.contains("is-open")) return;
+            var f = sidebar.querySelectorAll(FOCUSABLE);
+            if (!f.length) return;
+            var first = f[0], last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        });
+        sidebar.addEventListener("click", function(e) {
+            var a = e.target.closest ? e.target.closest("a") : null;
+            if (a && mq.matches) setOpen(false);
+        });
     })();
 
 ;
@@ -617,16 +649,27 @@
         window.__epressoNavToggle = true;
         var btn = document.getElementById("nav-toggle");
         var menu = document.getElementById("nav-menu");
+        var scrim = document.querySelector(".nav-scrim");
         if (!btn || !menu) return;
+        var mq = window.matchMedia("(max-width: 640px)");
 
         function setOpen(open) {
             menu.classList.toggle("is-open", open);
+            if (scrim) scrim.classList.toggle("is-open", open);
+            /* Keep closed off-canvas content out of the tab order. */
+            menu.inert = mq.matches && !open;
             btn.setAttribute("aria-expanded", open ? "true" : "false");
             btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            if (open && window.epressoPanelOpened) window.epressoPanelOpened("menu");
         }
+        /* Only one overlay at a time (search / sidebar). */
+        document.addEventListener("epresso:panel-open", function(e) {
+            if (e.detail !== "menu") setOpen(false);
+        });
         btn.addEventListener("click", function() {
             setOpen(!menu.classList.contains("is-open"));
         });
+        if (scrim) scrim.addEventListener("click", function() { setOpen(false); });
         document.addEventListener("keydown", function(e) {
             if (e.key === "Escape") setOpen(false);
         });
@@ -636,7 +679,14 @@
         });
         document.addEventListener("click", function(e) {
             if (!menu.classList.contains("is-open")) return;
-            if (e.target.closest && (e.target.closest("#nav-toggle") || e.target.closest("#nav-menu"))) return;
+            if (e.target.closest && (e.target.closest("#nav-toggle") || e.target.closest("#nav-menu") || e.target.closest(".nav-scrim"))) return;
             setOpen(false);
         });
+
+        function syncState() {
+            if (!mq.matches && menu.classList.contains("is-open")) setOpen(false);
+            menu.inert = mq.matches && !menu.classList.contains("is-open");
+        }
+        syncState();
+        if (mq.addEventListener) mq.addEventListener("change", syncState);
     })();
