@@ -1,6 +1,56 @@
 
     (function() {
         "use strict";
+        if (window.__epressoNavToggle) return;
+        window.__epressoNavToggle = true;
+        var btn = document.getElementById("nav-toggle");
+        var menu = document.getElementById("nav-menu");
+        var scrim = document.querySelector(".nav-scrim");
+        if (!btn || !menu) return;
+        var mq = window.matchMedia("(max-width: 768px)");
+
+        function setOpen(open) {
+            menu.classList.toggle("is-open", open);
+            if (scrim) scrim.classList.toggle("is-open", open);
+            /* Keep closed off-canvas content out of the tab order. */
+            menu.inert = mq.matches && !open;
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+            btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            if (open && window.epressoPanelOpened) window.epressoPanelOpened("menu");
+        }
+        /* Only one overlay at a time (search / sidebar). */
+        document.addEventListener("epresso:panel-open", function(e) {
+            if (e.detail !== "menu") setOpen(false);
+        });
+        btn.addEventListener("click", function() {
+            setOpen(!menu.classList.contains("is-open"));
+        });
+        if (scrim) scrim.addEventListener("click", function() { setOpen(false); });
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") setOpen(false);
+        });
+        menu.addEventListener("click", function(e) {
+            var a = e.target.closest ? e.target.closest("a") : null;
+            if (a) setOpen(false);
+        });
+        document.addEventListener("click", function(e) {
+            if (!menu.classList.contains("is-open")) return;
+            if (e.target.closest && (e.target.closest("#nav-toggle") || e.target.closest("#nav-menu") || e.target.closest(".nav-scrim"))) return;
+            setOpen(false);
+        });
+
+        function syncState() {
+            if (!mq.matches && menu.classList.contains("is-open")) setOpen(false);
+            menu.inert = mq.matches && !menu.classList.contains("is-open");
+        }
+        syncState();
+        if (mq.addEventListener) mq.addEventListener("change", syncState);
+    })();
+
+;
+
+    (function() {
+        "use strict";
         var overlay = document.getElementById("search-overlay");
         var input = document.getElementById("search-input");
         var results = document.getElementById("search-results");
@@ -272,6 +322,373 @@
 
     (function() {
         "use strict";
+        if (window.__epressoSidebarHover) return;
+        window.__epressoSidebarHover = true;
+        var targets = "a, summary, .tree-head";
+        Array.prototype.forEach.call(document.querySelectorAll(".sidebar nav"), function(nav) {
+            var hover = nav.querySelector(".tree-hover");
+            if (!hover) return;
+            nav.classList.add("nav-slide");
+
+            function move(el) {
+                var navRect = nav.getBoundingClientRect();
+                var elRect = el.getBoundingClientRect();
+                hover.style.height = elRect.height + "px";
+                hover.style.transform = "translateY(" + (elRect.top - navRect.top) + "px)";
+                hover.classList.add("is-visible");
+            }
+
+            function hide() {
+                hover.classList.remove("is-visible");
+            }
+
+            function highlight(event) {
+                var el = event.target.closest ? event.target.closest(targets) : null;
+                // Hub links live inside a summary/.tree-head row; use the row so
+                // the hover highlight matches the active row highlight.
+                if (el && el.tagName === "A") {
+                    var row = el.closest("summary, .tree-head");
+                    if (row) el = row;
+                }
+                // Never move the sliding highlight onto the active item; it
+                // keeps its own (accent) highlight.
+                if (el && el.classList.contains("active")) {
+                    hide();
+                    return;
+                }
+                if (el && nav.contains(el)) move(el);
+                else hide();
+            }
+            nav.addEventListener("mouseover", highlight);
+            nav.addEventListener("focusin", highlight);
+            nav.addEventListener("mouseleave", hide);
+            nav.addEventListener("focusout", hide);
+        });
+    })();
+
+    (function() {
+        "use strict";
+        if (window.__epressoSidebarToggle) return;
+        window.__epressoSidebarToggle = true;
+        var sidebar = document.getElementById("sidebar-nav");
+        var scrim = document.querySelector(".sidebar-scrim");
+        if (!sidebar) return;
+
+        var mq = window.matchMedia("(max-width: 1024px)");
+        var FOCUSABLE = 'a[href], button:not([disabled]), summary, input, [tabindex]:not([tabindex="-1"])';
+
+        function setOpen(open) {
+            sidebar.classList.toggle("is-open", open);
+            if (scrim) scrim.classList.toggle("is-open", open);
+            document.body.classList.toggle("nav-open", open);
+            /* Keep closed off-canvas content out of the tab order. */
+            sidebar.inert = mq.matches && !open;
+            var triggers = document.querySelectorAll(".sidebar-toggle");
+            Array.prototype.forEach.call(triggers, function(b) {
+                b.setAttribute("aria-expanded", open ? "true" : "false");
+                b.setAttribute("aria-label", open ? "Hide navigation" : "Show navigation");
+            });
+            if (open) {
+                var first = sidebar.querySelector(FOCUSABLE);
+                if (first) first.focus();
+            } else if (triggers.length && sidebar.contains(document.activeElement)) {
+                triggers[0].focus();
+            }
+            if (open && window.epressoPanelOpened) window.epressoPanelOpened("sidebar");
+        }
+        /* Only one overlay at a time (search / menu). */
+        document.addEventListener("epresso:panel-open", function(e) {
+            if (e.detail !== "sidebar") setOpen(false);
+        });
+
+        function syncState() {
+            if (!mq.matches && sidebar.classList.contains("is-open")) setOpen(false);
+            sidebar.inert = mq.matches && !sidebar.classList.contains("is-open");
+        }
+        syncState();
+        if (mq.addEventListener) mq.addEventListener("change", syncState);
+        /* Delegated: the toggle lives in the ToC bar, which is rendered after
+           this script. */
+        document.addEventListener("click", function(e) {
+            var btn = e.target.closest ? e.target.closest(".sidebar-toggle") : null;
+            if (btn) setOpen(!sidebar.classList.contains("is-open"));
+        });
+        if (scrim) scrim.addEventListener("click", function() { setOpen(false); });
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") { setOpen(false); return; }
+            /* Trap focus inside the open drawer. */
+            if (e.key !== "Tab" || !sidebar.classList.contains("is-open")) return;
+            var f = sidebar.querySelectorAll(FOCUSABLE);
+            if (!f.length) return;
+            var first = f[0], last = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        });
+        sidebar.addEventListener("click", function(e) {
+            var a = e.target.closest ? e.target.closest("a") : null;
+            if (a && mq.matches) setOpen(false);
+        });
+    })();
+
+    /* Scroll fades (see `.sidebar nav` mask-image): publish how much of the
+       tree is scrolled out of view at each edge, so the gradient stops can
+       track it. Recomputed on scroll, resize, and section open/close. */
+    (function() {
+        "use strict";
+        if (window.__epressoSidebarFade) return;
+        window.__epressoSidebarFade = true;
+        var fadeNav = document.querySelector(".sidebar nav");
+        if (fadeNav) {
+            var publishFades = function() {
+                var max = Math.max(0, fadeNav.scrollHeight - fadeNav.clientHeight);
+                var top = Math.min(Math.max(fadeNav.scrollTop, 0), max);
+                fadeNav.style.setProperty("--scroll-area-overflow-y-start", top + "px");
+                fadeNav.style.setProperty("--scroll-area-overflow-y-end", (max - top) + "px");
+            };
+            fadeNav.addEventListener("scroll", publishFades, {
+                passive: true
+            });
+            window.addEventListener("resize", publishFades);
+            document.addEventListener("toggle", publishFades, true); /* <details> open/close */
+            publishFades();
+        }
+    })();
+
+;
+
+    (function() {
+        "use strict";
+        if (window.__epressoPagerKeys) return;
+        window.__epressoPagerKeys = true;
+        var nav = document.querySelector(".pager");
+        if (!nav) return;
+        var prev = nav.querySelector(".pager-link:not(.pager-next)");
+        var next = nav.querySelector(".pager-next");
+
+        function go(link) {
+            if (!link) return;
+            var href = link.getAttribute("href");
+            if (href) location.href = href;
+        }
+
+        /* [ / ] turn the page (only when the pager actually has that link). */
+        document.addEventListener("keydown", function(e) {
+            if (e.ctrlKey || e.metaKey || e.altKey) return;
+            var t = e.target;
+            if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable === true)) return;
+            if (e.code === "BracketLeft") {
+                if (!prev) return;
+                e.preventDefault();
+                go(prev);
+            } else if (e.code === "BracketRight") {
+                if (!next) return;
+                e.preventDefault();
+                go(next);
+            }
+        });
+    })();
+
+;
+
+    (function() {
+        "use strict";
+        if (window.__epressoTocSpy) return;
+        window.__epressoTocSpy = true;
+        var tocs = Array.prototype.slice.call(document.querySelectorAll(".toc"));
+        var links = [];
+        var seen = {};
+        var headings = [];
+        tocs.forEach(function(toc) {
+            /* Progressive enhancement: hide the static per-item marker and let the
+               shared indicator slide between active items instead. */
+            toc.classList.add("toc--animated");
+        });
+        Array.prototype.forEach.call(document.querySelectorAll(".toc a"), function(a) {
+            a.__tocTarget = a.getAttribute("href").slice(1);
+            links.push(a);
+            if (!seen[a.__tocTarget]) {
+                seen[a.__tocTarget] = true;
+                var el = document.getElementById(a.__tocTarget);
+                if (el) headings.push(el);
+            }
+        });
+        if (!links.length || !headings.length) return;
+
+        function setActive(idx) {
+            var target = idx >= 0 && idx < headings.length ? headings[idx].id : null;
+            links.forEach(function(a) {
+                a.classList.toggle("active", a.__tocTarget === target);
+            });
+            tocs.forEach(function(toc) {
+                var active = toc.querySelector("a.active");
+                var current = toc.querySelector(".toc-current");
+                if (current) current.textContent = active ? active.textContent : "On this page";
+                var indicator = toc.querySelector(".toc-indicator");
+                var list = toc.querySelector("ul");
+                if (!indicator || !list) return;
+                if (!active) {
+                    indicator.classList.remove("is-visible");
+                    return;
+                }
+                var tocRect = toc.getBoundingClientRect();
+                var listRect = list.getBoundingClientRect();
+                var activeRect = active.getBoundingClientRect();
+                /* Inset the marker vertically to match the static ::before
+                   (4px top/bottom of the link box). */
+                indicator.style.left = (listRect.left - tocRect.left) + "px";
+                indicator.style.height = Math.max(activeRect.height - 8, 0) + "px";
+                indicator.style.transform = "translateY(" + (activeRect.top - tocRect.top + 4) + "px)";
+                indicator.classList.add("is-visible");
+            });
+        }
+
+        function onScroll() {
+            var offset = 90; /* sticky header + a little */
+            var current = -1;
+            headings.forEach(function(h, i) {
+                if (h.getBoundingClientRect().top <= offset) current = i;
+            });
+            setActive(current);
+            updateRing();
+        }
+
+        /* Reading-progress ring in the inline popover trigger. */
+        var RING_C = 47.12388980384689;
+        var ring = document.querySelector(".toc--inline .toc-ring-progress");
+        var ringBar = document.querySelector(".toc--inline .toc-ring");
+
+        function updateRing() {
+            if (!ring) return;
+            var art = document.querySelector("article.doc") || document.querySelector("main.content");
+            if (!art) return;
+            var r = art.getBoundingClientRect();
+            var total = r.height - window.innerHeight;
+            var p = total > 0 ? Math.min(Math.max(-r.top / total, 0), 1) : (r.top <= 0 ? 1 : 0);
+            ring.style.strokeDashoffset = (RING_C * (1 - p)).toFixed(2);
+            if (ringBar) ringBar.setAttribute("aria-valuenow", p.toFixed(3));
+        }
+        window.addEventListener("scroll", onScroll, {
+            passive: true
+        });
+        onScroll();
+
+        /* < / > (i.e. , / .) jump to the previous / next heading. Shares the
+           [90px offset] logic with the scroll-spy, so "next" is the heading
+           after the one currently under the header. */
+        function currentIndex() {
+            var offset = 90;
+            var idx = -1;
+            headings.forEach(function(h, i) {
+                if (h.getBoundingClientRect().top <= offset + 1) idx = i;
+            });
+            return idx;
+        }
+
+        function jump(delta) {
+            var target = currentIndex() + delta;
+            if (target < 0) target = 0;
+            if (target > headings.length - 1) target = headings.length - 1;
+            var el = headings[target];
+            if (!el || !el.id) return;
+            el.scrollIntoView({
+                block: "start"
+            });
+            /* Keep the URL shareable without spamming history. */
+            if (window.history && history.replaceState) history.replaceState(null, "", "#" + el.id);
+        }
+
+        document.addEventListener("keydown", function(e) {
+            if (e.ctrlKey || e.metaKey || e.altKey) return;
+            var t = e.target;
+            if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.tagName === "SELECT" || t.isContentEditable === true)) return;
+            if (e.code === "Comma") {
+                e.preventDefault();
+                jump(-1);
+            } else if (e.code === "Period") {
+                e.preventDefault();
+                jump(1);
+            }
+        });
+
+        /* Collapse the inline popover after choosing a heading, or on an
+           outside click. */
+        document.addEventListener("click", function(e) {
+            var a = e.target.closest ? e.target.closest(".toc--inline a") : null;
+            if (a) {
+                var d = a.closest("details");
+                if (d) d.open = false;
+                return;
+            }
+            Array.prototype.forEach.call(document.querySelectorAll(".toc--inline details[open]"), function(d) {
+                if (!d.contains(e.target)) d.open = false;
+            });
+        });
+    })();
+
+;
+
+    (function() {
+        "use strict";
+        if (window.__epressoShortcuts) return;
+        window.__epressoShortcuts = true;
+        var overlay = document.getElementById("shortcuts-overlay");
+        if (!overlay) return;
+        var panel = overlay.querySelector(".shortcuts-box");
+
+        function isOpen() {
+            return overlay.classList.contains("open");
+        }
+
+        /* Never steal the key while the user is typing (docs search box,
+           a form, a contenteditable). */
+        function isTyping(el) {
+            if (!el) return false;
+            var tag = el.tagName;
+            return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || el.isContentEditable === true;
+        }
+
+        function open() {
+            /* Close any other overlay first (search / sidebar / menu). */
+            if (window.epressoPanelOpened) window.epressoPanelOpened("shortcuts");
+            overlay.classList.add("open");
+            overlay.focus();
+        }
+
+        function close() {
+            overlay.classList.remove("open");
+        }
+
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") {
+                if (isOpen()) close();
+                return;
+            }
+            /* "?" is Shift+/ on most layouts — e.key already accounts for it. */
+            if (e.key !== "?" || e.ctrlKey || e.metaKey || e.altKey) return;
+            if (isTyping(e.target)) return;
+            e.preventDefault();
+            if (isOpen()) close();
+            else open();
+        });
+
+        overlay.addEventListener("click", function(e) {
+            /* Click on the backdrop (not the panel) closes. */
+            if (e.target === overlay) close();
+        });
+
+        var closeBtn = document.getElementById("shortcuts-close");
+        if (closeBtn) closeBtn.addEventListener("click", close);
+
+        /* Only one overlay at a time. */
+        document.addEventListener("epresso:panel-open", function(e) {
+            if (e.detail !== "shortcuts") close();
+        });
+    })();
+
+;
+
+    (function() {
+        "use strict";
         var KEY = "epresso-theme";
         var MODES = ["system", "light", "dark"];
         var group = document.getElementById("theme-switch");
@@ -382,118 +799,6 @@
 
     (function() {
         "use strict";
-        if (window.__epressoSidebarHover) return;
-        window.__epressoSidebarHover = true;
-        var targets = "a, summary, .tree-head";
-        Array.prototype.forEach.call(document.querySelectorAll(".sidebar nav"), function(nav) {
-            var hover = nav.querySelector(".tree-hover");
-            if (!hover) return;
-            nav.classList.add("nav-slide");
-
-            function move(el) {
-                var navRect = nav.getBoundingClientRect();
-                var elRect = el.getBoundingClientRect();
-                hover.style.height = elRect.height + "px";
-                hover.style.transform = "translateY(" + (elRect.top - navRect.top) + "px)";
-                hover.classList.add("is-visible");
-            }
-
-            function hide() {
-                hover.classList.remove("is-visible");
-            }
-
-            function highlight(event) {
-                var el = event.target.closest ? event.target.closest(targets) : null;
-                // Hub links live inside a summary/.tree-head row; use the row so
-                // the hover highlight matches the active row highlight.
-                if (el && el.tagName === "A") {
-                    var row = el.closest("summary, .tree-head");
-                    if (row) el = row;
-                }
-                // Never move the sliding highlight onto the active item; it
-                // keeps its own (accent) highlight.
-                if (el && el.classList.contains("active")) {
-                    hide();
-                    return;
-                }
-                if (el && nav.contains(el)) move(el);
-                else hide();
-            }
-            nav.addEventListener("mouseover", highlight);
-            nav.addEventListener("focusin", highlight);
-            nav.addEventListener("mouseleave", hide);
-            nav.addEventListener("focusout", hide);
-        });
-    })();
-
-    (function() {
-        "use strict";
-        if (window.__epressoSidebarToggle) return;
-        window.__epressoSidebarToggle = true;
-        var sidebar = document.getElementById("sidebar-nav");
-        var scrim = document.querySelector(".sidebar-scrim");
-        if (!sidebar) return;
-
-        var mq = window.matchMedia("(max-width: 860px)");
-        var FOCUSABLE = 'a[href], button:not([disabled]), summary, input, [tabindex]:not([tabindex="-1"])';
-
-        function setOpen(open) {
-            sidebar.classList.toggle("is-open", open);
-            if (scrim) scrim.classList.toggle("is-open", open);
-            document.body.classList.toggle("nav-open", open);
-            /* Keep closed off-canvas content out of the tab order. */
-            sidebar.inert = mq.matches && !open;
-            var triggers = document.querySelectorAll(".sidebar-toggle");
-            Array.prototype.forEach.call(triggers, function(b) {
-                b.setAttribute("aria-expanded", open ? "true" : "false");
-                b.setAttribute("aria-label", open ? "Hide navigation" : "Show navigation");
-            });
-            if (open) {
-                var first = sidebar.querySelector(FOCUSABLE);
-                if (first) first.focus();
-            } else if (triggers.length && sidebar.contains(document.activeElement)) {
-                triggers[0].focus();
-            }
-            if (open && window.epressoPanelOpened) window.epressoPanelOpened("sidebar");
-        }
-        /* Only one overlay at a time (search / menu). */
-        document.addEventListener("epresso:panel-open", function(e) {
-            if (e.detail !== "sidebar") setOpen(false);
-        });
-
-        function syncState() {
-            if (!mq.matches && sidebar.classList.contains("is-open")) setOpen(false);
-            sidebar.inert = mq.matches && !sidebar.classList.contains("is-open");
-        }
-        syncState();
-        if (mq.addEventListener) mq.addEventListener("change", syncState);
-        /* Delegated: the toggle lives in the ToC bar, which is rendered after
-           this script. */
-        document.addEventListener("click", function(e) {
-            var btn = e.target.closest ? e.target.closest(".sidebar-toggle") : null;
-            if (btn) setOpen(!sidebar.classList.contains("is-open"));
-        });
-        if (scrim) scrim.addEventListener("click", function() { setOpen(false); });
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "Escape") { setOpen(false); return; }
-            /* Trap focus inside the open drawer. */
-            if (e.key !== "Tab" || !sidebar.classList.contains("is-open")) return;
-            var f = sidebar.querySelectorAll(FOCUSABLE);
-            if (!f.length) return;
-            var first = f[0], last = f[f.length - 1];
-            if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-            else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-        });
-        sidebar.addEventListener("click", function(e) {
-            var a = e.target.closest ? e.target.closest("a") : null;
-            if (a && mq.matches) setOpen(false);
-        });
-    })();
-
-;
-
-    (function() {
-        "use strict";
         var lb = document.getElementById("lightbox");
         if (!lb) return;
         var img = lb.querySelector(".lightbox-img");
@@ -540,153 +845,4 @@
             else if (e.key === "ArrowLeft") move(-1);
             else if (e.key === "ArrowRight") move(1);
         });
-    })();
-
-;
-
-    (function() {
-        "use strict";
-        if (window.__epressoTocSpy) return;
-        window.__epressoTocSpy = true;
-        var tocs = Array.prototype.slice.call(document.querySelectorAll(".toc"));
-        var links = [];
-        var seen = {};
-        var headings = [];
-        tocs.forEach(function(toc) {
-            /* Progressive enhancement: hide the static per-item marker and let the
-               shared indicator slide between active items instead. */
-            toc.classList.add("toc--animated");
-        });
-        Array.prototype.forEach.call(document.querySelectorAll(".toc a"), function(a) {
-            a.__tocTarget = a.getAttribute("href").slice(1);
-            links.push(a);
-            if (!seen[a.__tocTarget]) {
-                seen[a.__tocTarget] = true;
-                var el = document.getElementById(a.__tocTarget);
-                if (el) headings.push(el);
-            }
-        });
-        if (!links.length || !headings.length) return;
-
-        function setActive(idx) {
-            var target = idx >= 0 && idx < headings.length ? headings[idx].id : null;
-            links.forEach(function(a) {
-                a.classList.toggle("active", a.__tocTarget === target);
-            });
-            tocs.forEach(function(toc) {
-                var active = toc.querySelector("a.active");
-                var current = toc.querySelector(".toc-current");
-                if (current) current.textContent = active ? active.textContent : "On this page";
-                var indicator = toc.querySelector(".toc-indicator");
-                var list = toc.querySelector("ul");
-                if (!indicator || !list) return;
-                if (!active) {
-                    indicator.classList.remove("is-visible");
-                    return;
-                }
-                var tocRect = toc.getBoundingClientRect();
-                var listRect = list.getBoundingClientRect();
-                var activeRect = active.getBoundingClientRect();
-                /* Inset the marker vertically to match the static ::before
-                   (4px top/bottom of the link box). */
-                indicator.style.left = (listRect.left - tocRect.left) + "px";
-                indicator.style.height = Math.max(activeRect.height - 8, 0) + "px";
-                indicator.style.transform = "translateY(" + (activeRect.top - tocRect.top + 4) + "px)";
-                indicator.classList.add("is-visible");
-            });
-        }
-
-        function onScroll() {
-            var offset = 90; /* sticky header + a little */
-            var current = -1;
-            headings.forEach(function(h, i) {
-                if (h.getBoundingClientRect().top <= offset) current = i;
-            });
-            setActive(current);
-            updateRing();
-        }
-
-        /* Reading-progress ring in the inline popover trigger. */
-        var RING_C = 47.12388980384689;
-        var ring = document.querySelector(".toc--inline .toc-ring-progress");
-        var ringBar = document.querySelector(".toc--inline .toc-ring");
-
-        function updateRing() {
-            if (!ring) return;
-            var art = document.querySelector("article.doc") || document.querySelector("main.content");
-            if (!art) return;
-            var r = art.getBoundingClientRect();
-            var total = r.height - window.innerHeight;
-            var p = total > 0 ? Math.min(Math.max(-r.top / total, 0), 1) : (r.top <= 0 ? 1 : 0);
-            ring.style.strokeDashoffset = (RING_C * (1 - p)).toFixed(2);
-            if (ringBar) ringBar.setAttribute("aria-valuenow", p.toFixed(3));
-        }
-        window.addEventListener("scroll", onScroll, {
-            passive: true
-        });
-        onScroll();
-
-        /* Collapse the inline popover after choosing a heading, or on an
-           outside click. */
-        document.addEventListener("click", function(e) {
-            var a = e.target.closest ? e.target.closest(".toc--inline a") : null;
-            if (a) {
-                var d = a.closest("details");
-                if (d) d.open = false;
-                return;
-            }
-            Array.prototype.forEach.call(document.querySelectorAll(".toc--inline details[open]"), function(d) {
-                if (!d.contains(e.target)) d.open = false;
-            });
-        });
-    })();
-
-;
-
-    (function() {
-        "use strict";
-        if (window.__epressoNavToggle) return;
-        window.__epressoNavToggle = true;
-        var btn = document.getElementById("nav-toggle");
-        var menu = document.getElementById("nav-menu");
-        var scrim = document.querySelector(".nav-scrim");
-        if (!btn || !menu) return;
-        var mq = window.matchMedia("(max-width: 640px)");
-
-        function setOpen(open) {
-            menu.classList.toggle("is-open", open);
-            if (scrim) scrim.classList.toggle("is-open", open);
-            /* Keep closed off-canvas content out of the tab order. */
-            menu.inert = mq.matches && !open;
-            btn.setAttribute("aria-expanded", open ? "true" : "false");
-            btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-            if (open && window.epressoPanelOpened) window.epressoPanelOpened("menu");
-        }
-        /* Only one overlay at a time (search / sidebar). */
-        document.addEventListener("epresso:panel-open", function(e) {
-            if (e.detail !== "menu") setOpen(false);
-        });
-        btn.addEventListener("click", function() {
-            setOpen(!menu.classList.contains("is-open"));
-        });
-        if (scrim) scrim.addEventListener("click", function() { setOpen(false); });
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "Escape") setOpen(false);
-        });
-        menu.addEventListener("click", function(e) {
-            var a = e.target.closest ? e.target.closest("a") : null;
-            if (a) setOpen(false);
-        });
-        document.addEventListener("click", function(e) {
-            if (!menu.classList.contains("is-open")) return;
-            if (e.target.closest && (e.target.closest("#nav-toggle") || e.target.closest("#nav-menu") || e.target.closest(".nav-scrim"))) return;
-            setOpen(false);
-        });
-
-        function syncState() {
-            if (!mq.matches && menu.classList.contains("is-open")) setOpen(false);
-            menu.inert = mq.matches && !menu.classList.contains("is-open");
-        }
-        syncState();
-        if (mq.addEventListener) mq.addEventListener("change", syncState);
     })();
