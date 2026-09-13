@@ -537,71 +537,12 @@
 
     (function() {
         "use strict";
-        if (window.__epressoNavToggle) return;
-        window.__epressoNavToggle = true;
-        var btn = document.getElementById("nav-toggle");
-        var menu = document.getElementById("nav-menu");
-        var scrim = document.querySelector(".nav-scrim");
-        if (!btn || !menu) return;
-        var mq = window.matchMedia("(max-width: 768px)");
-
-        function setOpen(open) {
-            menu.classList.toggle("is-open", open);
-            if (scrim) scrim.classList.toggle("is-open", open);
-        /* Keep closed off-canvas content out of the tab order. */
-            menu.inert = mq.matches && !open;
-            btn.setAttribute("aria-expanded", open ? "true" : "false");
-            btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-            if (open && window.epressoPanelOpened) window.epressoPanelOpened("menu");
-        }
-    /* Only one overlay at a time (search / sidebar). */
-        document.addEventListener("epresso:panel-open", function(e) {
-            if (e.detail !== "menu") setOpen(false);
-        });
-        btn.addEventListener("click", function() {
-            setOpen(!menu.classList.contains("is-open"));
-        });
-        if (scrim) scrim.addEventListener("click", function() {
-            setOpen(false);
-        });
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "Escape") setOpen(false);
-        });
-        menu.addEventListener("click", function(e) {
-            var a = e.target.closest ? e.target.closest("a") : null;
-            if (a) setOpen(false);
-        });
-        document.addEventListener("click", function(e) {
-            if (!menu.classList.contains("is-open")) return;
-            if (e.target.closest && (e.target.closest("#nav-toggle") || e.target.closest("#nav-menu") || e.target.closest(".nav-scrim"))) return;
-            setOpen(false);
-        });
-
-        function syncState() {
-            if (!mq.matches && menu.classList.contains("is-open")) setOpen(false);
-            menu.inert = mq.matches && !menu.classList.contains("is-open");
-        }
-        syncState();
-        if (mq.addEventListener) mq.addEventListener("change", syncState);
-    })();
-
-;
-
-    (function() {
-        "use strict";
         if (window.__epressoShortcuts) return;
         window.__epressoShortcuts = true;
         var overlay = document.getElementById("shortcuts-overlay");
         if (!overlay) return;
         var panel = overlay.querySelector(".shortcuts-box");
 
-    /* Real, accessible text (unlike SearchButton.ep's decorative hint), so
-       swap it in the DOM rather than via CSS content. data-mac is set once
-       in Base.ep — no need to re-sniff the platform here. */
-        if (document.documentElement.hasAttribute("data-mac")) {
-            var modKey = overlay.querySelector(".shortcuts-list kbd.mod");
-            if (modKey) modKey.textContent = "\u2318";
-        }
 
         function isOpen() {
             return overlay.classList.contains("open");
@@ -709,6 +650,58 @@
         document.addEventListener("epresso:panel-open", function(e) {
             if (e.detail !== "shortcuts") close();
         });
+    })();
+
+;
+
+    (function() {
+        "use strict";
+        if (window.__epressoNavToggle) return;
+        window.__epressoNavToggle = true;
+        var btn = document.getElementById("nav-toggle");
+        var menu = document.getElementById("nav-menu");
+        var scrim = document.querySelector(".nav-scrim");
+        if (!btn || !menu) return;
+        var mq = window.matchMedia("(max-width: 768px)");
+
+        function setOpen(open) {
+            menu.classList.toggle("is-open", open);
+            if (scrim) scrim.classList.toggle("is-open", open);
+        /* Keep closed off-canvas content out of the tab order. */
+            menu.inert = mq.matches && !open;
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+            btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            if (open && window.epressoPanelOpened) window.epressoPanelOpened("menu");
+        }
+    /* Only one overlay at a time (search / sidebar). */
+        document.addEventListener("epresso:panel-open", function(e) {
+            if (e.detail !== "menu") setOpen(false);
+        });
+        btn.addEventListener("click", function() {
+            setOpen(!menu.classList.contains("is-open"));
+        });
+        if (scrim) scrim.addEventListener("click", function() {
+            setOpen(false);
+        });
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") setOpen(false);
+        });
+        menu.addEventListener("click", function(e) {
+            var a = e.target.closest ? e.target.closest("a") : null;
+            if (a) setOpen(false);
+        });
+        document.addEventListener("click", function(e) {
+            if (!menu.classList.contains("is-open")) return;
+            if (e.target.closest && (e.target.closest("#nav-toggle") || e.target.closest("#nav-menu") || e.target.closest(".nav-scrim"))) return;
+            setOpen(false);
+        });
+
+        function syncState() {
+            if (!mq.matches && menu.classList.contains("is-open")) setOpen(false);
+            menu.inert = mq.matches && !menu.classList.contains("is-open");
+        }
+        syncState();
+        if (mq.addEventListener) mq.addEventListener("change", syncState);
     })();
 
 ;
