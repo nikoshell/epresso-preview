@@ -191,6 +191,116 @@
 
     (function() {
         "use strict";
+        if (window.__epressoShortcuts) return;
+        window.__epressoShortcuts = true;
+        var overlay = document.getElementById("shortcuts-overlay");
+        if (!overlay) return;
+        var panel = overlay.querySelector(".shortcuts-box");
+
+        /* Real, accessible text (unlike SearchButton.ep's decorative hint), so
+           swap it in the DOM rather than via CSS content. data-mac is set once
+           in Base.ep — no need to re-sniff the platform here. */
+        if (document.documentElement.hasAttribute("data-mac")) {
+            var modKey = overlay.querySelector(".shortcuts-list kbd.mod");
+            if (modKey) modKey.textContent = "\u2318";
+        }
+
+        function isOpen() {
+            return overlay.classList.contains("open");
+        }
+
+        /* Never steal the key while the user is typing (docs search box,
+           a form, a contenteditable). */
+        function isTyping(el) {
+            if (!el) return false;
+            var tag = el.tagName;
+            return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || el.isContentEditable === true;
+        }
+
+        function open() {
+            /* Close any other overlay first (search / sidebar / menu). */
+            if (window.epressoPanelOpened) window.epressoPanelOpened("shortcuts");
+            overlay.classList.add("open");
+            overlay.focus();
+        }
+
+        function close() {
+            overlay.classList.remove("open");
+        }
+
+        /* Every global binding lives here, so the modifier and "not while
+           typing" rules exist once. Each entry broadcasts epresso:shortcut and
+           the component that owns the action listens for its own name. Bare
+           keys (?, [, ], ,, .) are ignored while typing; modified ones (Ctrl/⌘K)
+           work anywhere, as they do in most editors. */
+        /* Actions needing another component's state are broadcast (see the
+           search overlay and the ToC); ones that are just "follow a link" are
+           done here, off the hooks the pager exposes. */
+        function follow(attr) {
+            var link = document.querySelector("[" + attr + "]");
+            var href = link && link.getAttribute("href");
+            if (href) location.href = href;
+        }
+
+        var KEYS = [
+            {code: "KeyK", mod: true, action: "search"},
+            {code: "BracketLeft", run: function() { follow("data-pager-prev"); }},
+            {code: "BracketRight", run: function() { follow("data-pager-next"); }},
+            {code: "Comma", action: "section-prev"},
+            {code: "Period", action: "section-next"}
+        ];
+
+        function fire(action) {
+            document.dispatchEvent(new CustomEvent("epresso:shortcut", {detail: action}));
+        }
+
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") {
+                if (isOpen()) close();
+                return;
+            }
+            var mod = e.ctrlKey || e.metaKey;
+            /* "?" is Shift+/ on most layouts — e.key already accounts for it. */
+            if (e.key === "?") {
+                if (mod || e.altKey || isTyping(e.target)) return;
+                e.preventDefault();
+                if (isOpen()) close();
+                else open();
+                return;
+            }
+            for (var i = 0; i < KEYS.length; i++) {
+                var k = KEYS[i];
+                if (e.code !== k.code) continue;
+                if (k.mod) {
+                    if (!mod || e.altKey) continue;
+                } else if (mod || e.altKey || isTyping(e.target)) {
+                    continue;
+                }
+                e.preventDefault();
+                if (k.run) k.run();
+                else fire(k.action);
+                return;
+            }
+        });
+
+        overlay.addEventListener("click", function(e) {
+            /* Click on the backdrop (not the panel) closes. */
+            if (e.target === overlay) close();
+        });
+
+        var closeBtn = document.getElementById("shortcuts-close");
+        if (closeBtn) closeBtn.addEventListener("click", close);
+
+        /* Only one overlay at a time. */
+        document.addEventListener("epresso:panel-open", function(e) {
+            if (e.detail !== "shortcuts") close();
+        });
+    })();
+
+;
+
+    (function() {
+        "use strict";
         if (window.__epressoPageCopy) return;
         window.__epressoPageCopy = true;
         var btn = document.getElementById("page-copy");
@@ -786,107 +896,5 @@
             Array.prototype.forEach.call(document.querySelectorAll(".toc--inline details[open]"), function(d) {
                 if (!d.contains(e.target)) d.open = false;
             });
-        });
-    })();
-
-;
-
-    (function() {
-        "use strict";
-        if (window.__epressoShortcuts) return;
-        window.__epressoShortcuts = true;
-        var overlay = document.getElementById("shortcuts-overlay");
-        if (!overlay) return;
-        var panel = overlay.querySelector(".shortcuts-box");
-
-        function isOpen() {
-            return overlay.classList.contains("open");
-        }
-
-        /* Never steal the key while the user is typing (docs search box,
-           a form, a contenteditable). */
-        function isTyping(el) {
-            if (!el) return false;
-            var tag = el.tagName;
-            return tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || el.isContentEditable === true;
-        }
-
-        function open() {
-            /* Close any other overlay first (search / sidebar / menu). */
-            if (window.epressoPanelOpened) window.epressoPanelOpened("shortcuts");
-            overlay.classList.add("open");
-            overlay.focus();
-        }
-
-        function close() {
-            overlay.classList.remove("open");
-        }
-
-        /* Every global binding lives here, so the modifier and "not while
-           typing" rules exist once. Each entry broadcasts epresso:shortcut and
-           the component that owns the action listens for its own name. Bare
-           keys (?, [, ], ,, .) are ignored while typing; modified ones (Ctrl/⌘K)
-           work anywhere, as they do in most editors. */
-        /* Actions needing another component's state are broadcast (see the
-           search overlay and the ToC); ones that are just "follow a link" are
-           done here, off the hooks the pager exposes. */
-        function follow(attr) {
-            var link = document.querySelector("[" + attr + "]");
-            var href = link && link.getAttribute("href");
-            if (href) location.href = href;
-        }
-
-        var KEYS = [
-            {code: "KeyK", mod: true, action: "search"},
-            {code: "BracketLeft", run: function() { follow("data-pager-prev"); }},
-            {code: "BracketRight", run: function() { follow("data-pager-next"); }},
-            {code: "Comma", action: "section-prev"},
-            {code: "Period", action: "section-next"}
-        ];
-
-        function fire(action) {
-            document.dispatchEvent(new CustomEvent("epresso:shortcut", {detail: action}));
-        }
-
-        document.addEventListener("keydown", function(e) {
-            if (e.key === "Escape") {
-                if (isOpen()) close();
-                return;
-            }
-            var mod = e.ctrlKey || e.metaKey;
-            /* "?" is Shift+/ on most layouts — e.key already accounts for it. */
-            if (e.key === "?") {
-                if (mod || e.altKey || isTyping(e.target)) return;
-                e.preventDefault();
-                if (isOpen()) close();
-                else open();
-                return;
-            }
-            for (var i = 0; i < KEYS.length; i++) {
-                var k = KEYS[i];
-                if (e.code !== k.code) continue;
-                if (k.mod) {
-                    if (!mod || e.altKey) continue;
-                } else if (mod || e.altKey || isTyping(e.target)) {
-                    continue;
-                }
-                e.preventDefault();
-                if (k.run) k.run();
-                else fire(k.action);
-                return;
-            }
-        });
-
-        overlay.addEventListener("click", function(e) {
-            /* Click on the backdrop (not the panel) closes. */
-            if (e.target === overlay) close();
-        });
-
-        var closeBtn = document.getElementById("shortcuts-close");
-        if (closeBtn) closeBtn.addEventListener("click", close);
-
-        /* Only one overlay at a time. */
-        document.addEventListener("epresso:panel-open", function(e) {
-            if (e.detail !== "shortcuts") close();
         });
     })();
