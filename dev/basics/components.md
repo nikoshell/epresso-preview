@@ -98,6 +98,25 @@ Two equivalent syntaxes.
   components.
 * The legacy `{% component %}` tag still works and can be mixed freely.
 
+### Same basename in different subdirectories
+
+A component is normally found by basename alone, wherever it lives under
+`components/` (`components/Card.ep`, `components/controls/Card.ep`, `components/ui/anything/Card.ep`
+all answer to `<Card />`). If two files share a basename outside the
+`components/`/`layouts/` roots themselves, which one `<Card />` resolves to is
+undefined — pick a specific one with `<Name:dir />`:
+
+```jinja
+<A:comp1 />   {# components/comp1/A.ep #}
+<A:comp2 />   {# components/comp2/A.ep #}
+<A:dir1:dir2 />  {# components/dir1/dir2/A.ep #}
+```
+
+The qualifier goes after the name (not before, XML-namespace style) because a
+tag must start with an uppercase letter to be recognized as a component at
+all — `<comp1:A />` would just look like an unrecognized lowercase HTML tag.
+The same call also works through the low-level tag: `{% component "A:comp1" %}`.
+
 ### Slots
 
 Components get a **default slot** (`{{ content }}`, the children) plus **named

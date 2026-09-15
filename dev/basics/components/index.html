@@ -272,6 +272,51 @@ flag (see <a href="/epresso-preview/dev/basics/layouts/" data-epresso-bdd7a5c3>L
 components.</li>
 <li data-epresso-bdd7a5c3>The legacy <code data-epresso-bdd7a5c3>{% component %}</code> tag still works and can be mixed freely.</li>
 </ul>
+<h3 id="same-basename-in-different-subdirectories" data-epresso-bdd7a5c3><a class="heading-anchor" href="#same-basename-in-different-subdirectories" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Same basename in different subdirectories</h3>
+<p data-epresso-bdd7a5c3>A component is normally found by basename alone, wherever it lives under
+<code data-epresso-bdd7a5c3>components/</code> (<code data-epresso-bdd7a5c3>components/Card.ep</code>, <code data-epresso-bdd7a5c3>components/controls/Card.ep</code>, <code data-epresso-bdd7a5c3>components/ui/anything/Card.ep</code>
+all answer to <code data-epresso-bdd7a5c3>&lt;Card/&gt;</code>). If two files share a basename outside the
+<code data-epresso-bdd7a5c3>components/</code>/<code data-epresso-bdd7a5c3>layouts/</code> roots themselves, which one <code data-epresso-bdd7a5c3>&lt;Card/&gt;</code> resolves to is
+undefined — pick a specific one with <code data-epresso-bdd7a5c3>&lt;Name:dir /&gt;</code>:</p>
+
+<pre class="highlight" data-epresso-baba6069>
+  
+<div class="code-head" data-epresso-89a9f5da>
+    <span class="code-dots" data-epresso-89a9f5da><span data-epresso-89a9f5da></span><span data-epresso-89a9f5da></span><span data-epresso-89a9f5da></span></span>
+    
+    <span class="code-trailing" data-epresso-89a9f5da>
+        <span class="code-lang" data-epresso-89a9f5da>jinja</span>
+        <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-89a9f5da>
+            
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-89a9f5da><path d="M9 4.75A.75.75 0 0 1 9.75 4h4a.75.75 0 0 1 .53 1.28l-1.89 1.892c.312.076.604.18.867.319.742.391 1.244 1.063 1.244 2.005 0 .653-.231 1.208-.629 1.627-.386.408-.894.653-1.408.777-1.01.243-2.225.063-3.124-.527a.751.751 0 0 1 .822-1.254c.534.35 1.32.474 1.951.322.306-.073.53-.201.67-.349.129-.136.218-.32.218-.596 0-.308-.123-.509-.444-.678-.373-.197-.98-.318-1.806-.318a.75.75 0 0 1-.53-1.28l1.72-1.72H9.75A.75.75 0 0 1 9 4.75Zm-3.587 5.763c-.35-.05-.77.113-.983.572a.75.75 0 1 1-1.36-.632c.508-1.094 1.589-1.565 2.558-1.425 1 .145 1.872.945 1.872 2.222 0 1.433-1.088 2.192-1.79 2.681-.308.216-.571.397-.772.573H7a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75c0-.69.3-1.211.67-1.61.348-.372.8-.676 1.15-.92.8-.56 1.18-.904 1.18-1.474 0-.473-.267-.69-.587-.737ZM5.604.089A.75.75 0 0 1 6 .75v4.77h.711a.75.75 0 0 1 0 1.5H3.759a.75.75 0 0 1 0-1.5H4.5V2.15l-.334.223a.75.75 0 0 1-.832-1.248l1.5-1a.75.75 0 0 1 .77-.037Z" data-epresso-89a9f5da/></svg>
+
+        </button>
+        <button type="button" class="code-btn code-copy" aria-label="Copy code" title="Copy code" data-epresso-89a9f5da>
+            
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--copy" data-epresso-89a9f5da><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z" data-epresso-89a9f5da/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z" data-epresso-89a9f5da/></svg>
+
+            
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--check" data-epresso-89a9f5da><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" data-epresso-89a9f5da/></svg>
+
+        </button>
+    </span>
+</div>
+
+
+
+
+
+  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069><span class="x" data-epresso-baba6069>&lt;A:comp1 /&gt;   </span><span class="c" data-epresso-baba6069>{# components/comp1/A.ep #}</span></span><span class="code-line" data-epresso-baba6069><span class="x" data-epresso-baba6069>&lt;A:comp2 /&gt;   </span><span class="c" data-epresso-baba6069>{# components/comp2/A.ep #}</span></span><span class="code-line" data-epresso-baba6069><span class="x" data-epresso-baba6069>&lt;A:dir1:dir2 /&gt;  </span><span class="c" data-epresso-baba6069>{# components/dir1/dir2/A.ep #}</span></span><span class="code-line" data-epresso-baba6069></span></div>
+</pre>
+
+
+
+
+
+<p data-epresso-bdd7a5c3>The qualifier goes after the name (not before, XML-namespace style) because a
+tag must start with an uppercase letter to be recognized as a component at
+all — <code data-epresso-bdd7a5c3>&lt;comp1:A /&gt;</code> would just look like an unrecognized lowercase HTML tag.
+The same call also works through the low-level tag: <code data-epresso-bdd7a5c3>{% component &quot;A:comp1&quot; %}</code>.</p>
 <h3 id="slots" data-epresso-bdd7a5c3><a class="heading-anchor" href="#slots" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Slots</h3>
 <p data-epresso-bdd7a5c3>Components get a <strong data-epresso-bdd7a5c3>default slot</strong> (<code data-epresso-bdd7a5c3>{{ content }}</code>, the children) plus <strong data-epresso-bdd7a5c3>named
 slots</strong>:</p>
