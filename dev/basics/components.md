@@ -241,11 +241,6 @@ Allow-listed component tags can be used directly in Markdown (see
 markdown-facing interface can differ from the underlying component (e.g. a
 `<YouTube id>` → blocks/YouTube wrapper).
 
-## Plain `.html` components
-
-Backwards-compatible plain Jinja templates under `components/`. They
-receive kwargs plus `content`, `slots`, `slot()`, and `site`.
-
 ## Compose with components, not Jinja composition
 
 Composition in `.ep` is done with component tags and `<slot/>` — not with
