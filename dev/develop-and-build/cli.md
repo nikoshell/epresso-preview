@@ -11,6 +11,7 @@ epresso ships a single `epresso` command with subcommands:
 | `epresso preview` | Build then serve `dist/` (production preview) |
 | `epresso docs` | Build + serve the documentation (port 4321) |
 | `epresso clean` | Remove `dist/` and the build cache |
+| `epresso layers` | List the component/layout layers resolved from `[layers] use` |
 | `epresso check` | Validate config + content, list routes |
 | `epresso fmt` | Format `.ep` files to the canonical section structure |
 | `epresso inspect` | Inspect the build graph (routes + content → route edges) |
@@ -30,10 +31,15 @@ epresso fmt components/ pages/      # format specific files/dirs
 epresso fmt --check .       # report files that would change; don't write (exit 1 if any)
 epresso fmt --expand .      # reflow the body: one child per line (no extra deps)
 epresso fmt --full .        # also format section contents (frontmatter/HTML/CSS/JS)
+epresso fmt --stdin         # read one .ep source from stdin, write to stdout
 ```
 
-Layouts (`{% extends %}` or a document shell with `<html>/<head>/<body>`) are
-only whitespace-normalised — their `<style>`/`<script>` are positional and never
+`--stdin` is for editor integrations (the bundled VS Code extension uses it to
+format the buffer without touching disk); it reads one `.ep` source from stdin
+and writes the result to stdout. It cannot be combined with `--check`.
+
+A layout — a document shell with `<html>/<head>/<body>` — is only
+whitespace-normalised: its `<style>`/`<script>` are positional and never
 reordered. `--check` is CI-friendly: it exits non-zero when any file needs
 formatting.
 

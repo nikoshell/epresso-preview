@@ -5,6 +5,11 @@ component as `components/<Name>.ep` first, then looks under `layouts/` (so a
 layout can double as a component). In a [`src/` project](project-structure.md)
 both directories live under `src/`.
 
+Components from an external repo or directory can be layered in with
+[`[layers] use`](../guides/extending/layers.md); the site's own files are always
+searched first, so a site component with a matching basename overrides the
+layer's.
+
 ## The `.ep` file format
 
 `.ep` files unify **Python frontmatter** (`--- … ---`) + **Jinja body** + optional
@@ -51,8 +56,8 @@ Patterns:
 The sidecars are capped **per kind** too: at most one scoped `<style>`, one
 `<style is:global>` and one `<script>` per file — merge same-kind blocks.
 
-Violations fail the build with file, line and a fix hint. Legacy `.html`
-components and `.ep` endpoints (whose body is never rendered) are exempt.
+Violations fail the build with file, line and a fix hint. `.ep` endpoints (whose
+body is never rendered) are exempt.
 
 ### Typed props
 
@@ -150,8 +155,7 @@ element — the group still counts as the file's one root (see
 <div class="card"><h3>{{ props.title }}</h3><header>{{ slot('header') }}</header>{{ content }}</div>
 ```
 
-Use `{{ slot('name') or 'fallback' }}` for fallback content. Works for `.ep` and
-`.html` components.
+Use `{{ slot('name') or 'fallback' }}` for fallback content.
 
 ## Scoped CSS
 
@@ -257,5 +261,4 @@ the file, line and directive named.
 - Replace `{% macro %}` / `{% import %}` with a component + props.
 
 Still allowed in `.ep`: `{{ expr }}` interpolation, JSX props (`{expr}`),
-`{% if %}` / `{% for %}` control flow, comments, and `<slot/>`. Plain `.html`
-components/templates keep full Jinja and are unaffected.
+`{% if %}` / `{% for %}` control flow, comments, and `<slot/>`.

@@ -18,19 +18,21 @@ Pick the path that matches what you want:
 | Start from a ready-made theme (docs, blog) | [Start from a template](guides/themes/from-template.md) | ✅ Available |
 | Make a theme other people can use | [Create a theme](guides/themes/create-a-theme.md) | ✅ Available |
 | Use a theme but keep overriding parts of it and get upstream updates | Use a theme as a layer | 🚧 Planned |
-| Use only a component library, with my own layout | Build with components only | 🚧 Planned |
+| Use only a component library, with my own layout | [Layers](guides/extending/layers.md) | 🟡 Components available |
 
-**Status legend.** 🚧 marks a designed-but-unimplemented feature. Those
-tutorials are drafts: they render in `epresso dev` previews (look for the
-**Coming soon** group in the sidebar) and are excluded from production builds.
-The commands in them do not work yet.
+**Status legend.** ✅ shipped; 🟡 partly shipped — component and layout layers
+work today, layer stylesheets and whole-theme layers do not; 🚧 designed but
+unimplemented. The 🟡/🚧 tutorials are drafts: they render in `epresso dev`
+previews (look for the **Coming soon** group in the sidebar) and are excluded
+from production builds.
 
 ## Which should I pick?
 
 - **Nothing to override, want a running site now** → a template
   (`epresso new`). You own a full copy; upstream changes are yours to merge.
-- **Want a bigger say in structure** → start blank (`epresso init`) and add a
-  component library once it is available.
+- **Want a bigger say in structure** → start blank (`epresso init`) and layer in
+  a component library with `[layers] use` — see
+  [Layers](guides/extending/layers.md).
 - **Building something for others** → author a theme; see
   [Create a theme](guides/themes/create-a-theme.md).
 

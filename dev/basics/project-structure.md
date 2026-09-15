@@ -85,7 +85,15 @@ Collections are defined in `content.config.py`; a directory like `blog/` becomes
 a collection by pointing `define_collection(..., base="./blog")` at it. Collection
 `base` paths are relative to the source root (see above).
 
-## Back-compat
+## Layers
 
-A legacy `templates/` root (with `components/` and `layouts/` subdirectories) is
-still loaded when present, so older projects keep working without changes.
+`components/` and `layouts/` can also come from external sources — another
+directory, an installed package, or a git repo — declared in `[layers]`:
+
+```toml
+[layers]
+use = ["./vendor/components", "pkg:epresso_ui", "github:owner/epresso-components@v1"]
+```
+
+The site's own roots are always searched first. See
+[Layers](../guides/extending/layers.md).

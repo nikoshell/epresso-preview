@@ -48,6 +48,7 @@
 - [Markdown](https://nikoshell.github.io/epresso/guides/content/markdown/)
 - [MDX](https://nikoshell.github.io/epresso/guides/content/mdx/)
 - [RSS](https://nikoshell.github.io/epresso/guides/content/rss/)
+- [Layers](https://nikoshell.github.io/epresso/guides/extending/layers/)
 - [Middleware](https://nikoshell.github.io/epresso/guides/extending/middleware/)
 - [Plugins](https://nikoshell.github.io/epresso/guides/extending/plugins/)
 - [Fonts](https://nikoshell.github.io/epresso/guides/styling/fonts/)

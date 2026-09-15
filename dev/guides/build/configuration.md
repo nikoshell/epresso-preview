@@ -27,7 +27,6 @@ docs_source = ""       # set when previewing docs from a path (`epresso docs --t
 output = "dist"        # output dir (default dist)
 content = "content"    # collection data dir
 pages = "pages"        # routes dir
-templates = "templates"
 layouts = "layouts"    # default layout dir
 components = "components"
 styles = "styles"      # global stylesheet dir
@@ -95,6 +94,13 @@ theme = ""              # theme for bare Markdown (default: the bundled docs the
 out = ""                # output subdir of dist/ (default: derived from base)
 
 plugins = ["mypkg:MyPlugin"]   # dotted-path plugin specs
+
+[layers]
+use = [                          # extra component/layout roots, layered under the site's own
+  "./vendor/components",         #   a directory path
+  "pkg:epresso_ui",              #   an installed Python package
+  "github:owner/epresso-components@v1",  # a repo (tarball, cached in .cache/layers/)
+]
 ```
 
 ## Redirects
@@ -118,7 +124,7 @@ Invalid targets (missing `destination`) are rejected at load time.
 
 The `build.*` keys let you rename the convention directories. There are helper
 accessors on the loaded config: `dir_content()`, `dir_pages()`,
-`dir_templates()`, `dir_layouts()`, `dir_components()`, `dir_styles()`,
+`dir_layouts()`, `dir_components()`, `dir_styles()`,
 `dir_assets()`, `dir_static()`,
 `dir_output()`, and `cache_dir()` (the incremental cache, gitignored).
 
@@ -129,6 +135,9 @@ directory exists, `<root>` otherwise (Astro/Nuxt-style, no config needed).
 `content.config.py`. Content collection `base` paths are resolved against the
 same source root. See
 [Project structure](../../basics/project-structure.md).
+
+External component/layout roots come from `[layers] use` — see
+[Layers](../guides/extending/layers.md).
 
 ## Programmatic loading
 
