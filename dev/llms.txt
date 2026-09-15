@@ -53,6 +53,10 @@
 - [Fonts](https://nikoshell.github.io/epresso/guides/styling/fonts/)
 - [Images](https://nikoshell.github.io/epresso/guides/styling/images/)
 - [Styling and CSS](https://nikoshell.github.io/epresso/guides/styling/styling/)
+- [Themes & templates](https://nikoshell.github.io/epresso/guides/themes/): Start a site from scratch, from a ready-made theme, or build one for others to reuse.
+- [Create a theme](https://nikoshell.github.io/epresso/guides/themes/create-a-theme/): Structure a project so epresso new can scaffold others from it.
+- [Start from a template](https://nikoshell.github.io/epresso/guides/themes/from-template/): Scaffold a full site from a ready-made theme with epresso new.
+- [Create a new website](https://nikoshell.github.io/epresso/guides/themes/new-website/): Scaffold an empty epresso project and add your first page and component.
 
 ## Reference
 

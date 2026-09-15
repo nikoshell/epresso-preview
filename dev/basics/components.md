@@ -1,9 +1,9 @@
 # Components
 
 Components are server-rendered, tag-based building blocks. epresso resolves a
-component as `components/<Name>.ep` first, then
-`components/<Name>.html`, and finally looks under
-`layouts/` (so a layout can double as a component).
+component as `components/<Name>.ep` first, then looks under `layouts/` (so a
+layout can double as a component). In a [`src/` project](project-structure.md)
+both directories live under `src/`.
 
 ## The `.ep` file format
 
@@ -23,11 +23,12 @@ class Props(BaseModel):
 
 ### File shape — one root per branch
 
-An `.ep` file renders **exactly one root** per branch. A root is anything that
-emits output: an element, a component, `<slot/>`, `<Fragment>`/`<>`, an
-interpolation (`{{ … }}`) or text. Whitespace and comments emit nothing, so they
-are ignored; `{% if %}` / `{% for %}` introduce *branches*, and each branch is
-checked the same way.
+An `.ep` file renders **at most one root** per branch — a branch may render
+nothing (an `{% if %}` with no `{% else %}`, a `{% for %}` over an empty
+sequence, an empty array). A root is anything that emits output: an element, a
+component, `<slot/>`, `<Fragment>`/`<>`, an interpolation (`{{ … }}`) or text.
+Whitespace and comments emit nothing, so they are ignored; `{% if %}` /
+`{% for %}` introduce *branches*, and each branch is checked the same way.
 
 ```epresso
 ---
@@ -43,7 +44,7 @@ Patterns:
 | need | write |
 |---|---|
 | group siblings, render no wrapper | `<Fragment>…</Fragment>` or `<></>` |
-| a branch that renders *nothing* | `{% if x %}<a>…</a>{% else %}<></>{% endif %}` — an `{% if %}` **must** have an `{% else %}` |
+| a branch that renders *nothing* | `{% if x %}<a>…</a>{% endif %}` — no `{% else %}` needed; an empty branch is fine |
 | forward the caller's content | `<slot/>` (a root in its own right) |
 | conditionally forward | `{{ content }}` counts as one root (it is treated as `<Fragment>{{ content }}</Fragment>`) |
 

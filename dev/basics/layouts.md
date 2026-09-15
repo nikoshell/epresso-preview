@@ -3,6 +3,11 @@
 Layouts wrap page content in a shared HTML shell. epresso supports two models:
 classic Jinja **inheritance** with blocks, and **layout components**.
 
+Layouts live in the top-level `layouts/` directory (or `src/layouts/` in a
+[`src/` project](project-structure.md)). Any `.ep` component may also
+live there and be composed as a component, so a site can keep its shells in one
+place.
+
 ## Jinja inheritance (block-based)
 
 The most common convention. A layout is a template with `{% block %}` slots;
