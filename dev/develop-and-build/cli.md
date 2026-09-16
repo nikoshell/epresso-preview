@@ -14,6 +14,7 @@ epresso ships a single `epresso` command with subcommands:
 | `epresso layers` | List the component/layout layers resolved from `[layers] use` |
 | `epresso check` | Validate config + content, list routes |
 | `epresso fmt` | Format `.ep` files to the canonical section structure |
+| `epresso lsp` | Run the `.ep` Language Server (diagnostics + formatting) over stdio |
 | `epresso inspect` | Inspect the build graph (routes + content → route edges) |
 | `epresso deploy` | Build and deploy (GitHub Pages by default) |
 | `epresso version` | Print the version |
@@ -42,6 +43,22 @@ A layout — a document shell with `<html>/<head>/<body>` — is only
 whitespace-normalised: its `<style>`/`<script>` are positional and never
 reordered. `--check` is CI-friendly: it exits non-zero when any file needs
 formatting.
+
+## `epresso lsp`
+
+A dependency-free Language Server for `.ep` files, speaking LSP on stdin/stdout
+(no extra packages). It reports the same problems the build enforces — forbidden
+Jinja composition (`{% extends %}`, `{% include %}`, `{% macro %}`, …), the
+one-root-per-branch file shape, per-kind sidecar caps, and Python syntax errors
+in the frontmatter — and offers `textDocument/formatting` backed by
+`epresso fmt`.
+
+```bash
+epresso lsp        # speak LSP on stdin/stdout
+```
+
+Point any LSP-capable editor at it; see [Editor setup](/editor-setup/).
+The bundled VS Code extension and a small Neovim config snippet both use it.
 
 ### `epresso fmt --expand`
 
