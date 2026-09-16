@@ -2,63 +2,63 @@
 
 > A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy.
 
-- [epresso](https://nikoshell.github.io/epresso/): A modern, Python-first static site generator.
+- [epresso](https://epresso.top/): A modern, Python-first static site generator.
 
 ## Basics
 
-- [Components](https://nikoshell.github.io/epresso/basics/components/)
-- [Layouts](https://nikoshell.github.io/epresso/basics/layouts/)
-- [Pages](https://nikoshell.github.io/epresso/basics/pages/)
-- [Project structure](https://nikoshell.github.io/epresso/basics/project-structure/)
-- [Routing](https://nikoshell.github.io/epresso/basics/routing/)
+- [Components](https://epresso.top/basics/components/)
+- [Layouts](https://epresso.top/basics/layouts/)
+- [Pages](https://epresso.top/basics/pages/)
+- [Project structure](https://epresso.top/basics/project-structure/)
+- [Routing](https://epresso.top/basics/routing/)
 
 ## Concepts
 
-- [How epresso works](https://nikoshell.github.io/epresso/concepts/how-it-works/)
-- [Client-side behavior](https://nikoshell.github.io/epresso/concepts/islands/)
-- [No JavaScript by default](https://nikoshell.github.io/epresso/concepts/no-javascript/)
-- [Performance](https://nikoshell.github.io/epresso/concepts/performance/)
-- [Why epresso?](https://nikoshell.github.io/epresso/concepts/why-epresso/)
+- [How epresso works](https://epresso.top/concepts/how-it-works/)
+- [Client-side behavior](https://epresso.top/concepts/islands/)
+- [No JavaScript by default](https://epresso.top/concepts/no-javascript/)
+- [Performance](https://epresso.top/concepts/performance/)
+- [Why epresso?](https://epresso.top/concepts/why-epresso/)
 
 ## Develop And Build
 
-- [Develop and build](https://nikoshell.github.io/epresso/develop-and-build/)
-- [CLI](https://nikoshell.github.io/epresso/develop-and-build/cli/)
+- [Develop and build](https://epresso.top/develop-and-build/)
+- [CLI](https://epresso.top/develop-and-build/cli/)
 
 ## Editor Setup
 
-- [Editor setup](https://nikoshell.github.io/epresso/editor-setup/)
+- [Editor setup](https://epresso.top/editor-setup/)
 
 ## Guides
 
-- [Prefetch](https://nikoshell.github.io/epresso/guides/behavior/prefetch/)
-- [Security](https://nikoshell.github.io/epresso/guides/behavior/security/)
-- [Type checking & tooling](https://nikoshell.github.io/epresso/guides/behavior/typescript/)
-- [View Transitions](https://nikoshell.github.io/epresso/guides/behavior/view-transitions/)
-- [Configuration](https://nikoshell.github.io/epresso/guides/build/configuration/)
-- [Dev toolbar](https://nikoshell.github.io/epresso/guides/build/dev-toolbar/)
-- [Environment variables](https://nikoshell.github.io/epresso/guides/build/environment-variables/)
-- [Incremental builds & caching](https://nikoshell.github.io/epresso/guides/build/incremental/)
-- [Testing](https://nikoshell.github.io/epresso/guides/build/testing/)
-- [Content collections](https://nikoshell.github.io/epresso/guides/content/content-collections/)
-- [Data fetching](https://nikoshell.github.io/epresso/guides/content/data-fetching/)
-- [Endpoints](https://nikoshell.github.io/epresso/guides/content/endpoints/)
-- [Internationalization (i18n)](https://nikoshell.github.io/epresso/guides/content/i18n/)
-- [llms.txt](https://nikoshell.github.io/epresso/guides/content/llms-txt/)
-- [Markdown](https://nikoshell.github.io/epresso/guides/content/markdown/)
-- [MDX](https://nikoshell.github.io/epresso/guides/content/mdx/)
-- [RSS](https://nikoshell.github.io/epresso/guides/content/rss/)
-- [Layers](https://nikoshell.github.io/epresso/guides/extending/layers/)
-- [Middleware](https://nikoshell.github.io/epresso/guides/extending/middleware/)
-- [Plugins](https://nikoshell.github.io/epresso/guides/extending/plugins/)
-- [Fonts](https://nikoshell.github.io/epresso/guides/styling/fonts/)
-- [Images](https://nikoshell.github.io/epresso/guides/styling/images/)
-- [Styling and CSS](https://nikoshell.github.io/epresso/guides/styling/styling/)
-- [Themes & templates](https://nikoshell.github.io/epresso/guides/themes/): Start a site from scratch, from a ready-made theme, or build one for others to reuse.
-- [Create a theme](https://nikoshell.github.io/epresso/guides/themes/create-a-theme/): Structure a project so epresso new can scaffold others from it.
-- [Start from a template](https://nikoshell.github.io/epresso/guides/themes/from-template/): Scaffold a full site from a ready-made theme with epresso new.
-- [Create a new website](https://nikoshell.github.io/epresso/guides/themes/new-website/): Scaffold an empty epresso project and add your first page and component.
+- [Prefetch](https://epresso.top/guides/behavior/prefetch/)
+- [Security](https://epresso.top/guides/behavior/security/)
+- [Type checking & tooling](https://epresso.top/guides/behavior/typescript/)
+- [View Transitions](https://epresso.top/guides/behavior/view-transitions/)
+- [Configuration](https://epresso.top/guides/build/configuration/)
+- [Dev toolbar](https://epresso.top/guides/build/dev-toolbar/)
+- [Environment variables](https://epresso.top/guides/build/environment-variables/)
+- [Incremental builds & caching](https://epresso.top/guides/build/incremental/)
+- [Testing](https://epresso.top/guides/build/testing/)
+- [Content collections](https://epresso.top/guides/content/content-collections/)
+- [Data fetching](https://epresso.top/guides/content/data-fetching/)
+- [Endpoints](https://epresso.top/guides/content/endpoints/)
+- [Internationalization (i18n)](https://epresso.top/guides/content/i18n/)
+- [llms.txt](https://epresso.top/guides/content/llms-txt/)
+- [Markdown](https://epresso.top/guides/content/markdown/)
+- [MDX](https://epresso.top/guides/content/mdx/)
+- [RSS](https://epresso.top/guides/content/rss/)
+- [Layers](https://epresso.top/guides/extending/layers/)
+- [Middleware](https://epresso.top/guides/extending/middleware/)
+- [Plugins](https://epresso.top/guides/extending/plugins/)
+- [Fonts](https://epresso.top/guides/styling/fonts/)
+- [Images](https://epresso.top/guides/styling/images/)
+- [Styling and CSS](https://epresso.top/guides/styling/styling/)
+- [Themes & templates](https://epresso.top/guides/themes/): Start a site from scratch, from a ready-made theme, or build one for others to reuse.
+- [Create a theme](https://epresso.top/guides/themes/create-a-theme/): Structure a project so epresso new can scaffold others from it.
+- [Start from a template](https://epresso.top/guides/themes/from-template/): Scaffold a full site from a ready-made theme with epresso new.
+- [Create a new website](https://epresso.top/guides/themes/new-website/): Scaffold an empty epresso project and add your first page and component.
 
 ## Reference
 
-- [Template directives](https://nikoshell.github.io/epresso/reference/template-directives/)
+- [Template directives](https://epresso.top/reference/template-directives/)

@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://nikoshell.github.io/epresso/sitemap.xml
+Sitemap: https://epresso.top/sitemap.xml
