@@ -38,6 +38,7 @@ compress_html = false  # minify HTML (skips <pre>/<script>/<style>)
 redirects = true       # emit redirect pages from the `redirects` config
 
 [markdown]
+backend = "native"      # renderer: "native" (Python); "rust" = optional accelerator
 highlight = true       # Pygments syntax highlighting for fenced code
 add_slug_ids = true
 autolink_headings = true
