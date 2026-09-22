@@ -3,17 +3,17 @@
 <!doctype html>
 <html lang="en" data-epresso-aa9d8371>
     <head data-epresso-aa9d8371>
-        <title data-epresso-aa9d8371>Content collections · epresso</title>
+        <title data-epresso-aa9d8371>CLI · epresso</title>
 <meta charset="utf-8" data-epresso-aa9d8371>
 <meta name="description" content="A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy." data-epresso-aa9d8371>
-<link rel="canonical" href="https://epresso.top/guides/content/content-collections/" data-epresso-aa9d8371>
-<meta property="og:title" content="Content collections · epresso" data-epresso-aa9d8371>
+<link rel="canonical" href="https://epresso.top/reference/cli/" data-epresso-aa9d8371>
+<meta property="og:title" content="CLI · epresso" data-epresso-aa9d8371>
 <meta property="og:type" content="website" data-epresso-aa9d8371>
-<meta property="og:url" content="https://epresso.top/guides/content/content-collections/" data-epresso-aa9d8371>
+<meta property="og:url" content="https://epresso.top/reference/cli/" data-epresso-aa9d8371>
 <meta property="og:description" content="A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy." data-epresso-aa9d8371>
 <meta property="og:image" content="https://epresso.top/epresso.png" data-epresso-aa9d8371>
 <meta name="twitter:card" content="summary_large_image" data-epresso-aa9d8371>
-<meta name="twitter:title" content="Content collections · epresso" data-epresso-aa9d8371>
+<meta name="twitter:title" content="CLI · epresso" data-epresso-aa9d8371>
 <meta name="twitter:description" content="A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy." data-epresso-aa9d8371>
 <meta name="twitter:image" content="https://epresso.top/epresso.png" data-epresso-aa9d8371>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" data-epresso-aa9d8371>
@@ -202,39 +202,15 @@ window.addEventListener("load", function() {
             <ul data-epresso-e9ed0d97>
                 
                     
-                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#defining-collections" data-epresso-e9ed0d97>Defining collections</a></li>
+                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#epresso-fmt" data-epresso-e9ed0d97>`epresso fmt`</a></li>
                     
                 
                     
-                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#loaders" data-epresso-e9ed0d97>Loaders</a></li>
+                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#epresso-lsp" data-epresso-e9ed0d97>`epresso lsp`</a></li>
                     
                 
                     
-                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#content-store" data-epresso-e9ed0d97>Content store</a></li>
-                    
                 
-                    
-                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#accessing-data-in-templates-and-routes" data-epresso-e9ed0d97>Accessing data in templates and routes</a></li>
-                    
-                
-                    
-                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#content-references" data-epresso-e9ed0d97>Content references</a></li>
-                    
-                
-                    
-                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#drafts-scheduled-content" data-epresso-e9ed0d97>Drafts &amp; scheduled content</a></li>
-                    
-                
-                    
-                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#private-files-underscore-prefix" data-epresso-e9ed0d97>Private files (underscore prefix)</a></li>
-                    
-                
-                    
-                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#controlling-visibility-per-environment-content" data-epresso-e9ed0d97>Controlling visibility per environment (`[content]`)</a></li>
-                    
-                
-                    
-                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#data-collections" data-epresso-e9ed0d97>Data collections</a></li>
                     
                 
             </ul>
@@ -251,7 +227,7 @@ window.addEventListener("load", function() {
         
     
 <nav class="breadcrumbs" aria-label="Breadcrumb" data-epresso-eb5cbcd6>
-    <a href="/epresso-preview/dev/" data-epresso-eb5cbcd6>Home</a><span class="crumb-sep" data-epresso-eb5cbcd6>/</span><span data-epresso-eb5cbcd6>Guides</span><span class="crumb-sep" data-epresso-eb5cbcd6>/</span><span data-epresso-eb5cbcd6>Content</span><span class="crumb-sep" data-epresso-eb5cbcd6>/</span><span class="crumb-cur" data-epresso-eb5cbcd6>Content collections</span>
+    <a href="/epresso-preview/dev/" data-epresso-eb5cbcd6>Home</a><span class="crumb-sep" data-epresso-eb5cbcd6>/</span><span data-epresso-eb5cbcd6>Reference</span><span class="crumb-sep" data-epresso-eb5cbcd6>/</span><span class="crumb-cur" data-epresso-eb5cbcd6>CLI</span>
 </nav>
 
 
@@ -260,7 +236,7 @@ window.addEventListener("load", function() {
         
 <div class="page-actions" data-epresso-c17f4038>
     <div class="pa-group" data-epresso-c17f4038>
-        <button type="button" class="pa-btn pa-copy" id="page-copy" data-md="/guides/content/content-collections.md" aria-label="Copy page" data-epresso-c17f4038>
+        <button type="button" class="pa-btn pa-copy" id="page-copy" data-md="/reference/cli.md" aria-label="Copy page" data-epresso-c17f4038>
             
 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="pa-icon pa-icon--copy" data-epresso-c17f4038>
     <rect x="5.75" y="5.75" width="8.5" height="8.5" rx="1.5" data-epresso-c17f4038/><path d="M3.75 10.25A1.5 1.5 0 0 1 2.25 8.75V3.75a1.5 1.5 0 0 1 1.5-1.5h5a1.5 1.5 0 0 1 1.5 1.5" data-epresso-c17f4038/>
@@ -293,23 +269,23 @@ window.addEventListener("load", function() {
                         </button>
                     </li>
                     <li data-epresso-c17f4038>
-                        <a href="/epresso-preview/dev/guides/content/content-collections.md" target="_blank" rel="noopener" data-epresso-c17f4038>
+                        <a href="/epresso-preview/dev/reference/cli.md" target="_blank" rel="noopener" data-epresso-c17f4038>
                             <span class="pa-item-label" data-epresso-c17f4038>View as Markdown</span>
                             <span class="pa-hint" data-epresso-c17f4038>Open this page as plain Markdown</span>
                         </a>
                     </li>
                     
                         <li data-epresso-c17f4038>
-                            <a href="https://github.com/nikoshell/epresso/blob/main/docs/guides/content/content-collections.md" target="_blank" rel="noopener" data-epresso-c17f4038>
+                            <a href="https://github.com/nikoshell/epresso/blob/main/docs/reference/cli.md" target="_blank" rel="noopener" data-epresso-c17f4038>
                                 <span class="pa-item-label" data-epresso-c17f4038>View source of this page</span>
                                 <span class="pa-hint" data-epresso-c17f4038>
-                                    docs/guides/content/content-collections.md
+                                    docs/reference/cli.md
                                 </span>
                             </a>
                         </li>
                     
                     <li data-epresso-c17f4038>
-                        <a href="https://chatgpt.com/?q=Read%20https%3A//epresso.top/guides/content/content-collections.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener" data-epresso-c17f4038>
+                        <a href="https://chatgpt.com/?q=Read%20https%3A//epresso.top/reference/cli.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener" data-epresso-c17f4038>
                             <span class="pa-item-label" data-epresso-c17f4038>Open in ChatGPT</span>
                             <span class="pa-hint" data-epresso-c17f4038>
                                 Ask questions about this page
@@ -317,7 +293,7 @@ window.addEventListener("load", function() {
                         </a>
                     </li>
                     <li data-epresso-c17f4038>
-                        <a href="https://claude.ai/new?q=Read%20https%3A//epresso.top/guides/content/content-collections.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener" data-epresso-c17f4038>
+                        <a href="https://claude.ai/new?q=Read%20https%3A//epresso.top/reference/cli.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener" data-epresso-c17f4038>
                             <span class="pa-item-label" data-epresso-c17f4038>Open in Claude</span>
                             <span class="pa-hint" data-epresso-c17f4038>
                                 Ask questions about this page
@@ -337,17 +313,83 @@ window.addEventListener("load", function() {
     
     <article class="doc" data-epresso-aa9d8371>
         <h1 data-epresso-aa9d8371>
-            Content collections
+            CLI
         </h1>
         
         
 <div class="prose" data-epresso-bdd7a5c3>
-    <p data-epresso-bdd7a5c3>Content is data. A collection is a named group of entries, each validated
-against an optional Pydantic schema, stored in a collection-keyed immutable
-store. The entry digest drives incremental
-rebuilds.</p>
-<h2 id="defining-collections" data-epresso-bdd7a5c3><a class="heading-anchor" href="#defining-collections" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Defining collections</h2>
-<p data-epresso-bdd7a5c3>Collections are declared in <code data-epresso-bdd7a5c3>content.config.py</code>:</p>
+    <p data-epresso-bdd7a5c3>epresso ships a single <code data-epresso-bdd7a5c3>epresso</code> command with subcommands:</p>
+<table data-epresso-bdd7a5c3>
+<thead data-epresso-bdd7a5c3>
+<tr data-epresso-bdd7a5c3>
+<th data-epresso-bdd7a5c3>Command</th>
+<th data-epresso-bdd7a5c3>Description</th>
+</tr>
+</thead>
+<tbody data-epresso-bdd7a5c3>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso init</code></td>
+<td data-epresso-bdd7a5c3>Scaffold a blank project</td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso new [template] [dest]</code></td>
+<td data-epresso-bdd7a5c3>Scaffold a project (interactive, or pass a template/theme/git URL/directory)</td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso dev</code></td>
+<td data-epresso-bdd7a5c3>Development server with live reload</td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso build</code></td>
+<td data-epresso-bdd7a5c3>Deterministic + incremental production build</td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso preview</code></td>
+<td data-epresso-bdd7a5c3>Build then serve <code data-epresso-bdd7a5c3>dist/</code> (production preview)</td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso docs</code></td>
+<td data-epresso-bdd7a5c3>Build + serve the documentation (port 4321)</td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso clean</code></td>
+<td data-epresso-bdd7a5c3>Remove <code data-epresso-bdd7a5c3>dist/</code> and the build cache</td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso layers</code></td>
+<td data-epresso-bdd7a5c3>List the component/layout layers resolved from <code data-epresso-bdd7a5c3>[layers] use</code></td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso check</code></td>
+<td data-epresso-bdd7a5c3>Validate config + content, list routes</td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso fmt</code></td>
+<td data-epresso-bdd7a5c3>Format <code data-epresso-bdd7a5c3>.ep</code> files to the canonical section structure</td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso lsp</code></td>
+<td data-epresso-bdd7a5c3>Run the <code data-epresso-bdd7a5c3>.ep</code> Language Server (diagnostics + formatting) over stdio</td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso inspect</code></td>
+<td data-epresso-bdd7a5c3>Inspect the build graph (routes + content → route edges)</td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso deploy</code></td>
+<td data-epresso-bdd7a5c3>Build and deploy (GitHub Pages by default)</td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>epresso version</code></td>
+<td data-epresso-bdd7a5c3>Print the version</td>
+</tr>
+</tbody>
+</table>
+<h2 id="epresso-fmt" data-epresso-bdd7a5c3><a class="heading-anchor" href="#epresso-fmt" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a><code data-epresso-bdd7a5c3>epresso fmt</code></h2>
+<p data-epresso-bdd7a5c3>Formats <code data-epresso-bdd7a5c3>.ep</code> files to the canonical structure: <strong data-epresso-bdd7a5c3>frontmatter → HTML body →
+<code data-epresso-bdd7a5c3>&lt;script&gt;</code> → <code data-epresso-bdd7a5c3>&lt;style&gt;</code></strong>, each section separated by a single blank line, plus
+basic whitespace hygiene (strip trailing whitespace, ensure one trailing newline).
+Section <em data-epresso-bdd7a5c3>content</em> (markup, CSS, JS, frontmatter Python) is preserved verbatim.</p>
 <style>.highlight.no-copy .code-copy{display:none !important}</style>
 <pre class="highlight" data-epresso-baba6069>
   
@@ -356,14 +398,10 @@ rebuilds.</p>
         <span data-epresso-89a9f5da></span><span data-epresso-89a9f5da></span><span data-epresso-89a9f5da></span>
     </span>
     
-        <span class="code-file" data-epresso-89a9f5da>
-            content.config.py
-        </span>
-    
     <span class="code-trailing" data-epresso-89a9f5da>
         
             <span class="code-lang" data-epresso-89a9f5da>
-                python
+                bash
             </span>
         
         <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-89a9f5da>
@@ -392,32 +430,27 @@ rebuilds.</p>
 
 
 
-  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069><span class="kn" data-epresso-baba6069>from</span><span class="w" data-epresso-baba6069> </span><span class="nn" data-epresso-baba6069>pydantic</span><span class="w" data-epresso-baba6069> </span><span class="kn" data-epresso-baba6069>import</span> <span class="n" data-epresso-baba6069>BaseModel</span></span><span class="code-line" data-epresso-baba6069><span class="kn" data-epresso-baba6069>from</span><span class="w" data-epresso-baba6069> </span><span class="nn" data-epresso-baba6069>epresso.content</span><span class="w" data-epresso-baba6069> </span><span class="kn" data-epresso-baba6069>import</span> <span class="n" data-epresso-baba6069>define_collection</span><span class="p" data-epresso-baba6069>,</span> <span class="n" data-epresso-baba6069>reference</span></span><span class="code-line" data-epresso-baba6069></span><span class="code-line" data-epresso-baba6069><span class="k" data-epresso-baba6069>class</span><span class="w" data-epresso-baba6069> </span><span class="nc" data-epresso-baba6069>Post</span><span class="p" data-epresso-baba6069>(</span><span class="n" data-epresso-baba6069>BaseModel</span><span class="p" data-epresso-baba6069>):</span></span><span class="code-line" data-epresso-baba6069>    <span class="n" data-epresso-baba6069>title</span><span class="p" data-epresso-baba6069>:</span> <span class="nb" data-epresso-baba6069>str</span></span><span class="code-line" data-epresso-baba6069>    <span class="n" data-epresso-baba6069>date</span><span class="p" data-epresso-baba6069>:</span> <span class="nb" data-epresso-baba6069>str</span></span><span class="code-line" data-epresso-baba6069>    <span class="n" data-epresso-baba6069>tags</span><span class="p" data-epresso-baba6069>:</span> <span class="nb" data-epresso-baba6069>list</span><span class="p" data-epresso-baba6069>[</span><span class="nb" data-epresso-baba6069>str</span><span class="p" data-epresso-baba6069>]</span> <span class="o" data-epresso-baba6069>=</span> <span class="p" data-epresso-baba6069>[]</span></span><span class="code-line" data-epresso-baba6069>    <span class="n" data-epresso-baba6069>author</span><span class="p" data-epresso-baba6069>:</span> <span class="n" data-epresso-baba6069>reference</span><span class="p" data-epresso-baba6069>(</span><span class="s2" data-epresso-baba6069>"authors"</span><span class="p" data-epresso-baba6069>)</span>   <span class="c1" data-epresso-baba6069># content reference</span></span><span class="code-line" data-epresso-baba6069>    <span class="n" data-epresso-baba6069>draft</span><span class="p" data-epresso-baba6069>:</span> <span class="nb" data-epresso-baba6069>bool</span> <span class="o" data-epresso-baba6069>=</span> <span class="kc" data-epresso-baba6069>False</span></span><span class="code-line" data-epresso-baba6069></span><span class="code-line" data-epresso-baba6069><span class="n" data-epresso-baba6069>posts</span> <span class="o" data-epresso-baba6069>=</span> <span class="n" data-epresso-baba6069>define_collection</span><span class="p" data-epresso-baba6069>(</span><span class="s2" data-epresso-baba6069>"posts"</span><span class="p" data-epresso-baba6069>,</span> <span class="n" data-epresso-baba6069>glob</span><span class="o" data-epresso-baba6069>=</span><span class="s2" data-epresso-baba6069>"**/*.md"</span><span class="p" data-epresso-baba6069>,</span> <span class="n" data-epresso-baba6069>base</span><span class="o" data-epresso-baba6069>=</span><span class="s2" data-epresso-baba6069>"./content/posts"</span><span class="p" data-epresso-baba6069>,</span> <span class="n" data-epresso-baba6069>schema</span><span class="o" data-epresso-baba6069>=</span><span class="n" data-epresso-baba6069>Post</span><span class="p" data-epresso-baba6069>)</span></span><span class="code-line" data-epresso-baba6069><span class="n" data-epresso-baba6069>authors</span> <span class="o" data-epresso-baba6069>=</span> <span class="n" data-epresso-baba6069>define_collection</span><span class="p" data-epresso-baba6069>(</span><span class="s2" data-epresso-baba6069>"authors"</span><span class="p" data-epresso-baba6069>,</span> <span class="n" data-epresso-baba6069>loader</span><span class="o" data-epresso-baba6069>=</span><span class="n" data-epresso-baba6069>fetch_authors</span><span class="p" data-epresso-baba6069>)</span>  <span class="c1" data-epresso-baba6069># remote/derived</span></span><span class="code-line" data-epresso-baba6069></span></div>
+  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069>epresso<span class="w" data-epresso-baba6069> </span>fmt<span class="w" data-epresso-baba6069>                 </span><span class="c1" data-epresso-baba6069># format all .ep under the current directory</span></span><span class="code-line" data-epresso-baba6069>epresso<span class="w" data-epresso-baba6069> </span>fmt<span class="w" data-epresso-baba6069> </span>components/<span class="w" data-epresso-baba6069> </span>pages/<span class="w" data-epresso-baba6069>      </span><span class="c1" data-epresso-baba6069># format specific files/dirs</span></span><span class="code-line" data-epresso-baba6069>epresso<span class="w" data-epresso-baba6069> </span>fmt<span class="w" data-epresso-baba6069> </span>--check<span class="w" data-epresso-baba6069> </span>.<span class="w" data-epresso-baba6069>       </span><span class="c1" data-epresso-baba6069># report files that would change; don't write (exit 1 if any)</span></span><span class="code-line" data-epresso-baba6069>epresso<span class="w" data-epresso-baba6069> </span>fmt<span class="w" data-epresso-baba6069> </span>--expand<span class="w" data-epresso-baba6069> </span>.<span class="w" data-epresso-baba6069>      </span><span class="c1" data-epresso-baba6069># reflow the body: one child per line (no extra deps)</span></span><span class="code-line" data-epresso-baba6069>epresso<span class="w" data-epresso-baba6069> </span>fmt<span class="w" data-epresso-baba6069> </span>--full<span class="w" data-epresso-baba6069> </span>.<span class="w" data-epresso-baba6069>        </span><span class="c1" data-epresso-baba6069># also format section contents (frontmatter/HTML/CSS/JS)</span></span><span class="code-line" data-epresso-baba6069>epresso<span class="w" data-epresso-baba6069> </span>fmt<span class="w" data-epresso-baba6069> </span>--stdin<span class="w" data-epresso-baba6069>         </span><span class="c1" data-epresso-baba6069># read one .ep source from stdin, write to stdout</span></span><span class="code-line" data-epresso-baba6069></span></div>
 </pre>
 
 
 
 
 
-<p data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>define_collection</code> requires a <code data-epresso-bdd7a5c3>glob</code> pattern <strong data-epresso-bdd7a5c3>or</strong> a <code data-epresso-bdd7a5c3>loader</code> function. When
-installed, the loader's base is resolved relative to the site root and entries
-are loaded and validated against the schema.</p>
-<h2 id="loaders" data-epresso-bdd7a5c3><a class="heading-anchor" href="#loaders" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Loaders</h2>
-<ul data-epresso-bdd7a5c3>
-<li data-epresso-bdd7a5c3><strong data-epresso-bdd7a5c3>Glob loader</strong> — <code data-epresso-bdd7a5c3>glob=&quot;**/*.md&quot;, base=&quot;./content/posts&quot;</code> reads files from
-disk. Optionally <code data-epresso-bdd7a5c3>generate_id=callable</code> to derive entry ids from paths.</li>
-<li data-epresso-bdd7a5c3><strong data-epresso-bdd7a5c3>Python loader</strong> — <code data-epresso-bdd7a5c3>loader=fetch_authors</code> is any callable; epresso wraps it
-as a <code data-epresso-bdd7a5c3>PythonLoader</code>. Use it for remote or derived data.</li>
-</ul>
-<h2 id="content-store" data-epresso-bdd7a5c3><a class="heading-anchor" href="#content-store" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Content store</h2>
-<p data-epresso-bdd7a5c3>The store is a <code data-epresso-bdd7a5c3>Map&lt;collection, Map&lt;id, entry&gt;&gt;</code>. An entry is
-<code data-epresso-bdd7a5c3>{id, data, filePath, body, digest, rendered}</code>:</p>
-<ul data-epresso-bdd7a5c3>
-<li data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>entry.data</code> — validated schema data.</li>
-<li data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>entry.slug</code> / <code data-epresso-bdd7a5c3>entry.id</code> — entry id without extension.</li>
-<li data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>entry.headings</code> — extracted headings (from <code data-epresso-bdd7a5c3>rendered.metadata</code>).</li>
-<li data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>entry.digest</code> — stable digest over body + data; the incremental key.</li>
-</ul>
+<p data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>--stdin</code> is for editor integrations (the bundled VS Code extension uses it to
+format the buffer without touching disk); it reads one <code data-epresso-bdd7a5c3>.ep</code> source from stdin
+and writes the result to stdout. It cannot be combined with <code data-epresso-bdd7a5c3>--check</code>.</p>
+<p data-epresso-bdd7a5c3>A layout — a document shell with <code data-epresso-bdd7a5c3>&lt;html&gt;/&lt;head&gt;/&lt;body&gt;</code> — is only
+whitespace-normalised: its <code data-epresso-bdd7a5c3>&lt;style&gt;</code>/<code data-epresso-bdd7a5c3>&lt;script&gt;</code> are positional and never
+reordered. <code data-epresso-bdd7a5c3>--check</code> is CI-friendly: it exits non-zero when any file needs
+formatting.</p>
+<h2 id="epresso-lsp" data-epresso-bdd7a5c3><a class="heading-anchor" href="#epresso-lsp" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a><code data-epresso-bdd7a5c3>epresso lsp</code></h2>
+<p data-epresso-bdd7a5c3>A dependency-free Language Server for <code data-epresso-bdd7a5c3>.ep</code> files, speaking LSP on stdin/stdout
+(no extra packages). It reports the same problems the build enforces — forbidden
+Jinja composition (<code data-epresso-bdd7a5c3>{% extends %}</code>, <code data-epresso-bdd7a5c3>{% include %}</code>, <code data-epresso-bdd7a5c3>{% macro %}</code>, …), the
+one-root-per-branch file shape, per-kind sidecar caps, and Python syntax errors
+in the frontmatter — and offers <code data-epresso-bdd7a5c3>textDocument/formatting</code> backed by
+<code data-epresso-bdd7a5c3>epresso fmt</code>.</p>
 
 <pre class="highlight" data-epresso-baba6069>
   
@@ -429,7 +462,7 @@ as a <code data-epresso-bdd7a5c3>PythonLoader</code>. Use it for remote or deriv
     <span class="code-trailing" data-epresso-89a9f5da>
         
             <span class="code-lang" data-epresso-89a9f5da>
-                python
+                bash
             </span>
         
         <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-89a9f5da>
@@ -458,15 +491,19 @@ as a <code data-epresso-bdd7a5c3>PythonLoader</code>. Use it for remote or deriv
 
 
 
-  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069><span class="n" data-epresso-baba6069>store</span><span class="o" data-epresso-baba6069>.</span><span class="n" data-epresso-baba6069>get_collection</span><span class="p" data-epresso-baba6069>(</span><span class="s2" data-epresso-baba6069>"posts"</span><span class="p" data-epresso-baba6069>)</span>        <span class="c1" data-epresso-baba6069># -&gt; list[Entry] (deterministically sorted by id)</span></span><span class="code-line" data-epresso-baba6069><span class="n" data-epresso-baba6069>store</span><span class="o" data-epresso-baba6069>.</span><span class="n" data-epresso-baba6069>get_entry</span><span class="p" data-epresso-baba6069>(</span><span class="s2" data-epresso-baba6069>"posts"</span><span class="p" data-epresso-baba6069>,</span> <span class="s2" data-epresso-baba6069>"hello"</span><span class="p" data-epresso-baba6069>)</span>    <span class="c1" data-epresso-baba6069># -&gt; Entry | None</span></span><span class="code-line" data-epresso-baba6069><span class="n" data-epresso-baba6069>store</span><span class="o" data-epresso-baba6069>.</span><span class="n" data-epresso-baba6069>collection</span><span class="p" data-epresso-baba6069>(</span><span class="s2" data-epresso-baba6069>"posts"</span><span class="p" data-epresso-baba6069>)</span>            <span class="c1" data-epresso-baba6069># -&gt; Collection (raw)</span></span><span class="code-line" data-epresso-baba6069><span class="n" data-epresso-baba6069>store</span><span class="o" data-epresso-baba6069>.</span><span class="n" data-epresso-baba6069>names</span><span class="p" data-epresso-baba6069>()</span>                        <span class="c1" data-epresso-baba6069># -&gt; sorted collection names</span></span><span class="code-line" data-epresso-baba6069></span></div>
+  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069>epresso<span class="w" data-epresso-baba6069> </span>lsp<span class="w" data-epresso-baba6069>        </span><span class="c1" data-epresso-baba6069># speak LSP on stdin/stdout</span></span><span class="code-line" data-epresso-baba6069></span></div>
 </pre>
 
 
 
 
 
-<h2 id="accessing-data-in-templates-and-routes" data-epresso-bdd7a5c3><a class="heading-anchor" href="#accessing-data-in-templates-and-routes" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Accessing data in templates and routes</h2>
-<p data-epresso-bdd7a5c3>The curated globals mirror the store:</p>
+<p data-epresso-bdd7a5c3>Point any LSP-capable editor at it; see <a href="/epresso-preview/dev/guides/editor-setup/" data-epresso-bdd7a5c3>Editor setup</a>.
+The bundled VS Code extension and a small Neovim config snippet both use it.</p>
+<h3 id="epresso-fmt---expand" data-epresso-bdd7a5c3><a class="heading-anchor" href="#epresso-fmt---expand" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a><code data-epresso-bdd7a5c3>epresso fmt --expand</code></h3>
+<p data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>--expand</code> reflows the HTML body: an element whose content is <strong data-epresso-bdd7a5c3>markup only</strong>
+(no literal text) gets one child per line, Jinja blocks spread across lines, and
+a lone interpolation moves onto its own line. No blank lines are added.</p>
 
 <pre class="highlight" data-epresso-baba6069>
   
@@ -478,7 +515,7 @@ as a <code data-epresso-bdd7a5c3>PythonLoader</code>. Use it for remote or deriv
     <span class="code-trailing" data-epresso-89a9f5da>
         
             <span class="code-lang" data-epresso-89a9f5da>
-                jinja
+                epresso
             </span>
         
         <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-89a9f5da>
@@ -507,19 +544,14 @@ as a <code data-epresso-bdd7a5c3>PythonLoader</code>. Use it for remote or deriv
 
 
 
-  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069><span class="cp" data-epresso-baba6069>{%</span> <span class="k" data-epresso-baba6069>for</span> <span class="nv" data-epresso-baba6069>post</span> <span class="k" data-epresso-baba6069>in</span> <span class="nv" data-epresso-baba6069>get_collection</span><span class="o" data-epresso-baba6069>(</span><span class="s2" data-epresso-baba6069>"posts"</span><span class="o" data-epresso-baba6069>)</span> <span class="cp" data-epresso-baba6069>%}</span></span><span class="code-line" data-epresso-baba6069><span class="x" data-epresso-baba6069>  &lt;a href="/epresso-preview/dev/blog/</span><span class="cp" data-epresso-baba6069>{{</span> <span class="nv" data-epresso-baba6069>post.id</span> <span class="cp" data-epresso-baba6069>}}</span><span class="x" data-epresso-baba6069>/"&gt;</span><span class="cp" data-epresso-baba6069>{{</span> <span class="nv" data-epresso-baba6069>post.data.title</span> <span class="cp" data-epresso-baba6069>}}</span><span class="x" data-epresso-baba6069>&lt;/a&gt;</span></span><span class="code-line" data-epresso-baba6069><span class="cp" data-epresso-baba6069>{%</span> <span class="k" data-epresso-baba6069>endfor</span> <span class="cp" data-epresso-baba6069>%}</span></span><span class="code-line" data-epresso-baba6069></span></div>
+  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069><span class="c" data-epresso-baba6069>---</span></span><span class="code-line" data-epresso-baba6069><span class="c" data-epresso-baba6069>---</span></span><span class="code-line" data-epresso-baba6069><span class="p" data-epresso-baba6069>&lt;</span><span class="nt" data-epresso-baba6069>div</span> <span class="na" data-epresso-baba6069>class</span><span class="o" data-epresso-baba6069>=</span><span class="s" data-epresso-baba6069>"card"</span><span class="p" data-epresso-baba6069>&gt;</span></span><span class="code-line" data-epresso-baba6069>    <span class="cp" data-epresso-baba6069>{%</span> <span class="k" data-epresso-baba6069>if</span> <span class="nv" data-epresso-baba6069>props.icon</span> <span class="cp" data-epresso-baba6069>%}</span><span class="p" data-epresso-baba6069>&lt;</span><span class="nt" data-epresso-baba6069>Icon</span> <span class="na" data-epresso-baba6069>name</span><span class="o" data-epresso-baba6069>=</span><span class="s" data-epresso-baba6069>{tone.icon}</span> <span class="p" data-epresso-baba6069>/&gt;</span><span class="cp" data-epresso-baba6069>{%</span> <span class="k" data-epresso-baba6069>endif</span> <span class="cp" data-epresso-baba6069>%}</span></span><span class="code-line" data-epresso-baba6069>    <span class="p" data-epresso-baba6069>&lt;</span><span class="nt" data-epresso-baba6069>p</span><span class="p" data-epresso-baba6069>&gt;</span><span class="cp" data-epresso-baba6069>{{</span> <span class="nv" data-epresso-baba6069>props.title</span> <span class="cp" data-epresso-baba6069>}}</span><span class="p" data-epresso-baba6069>&lt;/</span><span class="nt" data-epresso-baba6069>p</span><span class="p" data-epresso-baba6069>&gt;</span></span><span class="code-line" data-epresso-baba6069><span class="p" data-epresso-baba6069>&lt;/</span><span class="nt" data-epresso-baba6069>div</span><span class="p" data-epresso-baba6069>&gt;</span></span><span class="code-line" data-epresso-baba6069></span></div>
 </pre>
 
 
 
 
 
-<p data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>get_entry(collection, id)</code> fetches a single entry. These helpers also <strong data-epresso-bdd7a5c3>record
-the dependency edge</strong> for incremental builds — a change to an entry re-renders
-only the pages that consume it.</p>
-<h2 id="content-references" data-epresso-bdd7a5c3><a class="heading-anchor" href="#content-references" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Content references</h2>
-<p data-epresso-bdd7a5c3>Use <code data-epresso-bdd7a5c3>reference(&quot;collection&quot;)</code> as a field type to store a referenced entry id as
-a string, then resolve at render time with <code data-epresso-bdd7a5c3>get_entry(...)</code> / <code data-epresso-bdd7a5c3>get_entries(...)</code>:</p>
+<p data-epresso-bdd7a5c3>becomes</p>
 
 <pre class="highlight" data-epresso-baba6069>
   
@@ -531,7 +563,7 @@ a string, then resolve at render time with <code data-epresso-bdd7a5c3>get_entry
     <span class="code-trailing" data-epresso-89a9f5da>
         
             <span class="code-lang" data-epresso-89a9f5da>
-                python
+                epresso
             </span>
         
         <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-89a9f5da>
@@ -560,28 +592,51 @@ a string, then resolve at render time with <code data-epresso-bdd7a5c3>get_entry
 
 
 
-  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069><span class="k" data-epresso-baba6069>class</span><span class="w" data-epresso-baba6069> </span><span class="nc" data-epresso-baba6069>Post</span><span class="p" data-epresso-baba6069>(</span><span class="n" data-epresso-baba6069>BaseModel</span><span class="p" data-epresso-baba6069>):</span></span><span class="code-line" data-epresso-baba6069>    <span class="n" data-epresso-baba6069>author</span><span class="p" data-epresso-baba6069>:</span> <span class="n" data-epresso-baba6069>reference</span><span class="p" data-epresso-baba6069>(</span><span class="s2" data-epresso-baba6069>"authors"</span><span class="p" data-epresso-baba6069>)</span></span><span class="code-line" data-epresso-baba6069></span></div>
+  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069><span class="c" data-epresso-baba6069>---</span></span><span class="code-line" data-epresso-baba6069><span class="c" data-epresso-baba6069>---</span></span><span class="code-line" data-epresso-baba6069><span class="p" data-epresso-baba6069>&lt;</span><span class="nt" data-epresso-baba6069>div</span> <span class="na" data-epresso-baba6069>class</span><span class="o" data-epresso-baba6069>=</span><span class="s" data-epresso-baba6069>"card"</span><span class="p" data-epresso-baba6069>&gt;</span></span><span class="code-line" data-epresso-baba6069>    <span class="cp" data-epresso-baba6069>{%</span> <span class="k" data-epresso-baba6069>if</span> <span class="nv" data-epresso-baba6069>props.icon</span> <span class="cp" data-epresso-baba6069>%}</span></span><span class="code-line" data-epresso-baba6069>        <span class="p" data-epresso-baba6069>&lt;</span><span class="nt" data-epresso-baba6069>Icon</span> <span class="na" data-epresso-baba6069>name</span><span class="o" data-epresso-baba6069>=</span><span class="s" data-epresso-baba6069>{tone.icon}</span> <span class="p" data-epresso-baba6069>/&gt;</span></span><span class="code-line" data-epresso-baba6069>    <span class="cp" data-epresso-baba6069>{%</span> <span class="k" data-epresso-baba6069>endif</span> <span class="cp" data-epresso-baba6069>%}</span></span><span class="code-line" data-epresso-baba6069>    <span class="p" data-epresso-baba6069>&lt;</span><span class="nt" data-epresso-baba6069>p</span><span class="p" data-epresso-baba6069>&gt;</span></span><span class="code-line" data-epresso-baba6069>        <span class="cp" data-epresso-baba6069>{{</span> <span class="nv" data-epresso-baba6069>props.title</span> <span class="cp" data-epresso-baba6069>}}</span></span><span class="code-line" data-epresso-baba6069>    <span class="p" data-epresso-baba6069>&lt;/</span><span class="nt" data-epresso-baba6069>p</span><span class="p" data-epresso-baba6069>&gt;</span></span><span class="code-line" data-epresso-baba6069><span class="p" data-epresso-baba6069>&lt;/</span><span class="nt" data-epresso-baba6069>div</span><span class="p" data-epresso-baba6069>&gt;</span></span><span class="code-line" data-epresso-baba6069></span></div>
 </pre>
 
 
 
 
 
-<h2 id="drafts-scheduled-content" data-epresso-bdd7a5c3><a class="heading-anchor" href="#drafts-scheduled-content" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Drafts &amp; scheduled content</h2>
-<p data-epresso-bdd7a5c3>In production builds, <code data-epresso-bdd7a5c3>draft: true</code> and future-dated entries are automatically
-excluded from output.</p>
-<h2 id="private-files-underscore-prefix" data-epresso-bdd7a5c3><a class="heading-anchor" href="#private-files-underscore-prefix" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Private files (underscore prefix)</h2>
-<p data-epresso-bdd7a5c3>Files and directories whose name starts with <code data-epresso-bdd7a5c3>_</code> (e.g. <code data-epresso-bdd7a5c3>_draft.md</code>, <code data-epresso-bdd7a5c3>_partials/</code>)
-are treated as <strong data-epresso-bdd7a5c3>private</strong> — the Jekyll convention. Most loaders exclude them
-from builds (this applies to content collections, <code data-epresso-bdd7a5c3>pages/</code> routes, and <code data-epresso-bdd7a5c3>public/</code>
-passthrough).</p>
-<p data-epresso-bdd7a5c3>The <strong data-epresso-bdd7a5c3>docs loader</strong> instead keeps <code data-epresso-bdd7a5c3>_</code>-prefixed files but tags them <strong data-epresso-bdd7a5c3>private</strong>,
-and honors <code data-epresso-bdd7a5c3>draft: true</code>. In the dev server a coloured status pill shows in the
-toolbar (bottom-right) so you know the current page is private or draft.</p>
-<h2 id="controlling-visibility-per-environment-content" data-epresso-bdd7a5c3><a class="heading-anchor" href="#controlling-visibility-per-environment-content" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Controlling visibility per environment (<code data-epresso-bdd7a5c3>[content]</code>)</h2>
-<p data-epresso-bdd7a5c3>Which of these entries actually show up is configurable. By default epresso shows
-draft and private entries in <strong data-epresso-bdd7a5c3>development / preview</strong> and hides them in
-<strong data-epresso-bdd7a5c3>production</strong> builds. Set <code data-epresso-bdd7a5c3>[content]</code> in <code data-epresso-bdd7a5c3>site.toml</code> to change that:</p>
+<p data-epresso-bdd7a5c3>Elements that contain <strong data-epresso-bdd7a5c3>literal text</strong> (<code data-epresso-bdd7a5c3>&lt;p&gt;Hello &lt;b&gt;world&lt;/b&gt;&lt;/p&gt;</code>) are left
+alone, so prose keeps its line wrapping, and <code data-epresso-bdd7a5c3>&lt;pre&gt;</code> / <code data-epresso-bdd7a5c3>&lt;script&gt;</code> / <code data-epresso-bdd7a5c3>{% raw %}</code>
+bodies are never re-indented. Siblings that the author glued together with no
+whitespace are kept glued, because that whitespace is significant.</p>
+<p data-epresso-bdd7a5c3>This changes the whitespace in the <em data-epresso-bdd7a5c3>rendered</em> HTML — harmless inside block and
+flex/grid containers, but visible between inline elements. It is therefore
+off by default; <code data-epresso-bdd7a5c3>--full</code> implies it. The reflow is conservative: if the result
+would change any non-whitespace character, the file is left untouched.</p>
+<h3 id="epresso-fmt---full" data-epresso-bdd7a5c3><a class="heading-anchor" href="#epresso-fmt---full" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a><code data-epresso-bdd7a5c3>epresso fmt --full</code></h3>
+<p data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>--full</code> additionally formats each section's <strong data-epresso-bdd7a5c3>content</strong> by reusing dedicated
+tools, shipped as the optional <code data-epresso-bdd7a5c3>[fmt]</code> extra:</p>
+<table data-epresso-bdd7a5c3>
+<thead data-epresso-bdd7a5c3>
+<tr data-epresso-bdd7a5c3>
+<th data-epresso-bdd7a5c3>Section</th>
+<th data-epresso-bdd7a5c3>Tool</th>
+</tr>
+</thead>
+<tbody data-epresso-bdd7a5c3>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3>frontmatter (Python)</td>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>ruff format</code></td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3>HTML body</td>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>--expand</code> reflow + <code data-epresso-bdd7a5c3>djhtml</code></td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3>CSS (<code data-epresso-bdd7a5c3>&lt;style&gt;</code>)</td>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>cssbeautifier</code></td>
+</tr>
+<tr data-epresso-bdd7a5c3>
+<td data-epresso-bdd7a5c3>JS (<code data-epresso-bdd7a5c3>&lt;script&gt;</code>)</td>
+<td data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>jsbeautifier</code></td>
+</tr>
+</tbody>
+</table>
+<p data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>--full</code> implies <code data-epresso-bdd7a5c3>--expand</code>.</p>
 
 <pre class="highlight" data-epresso-baba6069>
   
@@ -593,7 +648,7 @@ draft and private entries in <strong data-epresso-bdd7a5c3>development / preview
     <span class="code-trailing" data-epresso-89a9f5da>
         
             <span class="code-lang" data-epresso-89a9f5da>
-                toml
+                bash
             </span>
         
         <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-89a9f5da>
@@ -622,168 +677,15 @@ draft and private entries in <strong data-epresso-bdd7a5c3>development / preview
 
 
 
-  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069><span class="c1" data-epresso-baba6069># site.toml  — the production base (epresso build / preview / check)</span></span><span class="code-line" data-epresso-baba6069><span class="k" data-epresso-baba6069>[content]</span></span><span class="code-line" data-epresso-baba6069><span class="n" data-epresso-baba6069>show_drafts</span><span class="w" data-epresso-baba6069>  </span><span class="o" data-epresso-baba6069>=</span><span class="w" data-epresso-baba6069> </span><span class="kc" data-epresso-baba6069>false</span><span class="w" data-epresso-baba6069>   </span><span class="c1" data-epresso-baba6069># omit to keep the default (shown in dev, hidden in prod)</span></span><span class="code-line" data-epresso-baba6069><span class="n" data-epresso-baba6069>show_private</span><span class="w" data-epresso-baba6069> </span><span class="o" data-epresso-baba6069>=</span><span class="w" data-epresso-baba6069> </span><span class="kc" data-epresso-baba6069>false</span></span><span class="code-line" data-epresso-baba6069></span></div>
+  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069>pip<span class="w" data-epresso-baba6069> </span>install<span class="w" data-epresso-baba6069> </span>-e<span class="w" data-epresso-baba6069> </span>.<span class="o" data-epresso-baba6069>[</span>fmt<span class="o" data-epresso-baba6069>]</span></span><span class="code-line" data-epresso-baba6069>epresso<span class="w" data-epresso-baba6069> </span>fmt<span class="w" data-epresso-baba6069> </span>--full<span class="w" data-epresso-baba6069> </span>.</span><span class="code-line" data-epresso-baba6069></span></div>
 </pre>
 
 
 
 
 
-<p data-epresso-bdd7a5c3>The keys are optional: when left out, the historic default applies (shown in
-development/preview, hidden in production). An explicit value overrides it for
-the current environment. Because per-environment files are merged on top of
-<code data-epresso-bdd7a5c3>site.toml</code>, you can split dev and prod behaviour across files:</p>
-
-<pre class="highlight" data-epresso-baba6069>
-  
-<div class="code-head" data-epresso-89a9f5da>
-    <span class="code-dots" data-epresso-89a9f5da>
-        <span data-epresso-89a9f5da></span><span data-epresso-89a9f5da></span><span data-epresso-89a9f5da></span>
-    </span>
-    
-    <span class="code-trailing" data-epresso-89a9f5da>
-        
-            <span class="code-lang" data-epresso-89a9f5da>
-                toml
-            </span>
-        
-        <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-89a9f5da>
-            
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-89a9f5da>
-    <path d="M9 4.75A.75.75 0 0 1 9.75 4h4a.75.75 0 0 1 .53 1.28l-1.89 1.892c.312.076.604.18.867.319.742.391 1.244 1.063 1.244 2.005 0 .653-.231 1.208-.629 1.627-.386.408-.894.653-1.408.777-1.01.243-2.225.063-3.124-.527a.751.751 0 0 1 .822-1.254c.534.35 1.32.474 1.951.322.306-.073.53-.201.67-.349.129-.136.218-.32.218-.596 0-.308-.123-.509-.444-.678-.373-.197-.98-.318-1.806-.318a.75.75 0 0 1-.53-1.28l1.72-1.72H9.75A.75.75 0 0 1 9 4.75Zm-3.587 5.763c-.35-.05-.77.113-.983.572a.75.75 0 1 1-1.36-.632c.508-1.094 1.589-1.565 2.558-1.425 1 .145 1.872.945 1.872 2.222 0 1.433-1.088 2.192-1.79 2.681-.308.216-.571.397-.772.573H7a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75c0-.69.3-1.211.67-1.61.348-.372.8-.676 1.15-.92.8-.56 1.18-.904 1.18-1.474 0-.473-.267-.69-.587-.737ZM5.604.089A.75.75 0 0 1 6 .75v4.77h.711a.75.75 0 0 1 0 1.5H3.759a.75.75 0 0 1 0-1.5H4.5V2.15l-.334.223a.75.75 0 0 1-.832-1.248l1.5-1a.75.75 0 0 1 .77-.037Z" data-epresso-89a9f5da/>
-</svg>
-
-        </button>
-        <button type="button" class="code-btn code-copy" aria-label="Copy code" title="Copy code" data-epresso-89a9f5da>
-            
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--copy" data-epresso-89a9f5da>
-    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z" data-epresso-89a9f5da/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z" data-epresso-89a9f5da/>
-</svg>
-
-            
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--check" data-epresso-89a9f5da>
-    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" data-epresso-89a9f5da/>
-</svg>
-
-        </button>
-    </span>
-</div>
-
-
-
-
-
-  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069><span class="c1" data-epresso-baba6069># site.development.toml  — merged on top for `epresso dev`</span></span><span class="code-line" data-epresso-baba6069><span class="k" data-epresso-baba6069>[content]</span></span><span class="code-line" data-epresso-baba6069><span class="n" data-epresso-baba6069>show_drafts</span><span class="w" data-epresso-baba6069>  </span><span class="o" data-epresso-baba6069>=</span><span class="w" data-epresso-baba6069> </span><span class="kc" data-epresso-baba6069>true</span></span><span class="code-line" data-epresso-baba6069><span class="n" data-epresso-baba6069>show_private</span><span class="w" data-epresso-baba6069> </span><span class="o" data-epresso-baba6069>=</span><span class="w" data-epresso-baba6069> </span><span class="kc" data-epresso-baba6069>true</span></span><span class="code-line" data-epresso-baba6069></span></div>
-</pre>
-
-
-
-
-
-
-<pre class="highlight" data-epresso-baba6069>
-  
-<div class="code-head" data-epresso-89a9f5da>
-    <span class="code-dots" data-epresso-89a9f5da>
-        <span data-epresso-89a9f5da></span><span data-epresso-89a9f5da></span><span data-epresso-89a9f5da></span>
-    </span>
-    
-    <span class="code-trailing" data-epresso-89a9f5da>
-        
-            <span class="code-lang" data-epresso-89a9f5da>
-                toml
-            </span>
-        
-        <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-89a9f5da>
-            
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-89a9f5da>
-    <path d="M9 4.75A.75.75 0 0 1 9.75 4h4a.75.75 0 0 1 .53 1.28l-1.89 1.892c.312.076.604.18.867.319.742.391 1.244 1.063 1.244 2.005 0 .653-.231 1.208-.629 1.627-.386.408-.894.653-1.408.777-1.01.243-2.225.063-3.124-.527a.751.751 0 0 1 .822-1.254c.534.35 1.32.474 1.951.322.306-.073.53-.201.67-.349.129-.136.218-.32.218-.596 0-.308-.123-.509-.444-.678-.373-.197-.98-.318-1.806-.318a.75.75 0 0 1-.53-1.28l1.72-1.72H9.75A.75.75 0 0 1 9 4.75Zm-3.587 5.763c-.35-.05-.77.113-.983.572a.75.75 0 1 1-1.36-.632c.508-1.094 1.589-1.565 2.558-1.425 1 .145 1.872.945 1.872 2.222 0 1.433-1.088 2.192-1.79 2.681-.308.216-.571.397-.772.573H7a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75c0-.69.3-1.211.67-1.61.348-.372.8-.676 1.15-.92.8-.56 1.18-.904 1.18-1.474 0-.473-.267-.69-.587-.737ZM5.604.089A.75.75 0 0 1 6 .75v4.77h.711a.75.75 0 0 1 0 1.5H3.759a.75.75 0 0 1 0-1.5H4.5V2.15l-.334.223a.75.75 0 0 1-.832-1.248l1.5-1a.75.75 0 0 1 .77-.037Z" data-epresso-89a9f5da/>
-</svg>
-
-        </button>
-        <button type="button" class="code-btn code-copy" aria-label="Copy code" title="Copy code" data-epresso-89a9f5da>
-            
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--copy" data-epresso-89a9f5da>
-    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z" data-epresso-89a9f5da/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z" data-epresso-89a9f5da/>
-</svg>
-
-            
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--check" data-epresso-89a9f5da>
-    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" data-epresso-89a9f5da/>
-</svg>
-
-        </button>
-    </span>
-</div>
-
-
-
-
-
-  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069><span class="c1" data-epresso-baba6069># site.production.toml  — merged on top for `epresso build`/`preview`/`check`</span></span><span class="code-line" data-epresso-baba6069><span class="k" data-epresso-baba6069>[content]</span></span><span class="code-line" data-epresso-baba6069><span class="n" data-epresso-baba6069>show_drafts</span><span class="w" data-epresso-baba6069>  </span><span class="o" data-epresso-baba6069>=</span><span class="w" data-epresso-baba6069> </span><span class="kc" data-epresso-baba6069>false</span></span><span class="code-line" data-epresso-baba6069><span class="n" data-epresso-baba6069>show_private</span><span class="w" data-epresso-baba6069> </span><span class="o" data-epresso-baba6069>=</span><span class="w" data-epresso-baba6069> </span><span class="kc" data-epresso-baba6069>false</span></span><span class="code-line" data-epresso-baba6069></span></div>
-</pre>
-
-
-
-
-
-<p data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>show_drafts</code> controls <code data-epresso-bdd7a5c3>draft: true</code> entries; <code data-epresso-bdd7a5c3>show_private</code> controls <code data-epresso-bdd7a5c3>_</code>-prefixed
-(private) ones. Both apply to the docs collection (and to any collection whose
-schema carries a matching <code data-epresso-bdd7a5c3>draft</code>/<code data-epresso-bdd7a5c3>private</code> field). Future-scheduled dates are
-still excluded in production only.</p>
-<h2 id="data-collections" data-epresso-bdd7a5c3><a class="heading-anchor" href="#data-collections" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Data collections</h2>
-<p data-epresso-bdd7a5c3>Collections can be backed by JSON / YAML / TOML files as well as Markdown — the
-glob loader reads whatever files match, and <code data-epresso-bdd7a5c3>schema</code> validates them. A markdown
-post with YAML front matter:</p>
-
-<pre class="highlight" data-epresso-baba6069>
-  
-<div class="code-head" data-epresso-89a9f5da>
-    <span class="code-dots" data-epresso-89a9f5da>
-        <span data-epresso-89a9f5da></span><span data-epresso-89a9f5da></span><span data-epresso-89a9f5da></span>
-    </span>
-    
-    <span class="code-trailing" data-epresso-89a9f5da>
-        
-            <span class="code-lang" data-epresso-89a9f5da>
-                markdown
-            </span>
-        
-        <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-89a9f5da>
-            
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-89a9f5da>
-    <path d="M9 4.75A.75.75 0 0 1 9.75 4h4a.75.75 0 0 1 .53 1.28l-1.89 1.892c.312.076.604.18.867.319.742.391 1.244 1.063 1.244 2.005 0 .653-.231 1.208-.629 1.627-.386.408-.894.653-1.408.777-1.01.243-2.225.063-3.124-.527a.751.751 0 0 1 .822-1.254c.534.35 1.32.474 1.951.322.306-.073.53-.201.67-.349.129-.136.218-.32.218-.596 0-.308-.123-.509-.444-.678-.373-.197-.98-.318-1.806-.318a.75.75 0 0 1-.53-1.28l1.72-1.72H9.75A.75.75 0 0 1 9 4.75Zm-3.587 5.763c-.35-.05-.77.113-.983.572a.75.75 0 1 1-1.36-.632c.508-1.094 1.589-1.565 2.558-1.425 1 .145 1.872.945 1.872 2.222 0 1.433-1.088 2.192-1.79 2.681-.308.216-.571.397-.772.573H7a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75c0-.69.3-1.211.67-1.61.348-.372.8-.676 1.15-.92.8-.56 1.18-.904 1.18-1.474 0-.473-.267-.69-.587-.737ZM5.604.089A.75.75 0 0 1 6 .75v4.77h.711a.75.75 0 0 1 0 1.5H3.759a.75.75 0 0 1 0-1.5H4.5V2.15l-.334.223a.75.75 0 0 1-.832-1.248l1.5-1a.75.75 0 0 1 .77-.037Z" data-epresso-89a9f5da/>
-</svg>
-
-        </button>
-        <button type="button" class="code-btn code-copy" aria-label="Copy code" title="Copy code" data-epresso-89a9f5da>
-            
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--copy" data-epresso-89a9f5da>
-    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z" data-epresso-89a9f5da/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z" data-epresso-89a9f5da/>
-</svg>
-
-            
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--check" data-epresso-89a9f5da>
-    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" data-epresso-89a9f5da/>
-</svg>
-
-        </button>
-    </span>
-</div>
-
-
-
-
-
-  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069>---</span><span class="code-line" data-epresso-baba6069>title: Hello</span><span class="code-line" data-epresso-baba6069>date: 2026-01-01</span><span class="code-line" data-epresso-baba6069><span class="gu" data-epresso-baba6069>tags: [python]</span></span><span class="code-line" data-epresso-baba6069><span class="gu" data-epresso-baba6069>---</span></span><span class="code-line" data-epresso-baba6069><span class="gh" data-epresso-baba6069># Hello</span></span><span class="code-line" data-epresso-baba6069></span></div>
-</pre>
-
-
-
-
-
-<p data-epresso-bdd7a5c3>Markdown is rendered to HTML (see <a href="/epresso-preview/dev/guides/content/markdown/" data-epresso-bdd7a5c3>Markdown</a>; the entry's
-<code data-epresso-bdd7a5c3>rendered.html</code> and <code data-epresso-bdd7a5c3>rendered.metadata</code> (headings, image paths) are available.</p>
+<p data-epresso-bdd7a5c3>Jinja (<code data-epresso-bdd7a5c3>{{ }}</code>/<code data-epresso-bdd7a5c3>{% %}</code>/<code data-epresso-bdd7a5c3>{# #}</code>) is preserved throughout. If the <code data-epresso-bdd7a5c3>[fmt]</code> deps are
+missing, <code data-epresso-bdd7a5c3>--full</code> formats whatever is available and skips the rest.</p>
 
 </div>
 
@@ -792,13 +694,13 @@ post with YAML front matter:</p>
         
 <nav class="pager" aria-label="Docs pagination" data-epresso-7a4490a6>
     
-        <a class="pager-link" data-pager-prev href="/epresso-preview/dev/guides/content/mdx/" data-epresso-7a4490a6>
-            <span class="pager-label" data-epresso-7a4490a6>Previous</span><span class="pager-title" data-epresso-7a4490a6>MDX</span>
+        <a class="pager-link" data-pager-prev href="/epresso-preview/dev/reference/template-directives/" data-epresso-7a4490a6>
+            <span class="pager-label" data-epresso-7a4490a6>Previous</span><span class="pager-title" data-epresso-7a4490a6>Template directives</span>
         </a>
     
     
-        <a class="pager-link pager-next" data-pager-next href="/epresso-preview/dev/guides/content/data-fetching/" data-epresso-7a4490a6>
-            <span class="pager-label" data-epresso-7a4490a6>Next</span><span class="pager-title" data-epresso-7a4490a6>Data fetching</span>
+        <a class="pager-link pager-next" data-pager-next href="/epresso-preview/dev/basics/project-structure/" data-epresso-7a4490a6>
+            <span class="pager-label" data-epresso-7a4490a6>Next</span><span class="pager-title" data-epresso-7a4490a6>Project structure</span>
         </a>
     
 </nav>
@@ -817,39 +719,15 @@ post with YAML front matter:</p>
         <ul data-epresso-e9ed0d97>
             
                 
-                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#defining-collections" data-epresso-e9ed0d97>Defining collections</a></li>
+                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#epresso-fmt" data-epresso-e9ed0d97>`epresso fmt`</a></li>
                 
             
                 
-                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#loaders" data-epresso-e9ed0d97>Loaders</a></li>
+                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#epresso-lsp" data-epresso-e9ed0d97>`epresso lsp`</a></li>
                 
             
                 
-                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#content-store" data-epresso-e9ed0d97>Content store</a></li>
-                
             
-                
-                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#accessing-data-in-templates-and-routes" data-epresso-e9ed0d97>Accessing data in templates and routes</a></li>
-                
-            
-                
-                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#content-references" data-epresso-e9ed0d97>Content references</a></li>
-                
-            
-                
-                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#drafts-scheduled-content" data-epresso-e9ed0d97>Drafts &amp; scheduled content</a></li>
-                
-            
-                
-                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#private-files-underscore-prefix" data-epresso-e9ed0d97>Private files (underscore prefix)</a></li>
-                
-            
-                
-                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#controlling-visibility-per-environment-content" data-epresso-e9ed0d97>Controlling visibility per environment (`[content]`)</a></li>
-                
-            
-                
-                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#data-collections" data-epresso-e9ed0d97>Data collections</a></li>
                 
             
         </ul>

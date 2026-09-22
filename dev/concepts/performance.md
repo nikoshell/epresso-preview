@@ -10,4 +10,4 @@ epresso is designed for fast static sites:
 - **Content-hashed assets** via `asset()` for cache-friendly URLs.
 
 For runtime performance, ship little/no JS (the default) and follow the
-[Images](../guides/styling/images.md and [Fonts](../guides/styling/fonts.md guidance.
+[Images](guides/styling/images.md) and [Fonts](guides/styling/fonts.md) guidance.

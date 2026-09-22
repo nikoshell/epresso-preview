@@ -20,21 +20,13 @@
 - [Performance](https://epresso.top/concepts/performance/)
 - [Why epresso?](https://epresso.top/concepts/why-epresso/)
 
-## Develop And Build
-
-- [Develop and build](https://epresso.top/develop-and-build/)
-- [CLI](https://epresso.top/develop-and-build/cli/)
-
-## Editor Setup
-
-- [Editor setup](https://epresso.top/editor-setup/)
-
 ## Guides
 
 - [Prefetch](https://epresso.top/guides/behavior/prefetch/)
 - [Security](https://epresso.top/guides/behavior/security/)
 - [Type checking & tooling](https://epresso.top/guides/behavior/typescript/)
 - [View Transitions](https://epresso.top/guides/behavior/view-transitions/)
+- [Commands](https://epresso.top/guides/build/commands/)
 - [Configuration](https://epresso.top/guides/build/configuration/)
 - [Dev toolbar](https://epresso.top/guides/build/dev-toolbar/)
 - [Environment variables](https://epresso.top/guides/build/environment-variables/)
@@ -48,17 +40,18 @@
 - [Markdown](https://epresso.top/guides/content/markdown/)
 - [MDX](https://epresso.top/guides/content/mdx/)
 - [RSS](https://epresso.top/guides/content/rss/)
+- [Editor setup](https://epresso.top/guides/editor-setup/)
 - [Layers](https://epresso.top/guides/extending/layers/)
 - [Middleware](https://epresso.top/guides/extending/middleware/)
 - [Plugins](https://epresso.top/guides/extending/plugins/)
 - [Fonts](https://epresso.top/guides/styling/fonts/)
 - [Images](https://epresso.top/guides/styling/images/)
 - [Styling and CSS](https://epresso.top/guides/styling/styling/)
-- [Themes & templates](https://epresso.top/guides/themes/): Start a site from scratch, from a ready-made theme, or build one for others to reuse.
 - [Create a theme](https://epresso.top/guides/themes/create-a-theme/): Structure a project so epresso new can scaffold others from it.
 - [Start from a template](https://epresso.top/guides/themes/from-template/): Scaffold a full site from a ready-made theme with epresso new.
 - [Create a new website](https://epresso.top/guides/themes/new-website/): Scaffold an empty epresso project and add your first page and component.
 
 ## Reference
 
+- [CLI](https://epresso.top/reference/cli/)
 - [Template directives](https://epresso.top/reference/template-directives/)

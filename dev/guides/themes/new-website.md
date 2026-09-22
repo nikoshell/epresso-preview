@@ -74,7 +74,7 @@ Create `pages/about.ep`:
 ```
 
 It becomes `/about/` automatically — the filesystem path *is* the route. See
-[Pages](../basics/pages.md) and [Routing](../basics/routing.md) for dynamic
+[Pages](basics/pages.md) and [Routing](basics/routing.md) for dynamic
 routes (`[slug].ep`), endpoints (`.py`) and direct Markdown pages (`.md`).
 
 ## 4. Add a component
@@ -114,7 +114,7 @@ Save it as `components/Card.ep` and use it from any page:
 
 The `<style>` is **scoped to the component's output** — it is not global CSS,
 and it is only linked into pages that actually render the component. See
-[Components](../basics/components.md) for props validation, named slots and
+[Components](basics/components.md) for props validation, named slots and
 `<style is:global>`.
 
 ## 5. Wire in global CSS
@@ -150,9 +150,9 @@ epresso preview        # build then serve dist/ exactly as deployed
 
 ## Next steps
 
-- [Content collections](../guides/content/content-collections.md) — typed
+- [Content collections](guides/content/content-collections.md) — typed
   collections with Pydantic schemas.
-- [Styling and CSS](../guides/styling/styling.md) — assets, PostCSS/Tailwind,
+- [Styling and CSS](guides/styling/styling.md) — assets, PostCSS/Tailwind,
   and when to use scoped CSS.
-- [Plugins](../guides/extending/plugins.md) — add template globals, filters and
+- [Plugins](guides/extending/plugins.md) — add template globals, filters and
   rendered-output transforms.

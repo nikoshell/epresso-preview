@@ -1,4 +1,4 @@
-# Develop and build
+# Commands
 
 ## Development server
 

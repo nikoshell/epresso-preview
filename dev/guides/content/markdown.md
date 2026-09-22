@@ -75,7 +75,7 @@ and `#anchors` pass through unchanged.
 |--------|---------|------------|
 | `[Label](Page.md)` | `[Layouts](../../basics/layouts.md` | `→ /basics/layouts/` |
 | `[Label](Page)` | `[Config](../build/configuration.md` | `→ /guides/configuration/` |
-| `[Label](/path)` | `[CLI](/docs/cli/)` | `→ /develop-and-build/cli/` (as-is) |
+| `[Label](/path)` | `[CLI](/docs/cli/)` | `→ /reference/cli/` (as-is) |
 | `[[Page]]` | `[[Routing]]` | `→ /guides/routing/` |
 | `[[Page\|Label]]` | `[[Routing\|routing guide]]` | `→ /guides/routing/` as "routing guide" |
 | `[wiki_page:Page]` | `[wiki_page:Layouts]` | `→ /basics/layouts/` |

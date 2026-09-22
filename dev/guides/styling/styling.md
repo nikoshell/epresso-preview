@@ -54,7 +54,7 @@ optional.
 
 ## Styling a layer
 
-Components from a [layer](../guides/extending/layers.md) carry their scoped `<style>`
+Components from a [layer](guides/extending/layers.md) carry their scoped `<style>`
 and `<script>` exactly like site components, so a library's per-component styles
 work with no extra setup. Global CSS from a layer must travel in a
 `<style is:global>` block inside one of its components — v1 layers contribute
