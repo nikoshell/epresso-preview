@@ -50,6 +50,7 @@
 - [Create a theme](https://epresso.top/guides/themes/create-a-theme/): Structure a project so epresso new can scaffold others from it.
 - [Start from a template](https://epresso.top/guides/themes/from-template/): Scaffold a full site from a ready-made theme with epresso new.
 - [Create a new website](https://epresso.top/guides/themes/new-website/): Scaffold an empty epresso project and add your first page and component.
+- [Preview a repository's docs](https://epresso.top/guides/themes/preview-repo-docs/)
 
 ## Reference
 
