@@ -1,34 +1,36 @@
 
 
 <!doctype html>
-<html lang="en" data-epresso-aa9d8371>
-    <head data-epresso-aa9d8371>
-        <title data-epresso-aa9d8371>Testing · epresso</title>
-<meta charset="utf-8" data-epresso-aa9d8371>
-<meta name="description" content="A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy." data-epresso-aa9d8371>
-<link rel="canonical" href="https://epresso.top/guides/build/testing/" data-epresso-aa9d8371>
-<meta property="og:title" content="Testing · epresso" data-epresso-aa9d8371>
-<meta property="og:type" content="website" data-epresso-aa9d8371>
-<meta property="og:url" content="https://epresso.top/guides/build/testing/" data-epresso-aa9d8371>
-<meta property="og:description" content="A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy." data-epresso-aa9d8371>
-<meta property="og:image" content="https://epresso.top/epresso.png" data-epresso-aa9d8371>
-<meta name="twitter:card" content="summary_large_image" data-epresso-aa9d8371>
-<meta name="twitter:title" content="Testing · epresso" data-epresso-aa9d8371>
-<meta name="twitter:description" content="A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy." data-epresso-aa9d8371>
-<meta name="twitter:image" content="https://epresso.top/epresso.png" data-epresso-aa9d8371>
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" data-epresso-aa9d8371>
-        <meta name="color-scheme" content="light dark" data-epresso-aa9d8371>
-        <meta name="theme-color" content="#fafbfc" media="(prefers-color-scheme: light)" data-epresso-aa9d8371>
-        <meta name="theme-color" content="#0f1117" media="(prefers-color-scheme: dark)" data-epresso-aa9d8371>
-        <link rel="describedby" href="/epresso-preview/dev/llms.txt" data-epresso-aa9d8371>
-        <link rel="icon" href="/epresso-preview/dev/favicon.ico" sizes="any" data-epresso-aa9d8371>
-        <link rel="icon" type="image/svg+xml" href="/epresso-preview/dev/epresso.svg" data-epresso-aa9d8371>
+<html lang="en" data-epresso-f29ce0a9>
+    <head data-epresso-f29ce0a9>
+        <title data-epresso-f29ce0a9>Testing · epresso</title>
+<meta charset="utf-8" data-epresso-f29ce0a9>
+<meta name="description" content="A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy." data-epresso-f29ce0a9>
+<link rel="canonical" href="https://epresso.top/guides/build/testing/" data-epresso-f29ce0a9>
+<meta property="og:title" content="Testing · epresso" data-epresso-f29ce0a9>
+<meta property="og:type" content="website" data-epresso-f29ce0a9>
+<meta property="og:url" content="https://epresso.top/guides/build/testing/" data-epresso-f29ce0a9>
+<meta property="og:description" content="A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy." data-epresso-f29ce0a9>
+<meta property="og:image" content="https://epresso.top/_docs-assets/0/og-image.png" data-epresso-f29ce0a9>
+<meta name="twitter:card" content="summary_large_image" data-epresso-f29ce0a9>
+<meta name="twitter:title" content="Testing · epresso" data-epresso-f29ce0a9>
+<meta name="twitter:description" content="A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy." data-epresso-f29ce0a9>
+<meta name="twitter:image" content="https://epresso.top/_docs-assets/0/og-image.png" data-epresso-f29ce0a9>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" data-epresso-f29ce0a9>
+        <meta name="color-scheme" content="light dark" data-epresso-f29ce0a9>
+        <meta name="theme-color" content="#fafbfc" media="(prefers-color-scheme: light)" data-epresso-f29ce0a9>
+        <meta name="theme-color" content="#0f1117" media="(prefers-color-scheme: dark)" data-epresso-f29ce0a9>
+        <link rel="describedby" href="/epresso-preview/dev/llms.txt" data-epresso-f29ce0a9>
+        
+        
+            <link rel="icon" href="/epresso-preview/dev/_docs-assets/0/favicon.ico" sizes="any" data-epresso-f29ce0a9>
+        
         <script is:inline>
-/* Publishes the page breakpoint state as attributes on <html data-epresso-aa9d8371>, so
+/* Publishes the page breakpoint state as attributes on <html data-epresso-f29ce0a9>, so
    components can branch on it with plain attribute selectors
    (works everywhere, unlike @container style()). 768/1024/1280
    are the layout breakpoints — keep them in sync with the
-   @container queries in the components (see global.css). */
+   @container queries in the components (see docs.css). */
 (function() {
     var root = document.documentElement;
     var mqNav = window.matchMedia("(max-width: 1024px)");
@@ -50,7 +52,7 @@
 
 /* Crossing a breakpoint turns a drawer into (or out of) an
    off-canvas panel; that transform change must not animate.
-   See `html.epresso-resizing` in global.css. */
+   See `html.epresso-resizing` in docs.css. */
 (function() {
     var root = document.documentElement;
     var timer;
@@ -71,7 +73,7 @@ window.epressoPanelOpened = function(name) {
     }));
 };
 
-/* See `html:not(.epresso-ready)` in global.css: the closed drawers
+/* See `html:not(.epresso-ready)` in docs.css: the closed drawers
    must not animate into place when the stylesheet lands late. */
 window.addEventListener("load", function() {
     requestAnimationFrame(function() {
@@ -79,34 +81,34 @@ window.addEventListener("load", function() {
     });
 });
 </script>
-        <link rel="stylesheet" href="/epresso-preview/dev/assets/global.98d2c8d5c131.css" data-epresso-aa9d8371>
+        <link rel="stylesheet" href="/epresso-preview/dev/assets/docs.dbbfa0e5608f.css" data-epresso-f29ce0a9>
         
-    <style>.ep-tabs{position:relative;margin:0 0 1rem}.ep-tabs>input{position:absolute;opacity:0;width:0;height:0}.ep-tabs>label{display:inline-block;padding:.4rem 1rem;margin:0 2px 0 0;border:1px solid var(--line,#d0d5dc);border-bottom:0;border-radius:4px 4px 0 0;background:var(--surface,#fff);color:var(--muted,#6b7280);cursor:pointer;font-weight:500;font-size:.9em}.ep-tabs>input:checked+label{color:var(--accent,#a8430e);border-color:var(--accent,#a8430e);background:var(--bg,#fafafa)}.ep-tabs>.ep-tabpanel{display:none;border:1px solid var(--line,#d0d5dc);border-radius:0 4px 4px 4px;padding:1rem;background:var(--surface,#fff)}.ep-tabs>input:nth-of-type(1):checked~.ep-tabpanel:nth-of-type(1),.ep-tabs>input:nth-of-type(2):checked~.ep-tabpanel:nth-of-type(2),.ep-tabs>input:nth-of-type(3):checked~.ep-tabpanel:nth-of-type(3),.ep-tabs>input:nth-of-type(4):checked~.ep-tabpanel:nth-of-type(4),.ep-tabs>input:nth-of-type(5):checked~.ep-tabpanel:nth-of-type(5),.ep-tabs>input:nth-of-type(6):checked~.ep-tabpanel:nth-of-type(6){display:block}</style><link rel="stylesheet" href="/epresso-preview/dev/_scoped/epresso.becef4433ab9.css"><script>window.EPRESSO_BASE='/epresso-preview/dev';</script></head>
-    <body data-epresso-aa9d8371>
+    <style>.ep-tabs{position:relative;margin:0 0 1rem}.ep-tabs>input{position:absolute;opacity:0;width:0;height:0}.ep-tabs>label{display:inline-block;padding:.4rem 1rem;margin:0 2px 0 0;border:1px solid var(--line,#d0d5dc);border-bottom:0;border-radius:4px 4px 0 0;background:var(--surface,#fff);color:var(--muted,#6b7280);cursor:pointer;font-weight:500;font-size:.9em}.ep-tabs>input:checked+label{color:var(--accent,#a8430e);border-color:var(--accent,#a8430e);background:var(--bg,#fafafa)}.ep-tabs>.ep-tabpanel{display:none;border:1px solid var(--line,#d0d5dc);border-radius:0 4px 4px 4px;padding:1rem;background:var(--surface,#fff)}.ep-tabs>input:nth-of-type(1):checked~.ep-tabpanel:nth-of-type(1),.ep-tabs>input:nth-of-type(2):checked~.ep-tabpanel:nth-of-type(2),.ep-tabs>input:nth-of-type(3):checked~.ep-tabpanel:nth-of-type(3),.ep-tabs>input:nth-of-type(4):checked~.ep-tabpanel:nth-of-type(4),.ep-tabs>input:nth-of-type(5):checked~.ep-tabpanel:nth-of-type(5),.ep-tabs>input:nth-of-type(6):checked~.ep-tabpanel:nth-of-type(6){display:block}</style><link rel="stylesheet" href="/epresso-preview/dev/_scoped/epresso.a3df2c021d5f.css"><script>window.EPRESSO_BASE='/epresso-preview/dev';</script></head>
+    <body data-epresso-f29ce0a9>
         
 
-    <a class="skip-link" href="#main" data-epresso-cd936e60>Skip to content</a>
-    <header class="site-header" data-epresso-cd936e60>
-        <div class="site-header-inner" data-epresso-cd936e60>
-            <a class="brand" href="/epresso-preview/dev/" data-epresso-cd936e60>
+    <a class="skip-link" href="#main" data-epresso-ecb34385>Skip to content</a>
+    <header class="site-header" data-epresso-ecb34385>
+        <div class="site-header-inner" data-epresso-ecb34385>
+            <a class="brand brand--dot" href="/epresso-preview/dev/" data-epresso-ecb34385>
                 
-                    <span class="brand-logo" role="img" aria-label="epresso" data-epresso-cd936e60></span>
+                    <img class="brand-logo" src="/epresso-preview/dev/_docs-assets/0/logo.svg" alt="epresso" data-epresso-ecb34385/>
                 
             </a>
-            <nav class="header-nav" data-epresso-cd936e60>
-                <div class="nav-links" id="nav-menu" data-epresso-cd936e60>
-                    <a class="header-home" href="/epresso-preview/dev/" data-epresso-cd936e60>Home</a>
+            <nav class="header-nav" data-epresso-ecb34385>
+                <div class="nav-links" id="nav-menu" data-epresso-ecb34385>
+                    <a class="header-home" href="/epresso-preview/dev/" data-epresso-ecb34385>Home</a>
                 </div>
             </nav>
-            <div class="header-actions" data-epresso-cd936e60>
+            <div class="header-actions" data-epresso-ecb34385>
                 
 
 
-    <button type="button" id="search-open" class="icon-btn" aria-label="Search" aria-haspopup="dialog" data-epresso-1a540109>
+    <button type="button" id="search-open" class="icon-btn" aria-label="Search" aria-haspopup="dialog" data-epresso-f2ed5a25>
         
     
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-ef3cbc42>
-    <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z" data-epresso-ef3cbc42/>
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-d6008fec>
+    <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z" data-epresso-d6008fec/>
 </svg>
 
 
@@ -120,11 +122,11 @@ window.addEventListener("load", function() {
 
     
 
-    <a href="https://github.com/nikoshell/epresso" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository" title="GitHub repository" data-epresso-1a540109>
+    <a href="https://github.com/nikoshell/epresso" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository" title="GitHub repository" data-epresso-f2ed5a25>
         
         
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-5077be93>
-    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" data-epresso-5077be93/>
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-7ab2abba>
+    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z" data-epresso-7ab2abba/>
 </svg>
 
     
@@ -136,10 +138,10 @@ window.addEventListener("load", function() {
 
 
                 
-<button class="sidebar-toggle" type="button" aria-controls="sidebar-nav" aria-expanded="false" aria-label="Show navigation" data-epresso-8cc737e9>
+<button class="sidebar-toggle" type="button" aria-controls="sidebar-nav" aria-expanded="false" aria-label="Show navigation" data-epresso-876eb1c9>
     
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18" data-epresso-8cc737e9>
-    <rect width="18" height="18" x="3" y="3" rx="2" data-epresso-8cc737e9/><path d="M15 3v18" data-epresso-8cc737e9/>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18" data-epresso-876eb1c9>
+    <rect width="18" height="18" x="3" y="3" rx="2" data-epresso-876eb1c9/><path d="M15 3v18" data-epresso-876eb1c9/>
 </svg>
 
 </button>
@@ -147,15 +149,15 @@ window.addEventListener("load", function() {
 
 
             </div>
-            <button class="nav-toggle" id="nav-toggle" type="button" aria-controls="nav-menu" aria-expanded="false" aria-label="Open menu" data-epresso-cd936e60>
+            <button class="nav-toggle" id="nav-toggle" type="button" aria-controls="nav-menu" aria-expanded="false" aria-label="Open menu" data-epresso-ecb34385>
                 
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" width="20" height="20" data-epresso-cd936e60>
-    <path d="M3 6h18M3 12h18M3 18h18" data-epresso-cd936e60/>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" width="20" height="20" data-epresso-ecb34385>
+    <path d="M3 6h18M3 12h18M3 18h18" data-epresso-ecb34385/>
 </svg>
 
             </button>
         </div>
-        <div class="nav-scrim" aria-hidden="true" data-epresso-cd936e60></div>
+        <div class="nav-scrim" aria-hidden="true" data-epresso-ecb34385></div>
     </header>
 
 
@@ -165,15 +167,15 @@ window.addEventListener("load", function() {
 
 
         
-<div class="site-body" data-epresso-aa9d8371>
+<div class="site-body" data-epresso-f29ce0a9>
     
 
-    <svg class="tree-caret-defs" width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden" data-epresso-538a7793><symbol id="epresso-caret" viewBox="0 0 16 16" data-epresso-538a7793><path fill="currentColor" d="M6.97 4.03a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06L9.94 8 6.97 5.03a.75.75 0 0 1 0-1.06Z" data-epresso-538a7793/></symbol></svg>
-    <div class="sidebar-scrim" aria-hidden="true" data-epresso-538a7793></div>
-    <aside class="sidebar" id="sidebar-nav" aria-label="Documentation navigation" data-epresso-538a7793>
-        <div class="sidebar-inner" data-epresso-538a7793>
-            <nav data-epresso-538a7793>
-                <ul class="tree" data-epresso-538a7793><li class="tree-dir tree-top" data-epresso-538a7793><details data-epresso-538a7793><summary data-epresso-538a7793><span data-epresso-538a7793>Basics</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-538a7793><use href="#epresso-caret" data-epresso-538a7793/></svg></summary><ul class="tree" data-epresso-538a7793><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/basics/project-structure/" data-epresso-538a7793>Project structure</a></li><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/basics/pages/" data-epresso-538a7793>Pages</a></li><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/basics/routing/" data-epresso-538a7793>Routing</a></li><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/basics/components/" data-epresso-538a7793>Components</a></li><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/basics/layouts/" data-epresso-538a7793>Layouts</a></li></ul></details></li><li class="tree-dir tree-top" data-epresso-538a7793><details data-epresso-538a7793><summary data-epresso-538a7793><span data-epresso-538a7793>Concepts</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-538a7793><use href="#epresso-caret" data-epresso-538a7793/></svg></summary><ul class="tree" data-epresso-538a7793><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/concepts/why-epresso/" data-epresso-538a7793>Why epresso?</a></li><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/concepts/how-it-works/" data-epresso-538a7793>How epresso works</a></li><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/concepts/no-javascript/" data-epresso-538a7793>No JavaScript by default</a></li><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/concepts/islands/" data-epresso-538a7793>Client-side behavior</a></li><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/concepts/performance/" data-epresso-538a7793>Performance</a></li></ul></details></li><li class="tree-dir tree-top" data-epresso-538a7793><details data-epresso-538a7793><summary data-epresso-538a7793><span data-epresso-538a7793>Guides</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-538a7793><use href="#epresso-caret" data-epresso-538a7793/></svg></summary><ul class="tree" data-epresso-538a7793><li class="tree-dir" data-depth="1" data-epresso-538a7793><details data-epresso-538a7793><summary data-epresso-538a7793><span data-epresso-538a7793>Content</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-538a7793><use href="#epresso-caret" data-epresso-538a7793/></svg></summary><ul class="tree" data-epresso-538a7793><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/content/markdown/" data-epresso-538a7793>Markdown</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/content/mdx/" data-epresso-538a7793>MDX</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/content/content-collections/" data-epresso-538a7793>Content collections</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/content/data-fetching/" data-epresso-538a7793>Data fetching</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/content/endpoints/" data-epresso-538a7793>Endpoints</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/content/rss/" data-epresso-538a7793>RSS</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/content/llms-txt/" data-epresso-538a7793>llms.txt</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/content/i18n/" data-epresso-538a7793>Internationalization (i18n)</a></li></ul></details></li><li class="tree-dir" data-depth="1" data-epresso-538a7793><details data-epresso-538a7793><summary data-epresso-538a7793><span data-epresso-538a7793>Styling</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-538a7793><use href="#epresso-caret" data-epresso-538a7793/></svg></summary><ul class="tree" data-epresso-538a7793><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/styling/styling/" data-epresso-538a7793>Styling and CSS</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/styling/images/" data-epresso-538a7793>Images</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/styling/fonts/" data-epresso-538a7793>Fonts</a></li></ul></details></li><li class="tree-dir" data-depth="1" data-epresso-538a7793><details data-epresso-538a7793><summary data-epresso-538a7793><span data-epresso-538a7793>Build</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-538a7793><use href="#epresso-caret" data-epresso-538a7793/></svg></summary><ul class="tree" data-epresso-538a7793><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/build/commands/" data-epresso-538a7793>Commands</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/build/configuration/" data-epresso-538a7793>Configuration</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/build/environment-variables/" data-epresso-538a7793>Environment variables</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/build/incremental/" data-epresso-538a7793>Incremental builds &amp; caching</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/build/dev-toolbar/" data-epresso-538a7793>Dev toolbar</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/build/testing/" data-epresso-538a7793>Testing</a></li></ul></details></li><li class="tree-dir" data-depth="1" data-epresso-538a7793><details data-epresso-538a7793><summary data-epresso-538a7793><span data-epresso-538a7793>Extending</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-538a7793><use href="#epresso-caret" data-epresso-538a7793/></svg></summary><ul class="tree" data-epresso-538a7793><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/extending/layers/" data-epresso-538a7793>Layers</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/extending/plugins/" data-epresso-538a7793>Plugins</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/extending/middleware/" data-epresso-538a7793>Middleware</a></li></ul></details></li><li class="tree-dir" data-depth="1" data-epresso-538a7793><details data-epresso-538a7793><summary data-epresso-538a7793><span data-epresso-538a7793>Behavior</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-538a7793><use href="#epresso-caret" data-epresso-538a7793/></svg></summary><ul class="tree" data-epresso-538a7793><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/behavior/prefetch/" data-epresso-538a7793>Prefetch</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/behavior/view-transitions/" data-epresso-538a7793>View Transitions</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/behavior/security/" data-epresso-538a7793>Security</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/behavior/typescript/" data-epresso-538a7793>Type checking &amp; tooling</a></li></ul></details></li><li class="tree-dir" data-depth="1" data-epresso-538a7793><details data-epresso-538a7793><summary data-epresso-538a7793><span data-epresso-538a7793>Themes</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-538a7793><use href="#epresso-caret" data-epresso-538a7793/></svg></summary><ul class="tree" data-epresso-538a7793><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/themes/new-website/" data-epresso-538a7793>Create a new website</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/themes/from-template/" data-epresso-538a7793>Start from a template</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/themes/create-a-theme/" data-epresso-538a7793>Create a theme</a></li><li class="tree-leaf" data-depth="2" data-epresso-538a7793><a href="/epresso-preview/dev/guides/themes/preview-repo-docs/" data-epresso-538a7793>Preview a repository&#39;s docs</a></li></ul></details></li><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/guides/editor-setup/" data-epresso-538a7793>Editor setup</a></li></ul></details></li><li class="tree-dir tree-top" data-epresso-538a7793><details data-epresso-538a7793><summary data-epresso-538a7793><span data-epresso-538a7793>Reference</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-538a7793><use href="#epresso-caret" data-epresso-538a7793/></svg></summary><ul class="tree" data-epresso-538a7793><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/reference/template-directives/" data-epresso-538a7793>Template directives</a></li><li class="tree-leaf" data-depth="1" data-epresso-538a7793><a href="/epresso-preview/dev/reference/cli/" data-epresso-538a7793>CLI</a></li></ul></details></li></ul>
+    <svg class="tree-caret-defs" width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden" data-epresso-911f539e><symbol id="epresso-caret" viewBox="0 0 16 16" data-epresso-911f539e><path fill="currentColor" d="M6.97 4.03a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06L9.94 8 6.97 5.03a.75.75 0 0 1 0-1.06Z" data-epresso-911f539e/></symbol></svg>
+    <div class="sidebar-scrim" aria-hidden="true" data-epresso-911f539e></div>
+    <aside class="sidebar" id="sidebar-nav" aria-label="Documentation navigation" data-epresso-911f539e>
+        <div class="sidebar-inner" data-epresso-911f539e>
+            <nav data-epresso-911f539e>
+                <ul class="tree" data-epresso-911f539e><li class="tree-dir tree-top" data-epresso-911f539e><details data-epresso-911f539e><summary data-epresso-911f539e><span data-epresso-911f539e>Basics</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-911f539e><use href="#epresso-caret" data-epresso-911f539e/></svg></summary><ul class="tree" data-epresso-911f539e><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/basics/project-structure/" data-epresso-911f539e>Project structure</a></li><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/basics/pages/" data-epresso-911f539e>Pages</a></li><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/basics/routing/" data-epresso-911f539e>Routing</a></li><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/basics/components/" data-epresso-911f539e>Components</a></li><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/basics/layouts/" data-epresso-911f539e>Layouts</a></li></ul></details></li><li class="tree-dir tree-top" data-epresso-911f539e><details data-epresso-911f539e><summary data-epresso-911f539e><span data-epresso-911f539e>Concepts</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-911f539e><use href="#epresso-caret" data-epresso-911f539e/></svg></summary><ul class="tree" data-epresso-911f539e><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/concepts/why-epresso/" data-epresso-911f539e>Why epresso?</a></li><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/concepts/how-it-works/" data-epresso-911f539e>How epresso works</a></li><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/concepts/no-javascript/" data-epresso-911f539e>No JavaScript by default</a></li><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/concepts/islands/" data-epresso-911f539e>Client-side behavior</a></li><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/concepts/performance/" data-epresso-911f539e>Performance</a></li></ul></details></li><li class="tree-dir tree-top" data-epresso-911f539e><details data-epresso-911f539e><summary data-epresso-911f539e><span data-epresso-911f539e>Guides</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-911f539e><use href="#epresso-caret" data-epresso-911f539e/></svg></summary><ul class="tree" data-epresso-911f539e><li class="tree-dir" data-depth="1" data-epresso-911f539e><details data-epresso-911f539e><summary data-epresso-911f539e><span data-epresso-911f539e>Content</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-911f539e><use href="#epresso-caret" data-epresso-911f539e/></svg></summary><ul class="tree" data-epresso-911f539e><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/content/markdown/" data-epresso-911f539e>Markdown</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/content/mdx/" data-epresso-911f539e>MDX</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/content/content-collections/" data-epresso-911f539e>Content collections</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/content/data-fetching/" data-epresso-911f539e>Data fetching</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/content/endpoints/" data-epresso-911f539e>Endpoints</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/content/rss/" data-epresso-911f539e>RSS</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/content/llms-txt/" data-epresso-911f539e>llms.txt</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/content/i18n/" data-epresso-911f539e>Internationalization (i18n)</a></li></ul></details></li><li class="tree-dir" data-depth="1" data-epresso-911f539e><details data-epresso-911f539e><summary data-epresso-911f539e><span data-epresso-911f539e>Styling</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-911f539e><use href="#epresso-caret" data-epresso-911f539e/></svg></summary><ul class="tree" data-epresso-911f539e><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/styling/styling/" data-epresso-911f539e>Styling and CSS</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/styling/images/" data-epresso-911f539e>Images</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/styling/fonts/" data-epresso-911f539e>Fonts</a></li></ul></details></li><li class="tree-dir" data-depth="1" data-epresso-911f539e><details data-epresso-911f539e><summary data-epresso-911f539e><span data-epresso-911f539e>Build</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-911f539e><use href="#epresso-caret" data-epresso-911f539e/></svg></summary><ul class="tree" data-epresso-911f539e><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/build/commands/" data-epresso-911f539e>Commands</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/build/configuration/" data-epresso-911f539e>Configuration</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/build/environment-variables/" data-epresso-911f539e>Environment variables</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/build/incremental/" data-epresso-911f539e>Incremental builds &amp; caching</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/build/dev-toolbar/" data-epresso-911f539e>Dev toolbar</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/build/testing/" data-epresso-911f539e>Testing</a></li></ul></details></li><li class="tree-dir" data-depth="1" data-epresso-911f539e><details data-epresso-911f539e><summary data-epresso-911f539e><span data-epresso-911f539e>Extending</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-911f539e><use href="#epresso-caret" data-epresso-911f539e/></svg></summary><ul class="tree" data-epresso-911f539e><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/extending/layers/" data-epresso-911f539e>Layers</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/extending/plugins/" data-epresso-911f539e>Plugins</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/extending/middleware/" data-epresso-911f539e>Middleware</a></li></ul></details></li><li class="tree-dir" data-depth="1" data-epresso-911f539e><details data-epresso-911f539e><summary data-epresso-911f539e><span data-epresso-911f539e>Behavior</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-911f539e><use href="#epresso-caret" data-epresso-911f539e/></svg></summary><ul class="tree" data-epresso-911f539e><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/behavior/prefetch/" data-epresso-911f539e>Prefetch</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/behavior/view-transitions/" data-epresso-911f539e>View Transitions</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/behavior/security/" data-epresso-911f539e>Security</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/behavior/typescript/" data-epresso-911f539e>Type checking &amp; tooling</a></li></ul></details></li><li class="tree-dir" data-depth="1" data-epresso-911f539e><details data-epresso-911f539e><summary data-epresso-911f539e><span data-epresso-911f539e>Themes</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-911f539e><use href="#epresso-caret" data-epresso-911f539e/></svg></summary><ul class="tree" data-epresso-911f539e><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/themes/new-website/" data-epresso-911f539e>Create a new website</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/themes/from-template/" data-epresso-911f539e>Start from a template</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/themes/create-a-theme/" data-epresso-911f539e>Create a theme</a></li><li class="tree-leaf" data-depth="2" data-epresso-911f539e><a href="/epresso-preview/dev/guides/themes/preview-repo-docs/" data-epresso-911f539e>Preview a repository&#39;s docs</a></li></ul></details></li><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/guides/editor-setup/" data-epresso-911f539e>Editor setup</a></li></ul></details></li><li class="tree-dir tree-top" data-epresso-911f539e><details data-epresso-911f539e><summary data-epresso-911f539e><span data-epresso-911f539e>Reference</span><svg class="tree-caret" width="14" height="14" aria-hidden="true" data-epresso-911f539e><use href="#epresso-caret" data-epresso-911f539e/></svg></summary><ul class="tree" data-epresso-911f539e><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/reference/template-directives/" data-epresso-911f539e>Template directives</a></li><li class="tree-leaf" data-depth="1" data-epresso-911f539e><a href="/epresso-preview/dev/reference/cli/" data-epresso-911f539e>CLI</a></li></ul></details></li></ul>
             </nav>
         </div>
     </aside>
@@ -186,32 +188,32 @@ window.addEventListener("load", function() {
 
     
 
-    <nav class="toc toc--inline" aria-label="On this page" data-epresso-e9ed0d97>
-        <details data-epresso-e9ed0d97>
-            <summary class="toc-trigger" data-epresso-e9ed0d97>
+    <nav class="toc toc--inline" aria-label="On this page" data-epresso-81940ac6>
+        <details data-epresso-81940ac6>
+            <summary class="toc-trigger" data-epresso-81940ac6>
                 
-<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="16" height="16" class="toc-chevron" data-epresso-e9ed0d97>
-    <path d="m4 6 4 4 4-4" data-epresso-e9ed0d97/>
+<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="16" height="16" class="toc-chevron" data-epresso-81940ac6>
+    <path d="m4 6 4 4 4-4" data-epresso-81940ac6/>
 </svg>
 
-                <svg class="toc-ring" role="progressbar" viewBox="0 0 18 18" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0" width="18" height="18" data-epresso-e9ed0d97>
-                    <circle class="toc-ring-track" cx="9" cy="9" r="7.5" fill="none" stroke-width="1.5" data-epresso-e9ed0d97/>
-                    <circle class="toc-ring-progress" cx="9" cy="9" r="7.5" fill="none" stroke-width="1.5" stroke="currentColor" stroke-dasharray="47.12388980384689" stroke-dashoffset="47.12388980384689" stroke-linecap="round" transform="rotate(-90 9 9)" data-epresso-e9ed0d97/>
+                <svg class="toc-ring" role="progressbar" viewBox="0 0 18 18" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0" width="18" height="18" data-epresso-81940ac6>
+                    <circle class="toc-ring-track" cx="9" cy="9" r="7.5" fill="none" stroke-width="1.5" data-epresso-81940ac6/>
+                    <circle class="toc-ring-progress" cx="9" cy="9" r="7.5" fill="none" stroke-width="1.5" stroke="currentColor" stroke-dasharray="47.12388980384689" stroke-dashoffset="47.12388980384689" stroke-linecap="round" transform="rotate(-90 9 9)" data-epresso-81940ac6/>
                 </svg>
-                <span class="toc-current" data-epresso-e9ed0d97>On this page</span>
+                <span class="toc-current" data-epresso-81940ac6>On this page</span>
             </summary>
-            <ul data-epresso-e9ed0d97>
+            <ul data-epresso-81940ac6>
                 
                     
-                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#unit-test-frontmatter-helpers" data-epresso-e9ed0d97>Unit-test frontmatter / helpers</a></li>
-                    
-                
-                    
-                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#build-assert-on-output" data-epresso-e9ed0d97>Build + assert on output</a></li>
+                        <li class="toc-depth-2" data-epresso-81940ac6><a href="#unit-test-frontmatter-helpers" data-epresso-81940ac6>Unit-test frontmatter / helpers</a></li>
                     
                 
                     
-                        <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#end-to-end" data-epresso-e9ed0d97>End-to-end</a></li>
+                        <li class="toc-depth-2" data-epresso-81940ac6><a href="#build-assert-on-output" data-epresso-81940ac6>Build + assert on output</a></li>
+                    
+                
+                    
+                        <li class="toc-depth-2" data-epresso-81940ac6><a href="#end-to-end" data-epresso-81940ac6>End-to-end</a></li>
                     
                 
             </ul>
@@ -224,79 +226,79 @@ window.addEventListener("load", function() {
 
 
 
-    <main class="content" id="main" data-epresso-aa9d8371>
+    <main class="content" id="main" data-epresso-f29ce0a9>
         
     
-<nav class="breadcrumbs" aria-label="Breadcrumb" data-epresso-eb5cbcd6>
-    <a href="/epresso-preview/dev/" data-epresso-eb5cbcd6>Home</a><span class="crumb-sep" data-epresso-eb5cbcd6>/</span><span data-epresso-eb5cbcd6>Guides</span><span class="crumb-sep" data-epresso-eb5cbcd6>/</span><span data-epresso-eb5cbcd6>Build</span><span class="crumb-sep" data-epresso-eb5cbcd6>/</span><span class="crumb-cur" data-epresso-eb5cbcd6>Testing</span>
+<nav class="breadcrumbs" aria-label="Breadcrumb" data-epresso-dca72d10>
+    <a href="/epresso-preview/dev/" data-epresso-dca72d10>Home</a><span class="crumb-sep" data-epresso-dca72d10>/</span><span data-epresso-dca72d10>Guides</span><span class="crumb-sep" data-epresso-dca72d10>/</span><span data-epresso-dca72d10>Build</span><span class="crumb-sep" data-epresso-dca72d10>/</span><span class="crumb-cur" data-epresso-dca72d10>Testing</span>
 </nav>
 
 
 
     
         
-<div class="page-actions" data-epresso-c17f4038>
-    <div class="pa-group" data-epresso-c17f4038>
-        <button type="button" class="pa-btn pa-copy" id="page-copy" data-md="/guides/build/testing.md" aria-label="Copy page" data-epresso-c17f4038>
+<div class="page-actions" data-epresso-b7ca4d55>
+    <div class="pa-group" data-epresso-b7ca4d55>
+        <button type="button" class="pa-btn pa-copy" id="page-copy" data-md="/guides/build/testing.md" aria-label="Copy page" data-epresso-b7ca4d55>
             
-<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="pa-icon pa-icon--copy" data-epresso-c17f4038>
-    <rect x="5.75" y="5.75" width="8.5" height="8.5" rx="1.5" data-epresso-c17f4038/><path d="M3.75 10.25A1.5 1.5 0 0 1 2.25 8.75V3.75a1.5 1.5 0 0 1 1.5-1.5h5a1.5 1.5 0 0 1 1.5 1.5" data-epresso-c17f4038/>
+<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="pa-icon pa-icon--copy" data-epresso-b7ca4d55>
+    <rect x="5.75" y="5.75" width="8.5" height="8.5" rx="1.5" data-epresso-b7ca4d55/><path d="M3.75 10.25A1.5 1.5 0 0 1 2.25 8.75V3.75a1.5 1.5 0 0 1 1.5-1.5h5a1.5 1.5 0 0 1 1.5 1.5" data-epresso-b7ca4d55/>
 </svg>
 
             
-<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="pa-icon pa-icon--check" data-epresso-c17f4038>
-    <path d="m3.5 8.5 3 3 6-7" data-epresso-c17f4038/>
+<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="pa-icon pa-icon--check" data-epresso-b7ca4d55>
+    <path d="m3.5 8.5 3 3 6-7" data-epresso-b7ca4d55/>
 </svg>
 
-            <span class="pa-label" data-epresso-c17f4038>
-                <span class="pa-label-live" data-epresso-c17f4038>Copy page</span>
-                <span class="pa-label-copied" data-epresso-c17f4038>Copied</span>
+            <span class="pa-label" data-epresso-b7ca4d55>
+                <span class="pa-label-live" data-epresso-b7ca4d55>Copy page</span>
+                <span class="pa-label-copied" data-epresso-b7ca4d55>Copied</span>
             </span>
         </button>
         
-            <details class="pa-menu" id="page-menu" data-epresso-c17f4038>
-                <summary class="pa-btn pa-more" aria-label="More options" title="More options" data-epresso-c17f4038>
+            <details class="pa-menu" id="page-menu" data-epresso-b7ca4d55>
+                <summary class="pa-btn pa-more" aria-label="More options" title="More options" data-epresso-b7ca4d55>
                     
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-c17f4038>
-    <path d="M6.97 4.03a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06L9.94 8 6.97 5.03a.75.75 0 0 1 0-1.06Z" data-epresso-c17f4038/>
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-b7ca4d55>
+    <path d="M6.97 4.03a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06L9.94 8 6.97 5.03a.75.75 0 0 1 0-1.06Z" data-epresso-b7ca4d55/>
 </svg>
 
                 </summary>
-                <ul class="pa-menu-list" data-epresso-c17f4038>
-                    <li data-epresso-c17f4038>
-                        <button type="button" class="pa-item" id="page-copy-md" data-epresso-c17f4038>
-                            <span class="pa-item-label" data-epresso-c17f4038>Copy page</span>
-                            <span class="pa-hint" data-epresso-c17f4038>Copy this page as Markdown</span>
+                <ul class="pa-menu-list" data-epresso-b7ca4d55>
+                    <li data-epresso-b7ca4d55>
+                        <button type="button" class="pa-item" id="page-copy-md" data-epresso-b7ca4d55>
+                            <span class="pa-item-label" data-epresso-b7ca4d55>Copy page</span>
+                            <span class="pa-hint" data-epresso-b7ca4d55>Copy this page as Markdown</span>
                         </button>
                     </li>
-                    <li data-epresso-c17f4038>
-                        <a href="/epresso-preview/dev/guides/build/testing.md" target="_blank" rel="noopener" data-epresso-c17f4038>
-                            <span class="pa-item-label" data-epresso-c17f4038>View as Markdown</span>
-                            <span class="pa-hint" data-epresso-c17f4038>Open this page as plain Markdown</span>
+                    <li data-epresso-b7ca4d55>
+                        <a href="/epresso-preview/dev/guides/build/testing.md" target="_blank" rel="noopener" data-epresso-b7ca4d55>
+                            <span class="pa-item-label" data-epresso-b7ca4d55>View as Markdown</span>
+                            <span class="pa-hint" data-epresso-b7ca4d55>Open this page as plain Markdown</span>
                         </a>
                     </li>
                     
-                        <li data-epresso-c17f4038>
-                            <a href="https://github.com/nikoshell/epresso/blob/main/docs/guides/build/testing.md" target="_blank" rel="noopener" data-epresso-c17f4038>
-                                <span class="pa-item-label" data-epresso-c17f4038>View source of this page</span>
-                                <span class="pa-hint" data-epresso-c17f4038>
+                        <li data-epresso-b7ca4d55>
+                            <a href="https://github.com/nikoshell/epresso/blob/main/docs/guides/build/testing.md" target="_blank" rel="noopener" data-epresso-b7ca4d55>
+                                <span class="pa-item-label" data-epresso-b7ca4d55>View source of this page</span>
+                                <span class="pa-hint" data-epresso-b7ca4d55>
                                     docs/guides/build/testing.md
                                 </span>
                             </a>
                         </li>
                     
-                    <li data-epresso-c17f4038>
-                        <a href="https://chatgpt.com/?q=Read%20https%3A//epresso.top/guides/build/testing.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener" data-epresso-c17f4038>
-                            <span class="pa-item-label" data-epresso-c17f4038>Open in ChatGPT</span>
-                            <span class="pa-hint" data-epresso-c17f4038>
+                    <li data-epresso-b7ca4d55>
+                        <a href="https://chatgpt.com/?q=Read%20https%3A//epresso.top/guides/build/testing.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener" data-epresso-b7ca4d55>
+                            <span class="pa-item-label" data-epresso-b7ca4d55>Open in ChatGPT</span>
+                            <span class="pa-hint" data-epresso-b7ca4d55>
                                 Ask questions about this page
                             </span>
                         </a>
                     </li>
-                    <li data-epresso-c17f4038>
-                        <a href="https://claude.ai/new?q=Read%20https%3A//epresso.top/guides/build/testing.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener" data-epresso-c17f4038>
-                            <span class="pa-item-label" data-epresso-c17f4038>Open in Claude</span>
-                            <span class="pa-hint" data-epresso-c17f4038>
+                    <li data-epresso-b7ca4d55>
+                        <a href="https://claude.ai/new?q=Read%20https%3A//epresso.top/guides/build/testing.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener" data-epresso-b7ca4d55>
+                            <span class="pa-item-label" data-epresso-b7ca4d55>Open in Claude</span>
+                            <span class="pa-hint" data-epresso-b7ca4d55>
                                 Ask questions about this page
                             </span>
                         </a>
@@ -312,50 +314,50 @@ window.addEventListener("load", function() {
 
 
     
-    <article class="doc" data-epresso-aa9d8371>
-        <h1 data-epresso-aa9d8371>
+    <article class="doc" data-epresso-f29ce0a9>
+        <h1 data-epresso-f29ce0a9>
             Testing
         </h1>
         
         
-<div class="prose" data-epresso-bdd7a5c3>
-    <p data-epresso-bdd7a5c3>epresso sites are static, which makes them easy to test. Use <strong data-epresso-bdd7a5c3>pytest</strong> and assert
+<div class="prose" data-epresso-b39e7886>
+    <p data-epresso-b39e7886>epresso sites are static, which makes them easy to test. Use <strong data-epresso-b39e7886>pytest</strong> and assert
 on the build output.</p>
-<h2 id="unit-test-frontmatter-helpers" data-epresso-bdd7a5c3><a class="heading-anchor" href="#unit-test-frontmatter-helpers" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Unit-test frontmatter / helpers</h2>
-<p data-epresso-bdd7a5c3><code data-epresso-bdd7a5c3>.ep</code> page/component frontmatter is Python — import and unit-test it directly
+<h2 id="unit-test-frontmatter-helpers" data-epresso-b39e7886><a class="heading-anchor" href="#unit-test-frontmatter-helpers" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>Unit-test frontmatter / helpers</h2>
+<p data-epresso-b39e7886><code data-epresso-b39e7886>.ep</code> page/component frontmatter is Python — import and unit-test it directly
 (crumbs builders, loaders, content helpers).</p>
-<h2 id="build-assert-on-output" data-epresso-bdd7a5c3><a class="heading-anchor" href="#build-assert-on-output" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>Build + assert on output</h2>
-<p data-epresso-bdd7a5c3>Build the site, then assert on generated files:</p>
+<h2 id="build-assert-on-output" data-epresso-b39e7886><a class="heading-anchor" href="#build-assert-on-output" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>Build + assert on output</h2>
+<p data-epresso-b39e7886>Build the site, then assert on generated files:</p>
 <style>.highlight.no-copy .code-copy{display:none !important}</style>
-<pre class="highlight" data-epresso-baba6069>
+<pre class="highlight" data-epresso-93c638e7>
   
-<div class="code-head" data-epresso-89a9f5da>
-    <span class="code-dots" data-epresso-89a9f5da>
-        <span data-epresso-89a9f5da></span><span data-epresso-89a9f5da></span><span data-epresso-89a9f5da></span>
+<div class="code-head" data-epresso-f8fc1584>
+    <span class="code-dots" data-epresso-f8fc1584>
+        <span data-epresso-f8fc1584></span><span data-epresso-f8fc1584></span><span data-epresso-f8fc1584></span>
     </span>
     
-    <span class="code-trailing" data-epresso-89a9f5da>
+    <span class="code-trailing" data-epresso-f8fc1584>
         
-            <span class="code-lang" data-epresso-89a9f5da>
+            <span class="code-lang" data-epresso-f8fc1584>
                 python
             </span>
         
-        <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-89a9f5da>
+        <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-f8fc1584>
             
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-89a9f5da>
-    <path d="M9 4.75A.75.75 0 0 1 9.75 4h4a.75.75 0 0 1 .53 1.28l-1.89 1.892c.312.076.604.18.867.319.742.391 1.244 1.063 1.244 2.005 0 .653-.231 1.208-.629 1.627-.386.408-.894.653-1.408.777-1.01.243-2.225.063-3.124-.527a.751.751 0 0 1 .822-1.254c.534.35 1.32.474 1.951.322.306-.073.53-.201.67-.349.129-.136.218-.32.218-.596 0-.308-.123-.509-.444-.678-.373-.197-.98-.318-1.806-.318a.75.75 0 0 1-.53-1.28l1.72-1.72H9.75A.75.75 0 0 1 9 4.75Zm-3.587 5.763c-.35-.05-.77.113-.983.572a.75.75 0 1 1-1.36-.632c.508-1.094 1.589-1.565 2.558-1.425 1 .145 1.872.945 1.872 2.222 0 1.433-1.088 2.192-1.79 2.681-.308.216-.571.397-.772.573H7a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75c0-.69.3-1.211.67-1.61.348-.372.8-.676 1.15-.92.8-.56 1.18-.904 1.18-1.474 0-.473-.267-.69-.587-.737ZM5.604.089A.75.75 0 0 1 6 .75v4.77h.711a.75.75 0 0 1 0 1.5H3.759a.75.75 0 0 1 0-1.5H4.5V2.15l-.334.223a.75.75 0 0 1-.832-1.248l1.5-1a.75.75 0 0 1 .77-.037Z" data-epresso-89a9f5da/>
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-f8fc1584>
+    <path d="M9 4.75A.75.75 0 0 1 9.75 4h4a.75.75 0 0 1 .53 1.28l-1.89 1.892c.312.076.604.18.867.319.742.391 1.244 1.063 1.244 2.005 0 .653-.231 1.208-.629 1.627-.386.408-.894.653-1.408.777-1.01.243-2.225.063-3.124-.527a.751.751 0 0 1 .822-1.254c.534.35 1.32.474 1.951.322.306-.073.53-.201.67-.349.129-.136.218-.32.218-.596 0-.308-.123-.509-.444-.678-.373-.197-.98-.318-1.806-.318a.75.75 0 0 1-.53-1.28l1.72-1.72H9.75A.75.75 0 0 1 9 4.75Zm-3.587 5.763c-.35-.05-.77.113-.983.572a.75.75 0 1 1-1.36-.632c.508-1.094 1.589-1.565 2.558-1.425 1 .145 1.872.945 1.872 2.222 0 1.433-1.088 2.192-1.79 2.681-.308.216-.571.397-.772.573H7a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75c0-.69.3-1.211.67-1.61.348-.372.8-.676 1.15-.92.8-.56 1.18-.904 1.18-1.474 0-.473-.267-.69-.587-.737ZM5.604.089A.75.75 0 0 1 6 .75v4.77h.711a.75.75 0 0 1 0 1.5H3.759a.75.75 0 0 1 0-1.5H4.5V2.15l-.334.223a.75.75 0 0 1-.832-1.248l1.5-1a.75.75 0 0 1 .77-.037Z" data-epresso-f8fc1584/>
 </svg>
 
         </button>
-        <button type="button" class="code-btn code-copy" aria-label="Copy code" title="Copy code" data-epresso-89a9f5da>
+        <button type="button" class="code-btn code-copy" aria-label="Copy code" title="Copy code" data-epresso-f8fc1584>
             
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--copy" data-epresso-89a9f5da>
-    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z" data-epresso-89a9f5da/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z" data-epresso-89a9f5da/>
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--copy" data-epresso-f8fc1584>
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z" data-epresso-f8fc1584/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z" data-epresso-f8fc1584/>
 </svg>
 
             
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--check" data-epresso-89a9f5da>
-    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" data-epresso-89a9f5da/>
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--check" data-epresso-f8fc1584>
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" data-epresso-f8fc1584/>
 </svg>
 
         </button>
@@ -366,34 +368,34 @@ on the build output.</p>
 
 
 
-  <div class="code-body no-numbers" data-epresso-baba6069><span class="code-line" data-epresso-baba6069><span class="kn" data-epresso-baba6069>import</span><span class="w" data-epresso-baba6069> </span><span class="nn" data-epresso-baba6069>subprocess</span><span class="o" data-epresso-baba6069>,</span><span class="w" data-epresso-baba6069> </span><span class="nn" data-epresso-baba6069>pathlib</span></span><span class="code-line" data-epresso-baba6069></span><span class="code-line" data-epresso-baba6069><span class="k" data-epresso-baba6069>def</span><span class="w" data-epresso-baba6069> </span><span class="nf" data-epresso-baba6069>test_build_output</span><span class="p" data-epresso-baba6069>(</span><span class="n" data-epresso-baba6069>tmp_path</span><span class="p" data-epresso-baba6069>):</span></span><span class="code-line" data-epresso-baba6069>    <span class="n" data-epresso-baba6069>subprocess</span><span class="o" data-epresso-baba6069>.</span><span class="n" data-epresso-baba6069>run</span><span class="p" data-epresso-baba6069>([</span><span class="s2" data-epresso-baba6069>"epresso"</span><span class="p" data-epresso-baba6069>,</span> <span class="s2" data-epresso-baba6069>"build"</span><span class="p" data-epresso-baba6069>,</span> <span class="nb" data-epresso-baba6069>str</span><span class="p" data-epresso-baba6069>(</span><span class="n" data-epresso-baba6069>tmp_path</span><span class="p" data-epresso-baba6069>)],</span> <span class="n" data-epresso-baba6069>check</span><span class="o" data-epresso-baba6069>=</span><span class="kc" data-epresso-baba6069>True</span><span class="p" data-epresso-baba6069>)</span></span><span class="code-line" data-epresso-baba6069>    <span class="n" data-epresso-baba6069>out</span> <span class="o" data-epresso-baba6069>=</span> <span class="n" data-epresso-baba6069>tmp_path</span> <span class="o" data-epresso-baba6069>/</span> <span class="s2" data-epresso-baba6069>"dist"</span></span><span class="code-line" data-epresso-baba6069>    <span class="k" data-epresso-baba6069>assert</span> <span class="p" data-epresso-baba6069>(</span><span class="n" data-epresso-baba6069>out</span> <span class="o" data-epresso-baba6069>/</span> <span class="s2" data-epresso-baba6069>"index.html"</span><span class="p" data-epresso-baba6069>)</span><span class="o" data-epresso-baba6069>.</span><span class="n" data-epresso-baba6069>exists</span><span class="p" data-epresso-baba6069>()</span></span><span class="code-line" data-epresso-baba6069>    <span class="k" data-epresso-baba6069>assert</span> <span class="s2" data-epresso-baba6069>"Hello"</span> <span class="ow" data-epresso-baba6069>in</span> <span class="p" data-epresso-baba6069>(</span><span class="n" data-epresso-baba6069>out</span> <span class="o" data-epresso-baba6069>/</span> <span class="s2" data-epresso-baba6069>"index.html"</span><span class="p" data-epresso-baba6069>)</span><span class="o" data-epresso-baba6069>.</span><span class="n" data-epresso-baba6069>read_text</span><span class="p" data-epresso-baba6069>()</span></span><span class="code-line" data-epresso-baba6069></span></div>
+  <div class="code-body no-numbers" data-epresso-93c638e7><span class="code-line" data-epresso-93c638e7><span class="kn" data-epresso-93c638e7>import</span><span class="w" data-epresso-93c638e7> </span><span class="nn" data-epresso-93c638e7>subprocess</span><span class="o" data-epresso-93c638e7>,</span><span class="w" data-epresso-93c638e7> </span><span class="nn" data-epresso-93c638e7>pathlib</span></span><span class="code-line" data-epresso-93c638e7></span><span class="code-line" data-epresso-93c638e7><span class="k" data-epresso-93c638e7>def</span><span class="w" data-epresso-93c638e7> </span><span class="nf" data-epresso-93c638e7>test_build_output</span><span class="p" data-epresso-93c638e7>(</span><span class="n" data-epresso-93c638e7>tmp_path</span><span class="p" data-epresso-93c638e7>):</span></span><span class="code-line" data-epresso-93c638e7>    <span class="n" data-epresso-93c638e7>subprocess</span><span class="o" data-epresso-93c638e7>.</span><span class="n" data-epresso-93c638e7>run</span><span class="p" data-epresso-93c638e7>([</span><span class="s2" data-epresso-93c638e7>"epresso"</span><span class="p" data-epresso-93c638e7>,</span> <span class="s2" data-epresso-93c638e7>"build"</span><span class="p" data-epresso-93c638e7>,</span> <span class="nb" data-epresso-93c638e7>str</span><span class="p" data-epresso-93c638e7>(</span><span class="n" data-epresso-93c638e7>tmp_path</span><span class="p" data-epresso-93c638e7>)],</span> <span class="n" data-epresso-93c638e7>check</span><span class="o" data-epresso-93c638e7>=</span><span class="kc" data-epresso-93c638e7>True</span><span class="p" data-epresso-93c638e7>)</span></span><span class="code-line" data-epresso-93c638e7>    <span class="n" data-epresso-93c638e7>out</span> <span class="o" data-epresso-93c638e7>=</span> <span class="n" data-epresso-93c638e7>tmp_path</span> <span class="o" data-epresso-93c638e7>/</span> <span class="s2" data-epresso-93c638e7>"dist"</span></span><span class="code-line" data-epresso-93c638e7>    <span class="k" data-epresso-93c638e7>assert</span> <span class="p" data-epresso-93c638e7>(</span><span class="n" data-epresso-93c638e7>out</span> <span class="o" data-epresso-93c638e7>/</span> <span class="s2" data-epresso-93c638e7>"index.html"</span><span class="p" data-epresso-93c638e7>)</span><span class="o" data-epresso-93c638e7>.</span><span class="n" data-epresso-93c638e7>exists</span><span class="p" data-epresso-93c638e7>()</span></span><span class="code-line" data-epresso-93c638e7>    <span class="k" data-epresso-93c638e7>assert</span> <span class="s2" data-epresso-93c638e7>"Hello"</span> <span class="ow" data-epresso-93c638e7>in</span> <span class="p" data-epresso-93c638e7>(</span><span class="n" data-epresso-93c638e7>out</span> <span class="o" data-epresso-93c638e7>/</span> <span class="s2" data-epresso-93c638e7>"index.html"</span><span class="p" data-epresso-93c638e7>)</span><span class="o" data-epresso-93c638e7>.</span><span class="n" data-epresso-93c638e7>read_text</span><span class="p" data-epresso-93c638e7>()</span></span><span class="code-line" data-epresso-93c638e7></span></div>
 </pre>
 
 
 
 
 
-<h2 id="end-to-end" data-epresso-bdd7a5c3><a class="heading-anchor" href="#end-to-end" aria-label="Link to this section" data-epresso-bdd7a5c3><span aria-hidden="true" data-epresso-bdd7a5c3>#</span></a>End-to-end</h2>
-<p data-epresso-bdd7a5c3>Serve the built <code data-epresso-bdd7a5c3>dist/</code> (or <code data-epresso-bdd7a5c3>epresso dev</code>) and drive it with your browser/e2e tool
-of choice (<code data-epresso-bdd7a5c3>httpx</code> for headers, Playwright if you need JS). Because pages are
+<h2 id="end-to-end" data-epresso-b39e7886><a class="heading-anchor" href="#end-to-end" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>End-to-end</h2>
+<p data-epresso-b39e7886>Serve the built <code data-epresso-b39e7886>dist/</code> (or <code data-epresso-b39e7886>epresso dev</code>) and drive it with your browser/e2e tool
+of choice (<code data-epresso-b39e7886>httpx</code> for headers, Playwright if you need JS). Because pages are
 plain HTML, a simple HTTP GET covers most behavior.</p>
-<p data-epresso-bdd7a5c3>epresso itself is tested with <code data-epresso-bdd7a5c3>pytest</code> (unit) + integration tests against the dev
-server. Run them with <code data-epresso-bdd7a5c3>uv run pytest</code>.</p>
+<p data-epresso-b39e7886>epresso itself is tested with <code data-epresso-b39e7886>pytest</code> (unit) + integration tests against the dev
+server. Run them with <code data-epresso-b39e7886>uv run pytest</code>.</p>
 
 </div>
 
 
 
         
-<nav class="pager" aria-label="Docs pagination" data-epresso-7a4490a6>
+<nav class="pager" aria-label="Docs pagination" data-epresso-a5a922bd>
     
-        <a class="pager-link" data-pager-prev href="/epresso-preview/dev/guides/build/dev-toolbar/" data-epresso-7a4490a6>
-            <span class="pager-label" data-epresso-7a4490a6>Previous</span><span class="pager-title" data-epresso-7a4490a6>Dev toolbar</span>
+        <a class="pager-link" data-pager-prev href="/epresso-preview/dev/guides/build/dev-toolbar/" data-epresso-a5a922bd>
+            <span class="pager-label" data-epresso-a5a922bd>Previous</span><span class="pager-title" data-epresso-a5a922bd>Dev toolbar</span>
         </a>
     
     
-        <a class="pager-link pager-next" data-pager-next href="/epresso-preview/dev/guides/extending/layers/" data-epresso-7a4490a6>
-            <span class="pager-label" data-epresso-7a4490a6>Next</span><span class="pager-title" data-epresso-7a4490a6>Layers</span>
+        <a class="pager-link pager-next" data-pager-next href="/epresso-preview/dev/guides/extending/layers/" data-epresso-a5a922bd>
+            <span class="pager-label" data-epresso-a5a922bd>Next</span><span class="pager-title" data-epresso-a5a922bd>Layers</span>
         </a>
     
 </nav>
@@ -401,27 +403,27 @@ server. Run them with <code data-epresso-bdd7a5c3>uv run pytest</code>.</p>
 
 
     </article>
-    <div class="doc-end-pad" data-epresso-aa9d8371></div>
+    <div class="doc-end-pad" data-epresso-f29ce0a9></div>
 
     </main>
 
     
 
-    <nav class="toc toc--rail" aria-label="On this page" data-epresso-e9ed0d97>
-        <div class="toc-label" data-epresso-e9ed0d97>On this page</div>
-        <span class="toc-indicator" aria-hidden="true" data-epresso-e9ed0d97></span>
-        <ul data-epresso-e9ed0d97>
+    <nav class="toc toc--rail" aria-label="On this page" data-epresso-81940ac6>
+        <div class="toc-label" data-epresso-81940ac6>On this page</div>
+        <span class="toc-indicator" aria-hidden="true" data-epresso-81940ac6></span>
+        <ul data-epresso-81940ac6>
             
                 
-                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#unit-test-frontmatter-helpers" data-epresso-e9ed0d97>Unit-test frontmatter / helpers</a></li>
-                
-            
-                
-                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#build-assert-on-output" data-epresso-e9ed0d97>Build + assert on output</a></li>
+                    <li class="toc-depth-2" data-epresso-81940ac6><a href="#unit-test-frontmatter-helpers" data-epresso-81940ac6>Unit-test frontmatter / helpers</a></li>
                 
             
                 
-                    <li class="toc-depth-2" data-epresso-e9ed0d97><a href="#end-to-end" data-epresso-e9ed0d97>End-to-end</a></li>
+                    <li class="toc-depth-2" data-epresso-81940ac6><a href="#build-assert-on-output" data-epresso-81940ac6>Build + assert on output</a></li>
+                
+            
+                
+                    <li class="toc-depth-2" data-epresso-81940ac6><a href="#end-to-end" data-epresso-81940ac6>End-to-end</a></li>
                 
             
         </ul>
@@ -439,34 +441,34 @@ server. Run them with <code data-epresso-bdd7a5c3>uv run pytest</code>.</p>
 
 
 
-<footer class="site-footer" data-epresso-5993b07e>
-    <div class="footer-grid" data-epresso-5993b07e>
+<footer class="site-footer" data-epresso-162fea0b>
+    <div class="footer-grid" data-epresso-162fea0b>
         
         
     </div>
-    <span data-epresso-5993b07e>Built with 🖤 and <a href="https://github.com/nikoshell/epresso" data-epresso-5993b07e>epresso</a></span>
+    <span data-epresso-162fea0b>Built with 🖤 and <a href="https://epresso.top/" data-epresso-162fea0b>epresso</a></span>
 </footer>
 
 
 
 
         
-<div id="search-overlay" class="search-overlay" role="dialog" aria-modal="true" aria-label="Search" data-epresso-72eef4d4>
-    <div class="search-box" data-epresso-72eef4d4>
-        <div class="search-input-wrap" data-epresso-72eef4d4>
+<div id="search-overlay" class="search-overlay" role="dialog" aria-modal="true" aria-label="Search" data-epresso-84ecfa0b>
+    <div class="search-box" data-epresso-84ecfa0b>
+        <div class="search-input-wrap" data-epresso-84ecfa0b>
             
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-72eef4d4>
-    <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z" data-epresso-72eef4d4/>
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-84ecfa0b>
+    <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z" data-epresso-84ecfa0b/>
 </svg>
 
-            <input id="search-input" class="search-input" type="search" placeholder="Search the docs…" autocomplete="off" data-epresso-72eef4d4>
+            <input id="search-input" class="search-input" type="search" placeholder="Search the docs…" autocomplete="off" data-epresso-84ecfa0b>
         </div>
-        <div id="search-results" class="search-results" data-epresso-72eef4d4></div>
-        <div class="search-hint" data-epresso-72eef4d4>
-            <span data-epresso-72eef4d4><b data-epresso-72eef4d4>↑↓</b> navigate</span>
-            <span data-epresso-72eef4d4><b data-epresso-72eef4d4>Enter</b> open</span>
-            <span data-epresso-72eef4d4><b data-epresso-72eef4d4>Esc</b> clear / close</span>
-            <span data-epresso-72eef4d4><b data-epresso-72eef4d4>?</b> shortcuts</span>
+        <div id="search-results" class="search-results" data-epresso-84ecfa0b></div>
+        <div class="search-hint" data-epresso-84ecfa0b>
+            <span data-epresso-84ecfa0b><b data-epresso-84ecfa0b>↑↓</b> navigate</span>
+            <span data-epresso-84ecfa0b><b data-epresso-84ecfa0b>Enter</b> open</span>
+            <span data-epresso-84ecfa0b><b data-epresso-84ecfa0b>Esc</b> clear / close</span>
+            <span data-epresso-84ecfa0b><b data-epresso-84ecfa0b>?</b> shortcuts</span>
         </div>
     </div>
 </div>
@@ -476,30 +478,30 @@ server. Run them with <code data-epresso-bdd7a5c3>uv run pytest</code>.</p>
 
 
         
-<div id="shortcuts-overlay" class="shortcuts-overlay" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts" tabindex="-1" data-epresso-3c56b520>
-    <div class="shortcuts-box" data-epresso-3c56b520>
-        <div class="shortcuts-head" data-epresso-3c56b520>
-            <h2 data-epresso-3c56b520>Keyboard shortcuts</h2>
-            <button type="button" class="shortcuts-close" id="shortcuts-close" aria-label="Close keyboard shortcuts" data-epresso-3c56b520>
+<div id="shortcuts-overlay" class="shortcuts-overlay" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts" tabindex="-1" data-epresso-07e84e5b>
+    <div class="shortcuts-box" data-epresso-07e84e5b>
+        <div class="shortcuts-head" data-epresso-07e84e5b>
+            <h2 data-epresso-07e84e5b>Keyboard shortcuts</h2>
+            <button type="button" class="shortcuts-close" id="shortcuts-close" aria-label="Close keyboard shortcuts" data-epresso-07e84e5b>
                 
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-3c56b520>
-    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z" data-epresso-3c56b520/>
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-07e84e5b>
+    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z" data-epresso-07e84e5b/>
 </svg>
 
             </button>
         </div>
-        <dl class="shortcuts-list" data-epresso-3c56b520>
-            <div data-epresso-3c56b520>
-                <dt data-epresso-3c56b520><kbd data-epresso-3c56b520>Ctrl/⌘</kbd><kbd data-epresso-3c56b520>K</kbd></dt><dd data-epresso-3c56b520>Search the docs</dd>
+        <dl class="shortcuts-list" data-epresso-07e84e5b>
+            <div data-epresso-07e84e5b>
+                <dt data-epresso-07e84e5b><kbd data-epresso-07e84e5b>Ctrl/⌘</kbd><kbd data-epresso-07e84e5b>K</kbd></dt><dd data-epresso-07e84e5b>Search the docs</dd>
             </div>
-            <div data-epresso-3c56b520>
-                <dt data-epresso-3c56b520><kbd data-epresso-3c56b520>?</kbd></dt><dd data-epresso-3c56b520>Keyboard shortcuts</dd>
+            <div data-epresso-07e84e5b>
+                <dt data-epresso-07e84e5b><kbd data-epresso-07e84e5b>?</kbd></dt><dd data-epresso-07e84e5b>Keyboard shortcuts</dd>
             </div>
-            <div data-epresso-3c56b520>
-                <dt data-epresso-3c56b520><kbd data-epresso-3c56b520>[</kbd><kbd data-epresso-3c56b520>]</kbd></dt><dd data-epresso-3c56b520>Previous / next doc</dd>
+            <div data-epresso-07e84e5b>
+                <dt data-epresso-07e84e5b><kbd data-epresso-07e84e5b>[</kbd><kbd data-epresso-07e84e5b>]</kbd></dt><dd data-epresso-07e84e5b>Previous / next doc</dd>
             </div>
-            <div data-epresso-3c56b520>
-                <dt data-epresso-3c56b520><kbd data-epresso-3c56b520>,</kbd><kbd data-epresso-3c56b520>.</kbd></dt><dd data-epresso-3c56b520>Previous / next section</dd>
+            <div data-epresso-07e84e5b>
+                <dt data-epresso-07e84e5b><kbd data-epresso-07e84e5b>,</kbd><kbd data-epresso-07e84e5b>.</kbd></dt><dd data-epresso-07e84e5b>Previous / next section</dd>
             </div>
         </dl>
     </div>
@@ -510,23 +512,23 @@ server. Run them with <code data-epresso-bdd7a5c3>uv run pytest</code>.</p>
 
 
         
-<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" data-epresso-127866df>
-    <button type="button" class="lightbox-close" aria-label="Close image viewer" data-epresso-127866df>
+<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" data-epresso-a8081ed8>
+    <button type="button" class="lightbox-close" aria-label="Close image viewer" data-epresso-a8081ed8>
         
-<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" width="18" height="18" data-epresso-127866df>
-    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z" data-epresso-127866df/>
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" width="18" height="18" data-epresso-a8081ed8>
+    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z" data-epresso-a8081ed8/>
 </svg>
 
     </button>
-    <img class="lightbox-img" alt="" data-epresso-127866df/>
-    <div class="lightbox-caption" data-epresso-127866df></div>
+    <img class="lightbox-img" alt="" data-epresso-a8081ed8/>
+    <div class="lightbox-caption" data-epresso-a8081ed8></div>
 </div>
 
 
 
 
 
-    <script type="module" src="/epresso-preview/dev/_epresso/epresso.6038602ac125.js"></script></body>
+    <script type="module" src="/epresso-preview/dev/_epresso/epresso.9e111c3dee93.js"></script></body>
 </html>
 
 

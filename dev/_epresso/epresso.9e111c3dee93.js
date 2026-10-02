@@ -104,6 +104,262 @@
 
 (function() {
     "use strict";
+    if (window.__epressoTocSpy) return;
+    window.__epressoTocSpy = true;
+    var tocs = Array.prototype.slice.call(document.querySelectorAll(".toc"));
+    var links = [];
+    var seen = {};
+    var headings = [];
+    tocs.forEach(function(toc) {
+        /* Progressive enhancement: hide the static per-item marker and let the
+           shared indicator slide between active items instead. */
+        toc.classList.add("toc--animated");
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".toc a"), function(a) {
+        a.__tocTarget = a.getAttribute("href").slice(1);
+        links.push(a);
+        if (!seen[a.__tocTarget]) {
+            seen[a.__tocTarget] = true;
+            var el = document.getElementById(a.__tocTarget);
+            if (el) headings.push(el);
+        }
+    });
+    if (!links.length || !headings.length) return;
+
+    function setActive(idx) {
+        var target = idx >= 0 && idx < headings.length ? headings[idx].id : null;
+        links.forEach(function(a) {
+            a.classList.toggle("active", a.__tocTarget === target);
+        });
+        tocs.forEach(function(toc) {
+            var active = toc.querySelector("a.active");
+            var current = toc.querySelector(".toc-current");
+            if (current) current.textContent = active ? active.textContent : "On this page";
+            var indicator = toc.querySelector(".toc-indicator");
+            var list = toc.querySelector("ul");
+            if (!indicator || !list) return;
+            if (!active) {
+                indicator.classList.remove("is-visible");
+                return;
+            }
+            var tocRect = toc.getBoundingClientRect();
+            var listRect = list.getBoundingClientRect();
+            var activeRect = active.getBoundingClientRect();
+            /* Inset the marker vertically to match the static ::before
+               (4px top/bottom of the link box). */
+            indicator.style.left = (listRect.left - tocRect.left) + "px";
+            indicator.style.height = Math.max(activeRect.height - 8, 0) + "px";
+            indicator.style.transform = "translateY(" + (activeRect.top - tocRect.top + 4) + "px)";
+            indicator.classList.add("is-visible");
+        });
+    }
+
+    /* The heading whose section is under the header right now. Shared by
+       the scroll-spy and the </> jump keys so both agree on "current". */
+    function currentIndex() {
+        var offset = 90; /* sticky header + a little */
+        var idx = -1;
+        headings.forEach(function(h, i) {
+            if (h.getBoundingClientRect().top <= offset) idx = i;
+        });
+        /* A run of short trailing sections can be squeezed into less
+           room than the 90px crossing test needs, so none of their
+           headings ever reaches it — the page simply runs out of room
+           to scroll them that far up. Once we've scrolled past the
+           *midpoint* to the next heading, hand "current" to it anyway;
+           repeat for a whole run of squeezed sections. */
+        while (idx + 1 < headings.length) {
+            var a = idx >= 0 ? headings[idx].getBoundingClientRect().top : -Infinity;
+            var b = headings[idx + 1].getBoundingClientRect().top;
+            if (offset < (a + b) / 2) break;
+            idx += 1;
+        }
+        return idx;
+    }
+
+    function onScroll() {
+        setActive(currentIndex());
+        updateRing();
+    }
+
+    /* Reading-progress ring in the inline popover trigger. */
+    var RING_C = 47.12388980384689;
+    var ring = document.querySelector(".toc--inline .toc-ring-progress");
+    var ringBar = document.querySelector(".toc--inline .toc-ring");
+
+    function updateRing() {
+        if (!ring) return;
+        var art = document.querySelector("article.doc") || document.querySelector("main.content");
+        if (!art) return;
+        var r = art.getBoundingClientRect();
+        var total = r.height - window.innerHeight;
+        var p = total > 0 ? Math.min(Math.max(-r.top / total, 0), 1) : (r.top <= 0 ? 1 : 0);
+        ring.style.strokeDashoffset = (RING_C * (1 - p)).toFixed(2);
+        if (ringBar) ringBar.setAttribute("aria-valuenow", p.toFixed(3));
+    }
+    window.addEventListener("scroll", onScroll, {
+        passive: true
+    });
+    onScroll();
+
+    /* Comma/period jump to the previous / next heading, from wherever
+       currentIndex() says we are — the same "current" the scroll-spy
+       highlights. */
+    function jump(delta) {
+        var target = currentIndex() + delta;
+        if (target < 0) target = 0;
+        if (target > headings.length - 1) target = headings.length - 1;
+        var el = headings[target];
+        if (!el || !el.id) return;
+        el.scrollIntoView({
+            block: "start"
+        });
+        /* Keep the URL shareable without spamming history. */
+        if (window.history && history.replaceState) history.replaceState(null, "", "#" + el.id);
+    }
+
+    /* Comma/period step through headings. The key binding itself lives in
+       DocsShortcutsOverlay.ep, with the other global shortcuts. */
+    document.addEventListener("epresso:shortcut", function(e) {
+        if (e.detail === "section-prev") jump(-1);
+        else if (e.detail === "section-next") jump(1);
+    });
+
+    /* Collapse the inline popover after choosing a heading, or on an
+       outside click. */
+    document.addEventListener("click", function(e) {
+        var a = e.target.closest ? e.target.closest(".toc--inline a") : null;
+        if (a) {
+            var d = a.closest("details");
+            if (d) d.open = false;
+            return;
+        }
+        Array.prototype.forEach.call(document.querySelectorAll(".toc--inline details[open]"), function(d) {
+            if (!d.contains(e.target)) d.open = false;
+        });
+    });
+})();
+
+;
+
+(function() {
+    "use strict";
+    if (window.__epressoPageCopy) return;
+    window.__epressoPageCopy = true;
+    var btn = document.getElementById("page-copy");
+    if (!btn) return;
+    var timer;
+
+    /* The page's markdown is a static sibling file (see the route builder
+       in pages/[...slug].ep), so copying is just fetch + clipboard. No
+       DOM-derived fallback: the fetch only fails where the page isn't
+       being served, which the docs never promise. */
+    function copyPage() {
+        var md = btn.getAttribute("data-md");
+        if (!md) return;
+        fetch(md)
+            .then(function(r) {
+                if (!r.ok) throw new Error(String(r.status));
+                return r.text();
+            })
+            .then(function(text) {
+                return navigator.clipboard.writeText(text);
+            })
+            .then(function() {
+                btn.classList.add("is-done");
+                btn.setAttribute("aria-label", "Copied");
+                clearTimeout(timer);
+                timer = setTimeout(function() {
+                    btn.classList.remove("is-done");
+                    btn.setAttribute("aria-label", "Copy page");
+                }, 1600);
+            })
+            .catch(function() {
+                /* fetch or clipboard unavailable: leave the label as it is */
+            });
+    }
+
+    btn.addEventListener("click", copyPage);
+
+    var menu = document.getElementById("page-menu");
+    var mdBtn = document.getElementById("page-copy-md");
+    if (mdBtn) mdBtn.addEventListener("click", copyPage);
+    /* Choosing anything closes the menu, the new-tab link included. */
+    if (menu) {
+        menu.addEventListener("click", function(e) {
+            if (e.target.closest && e.target.closest("a, button")) menu.open = false;
+        });
+    }
+
+    /* Close the menu on outside click or Escape (native <details> gives the
+       open/close and keyboard behaviour for free). */
+    if (!menu) return;
+    document.addEventListener("click", function(e) {
+        if (menu.open && !menu.contains(e.target)) menu.open = false;
+    });
+    document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape" && menu.open) {
+            menu.open = false;
+            var s = menu.querySelector("summary");
+            if (s) s.focus();
+        }
+    });
+})();
+
+;
+
+(function() {
+    "use strict";
+
+    document.querySelectorAll("pre.highlight").forEach(function(pre) {
+        var head = pre.querySelector(".code-head");
+        var body = pre.querySelector(".code-body");
+        if (!head || !body) return;
+        var linesBtn = head.querySelector(".code-lines-btn");
+        var copyBtn = head.querySelector(".code-copy");
+
+        if (linesBtn) {
+            linesBtn.addEventListener("click", function() {
+                var on = body.classList.toggle("no-numbers");
+                linesBtn.setAttribute("aria-pressed", String(!on));
+                linesBtn.setAttribute("aria-label", on ? "Show line numbers" : "Hide line numbers");
+                linesBtn.setAttribute("title", on ? "Show line numbers" : "Hide line numbers");
+            });
+        }
+
+        body.addEventListener("click", function(e) {
+            var line = e.target.closest(".code-line");
+            if (line) line.classList.toggle("selected");
+        });
+
+        if (copyBtn) {
+            copyBtn.addEventListener("click", function() {
+                var sel = body.querySelectorAll(".code-line.selected");
+                var text = sel.length ?
+                    Array.prototype.map.call(sel, function(l) {
+                        return l.innerText;
+                    }).join("\n") :
+                    body.innerText;
+                text = text.replace(/\n$/, "");
+                (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
+                .then(function() {
+                        copyBtn.classList.add("copied");
+                        copyBtn.setAttribute("aria-label", "Copied");
+                        setTimeout(function() {
+                            copyBtn.classList.remove("copied");
+                            copyBtn.setAttribute("aria-label", "Copy code");
+                        }, 1600);
+                    })
+                    .catch(function() {});
+            });
+        }
+    });
+})();
+
+;
+
+(function() {
+    "use strict";
     var overlay = document.getElementById("search-overlay");
     var input = document.getElementById("search-input");
     var results = document.getElementById("search-results");
@@ -434,7 +690,7 @@
         if (first) first.classList.add("active");
     }
 
-    /* Ctrl/⌘K is bound in ShortcutsOverlay.ep (the single owner of global
+    /* Ctrl/⌘K is bound in DocsShortcutsOverlay.ep (the single owner of global
        shortcuts); it broadcasts "search". Everything below is the open
        dialog's own navigation. */
     document.addEventListener("epresso:shortcut", function(e) {
@@ -506,262 +762,6 @@
 
     document.addEventListener("epresso:panel-open", function(e) {
         if (e.detail !== "search") close();
-    });
-})();
-
-;
-
-(function() {
-    "use strict";
-    if (window.__epressoPageCopy) return;
-    window.__epressoPageCopy = true;
-    var btn = document.getElementById("page-copy");
-    if (!btn) return;
-    var timer;
-
-    /* The page's markdown is a static sibling file (see the route builder
-       in pages/[...slug].ep), so copying is just fetch + clipboard. No
-       DOM-derived fallback: the fetch only fails where the page isn't
-       being served, which the docs never promise. */
-    function copyPage() {
-        var md = btn.getAttribute("data-md");
-        if (!md) return;
-        fetch(md)
-            .then(function(r) {
-                if (!r.ok) throw new Error(String(r.status));
-                return r.text();
-            })
-            .then(function(text) {
-                return navigator.clipboard.writeText(text);
-            })
-            .then(function() {
-                btn.classList.add("is-done");
-                btn.setAttribute("aria-label", "Copied");
-                clearTimeout(timer);
-                timer = setTimeout(function() {
-                    btn.classList.remove("is-done");
-                    btn.setAttribute("aria-label", "Copy page");
-                }, 1600);
-            })
-            .catch(function() {
-                /* fetch or clipboard unavailable: leave the label as it is */
-            });
-    }
-
-    btn.addEventListener("click", copyPage);
-
-    var menu = document.getElementById("page-menu");
-    var mdBtn = document.getElementById("page-copy-md");
-    if (mdBtn) mdBtn.addEventListener("click", copyPage);
-    /* Choosing anything closes the menu, the new-tab link included. */
-    if (menu) {
-        menu.addEventListener("click", function(e) {
-            if (e.target.closest && e.target.closest("a, button")) menu.open = false;
-        });
-    }
-
-    /* Close the menu on outside click or Escape (native <details> gives the
-       open/close and keyboard behaviour for free). */
-    if (!menu) return;
-    document.addEventListener("click", function(e) {
-        if (menu.open && !menu.contains(e.target)) menu.open = false;
-    });
-    document.addEventListener("keydown", function(e) {
-        if (e.key === "Escape" && menu.open) {
-            menu.open = false;
-            var s = menu.querySelector("summary");
-            if (s) s.focus();
-        }
-    });
-})();
-
-;
-
-(function() {
-    "use strict";
-    if (window.__epressoTocSpy) return;
-    window.__epressoTocSpy = true;
-    var tocs = Array.prototype.slice.call(document.querySelectorAll(".toc"));
-    var links = [];
-    var seen = {};
-    var headings = [];
-    tocs.forEach(function(toc) {
-        /* Progressive enhancement: hide the static per-item marker and let the
-           shared indicator slide between active items instead. */
-        toc.classList.add("toc--animated");
-    });
-    Array.prototype.forEach.call(document.querySelectorAll(".toc a"), function(a) {
-        a.__tocTarget = a.getAttribute("href").slice(1);
-        links.push(a);
-        if (!seen[a.__tocTarget]) {
-            seen[a.__tocTarget] = true;
-            var el = document.getElementById(a.__tocTarget);
-            if (el) headings.push(el);
-        }
-    });
-    if (!links.length || !headings.length) return;
-
-    function setActive(idx) {
-        var target = idx >= 0 && idx < headings.length ? headings[idx].id : null;
-        links.forEach(function(a) {
-            a.classList.toggle("active", a.__tocTarget === target);
-        });
-        tocs.forEach(function(toc) {
-            var active = toc.querySelector("a.active");
-            var current = toc.querySelector(".toc-current");
-            if (current) current.textContent = active ? active.textContent : "On this page";
-            var indicator = toc.querySelector(".toc-indicator");
-            var list = toc.querySelector("ul");
-            if (!indicator || !list) return;
-            if (!active) {
-                indicator.classList.remove("is-visible");
-                return;
-            }
-            var tocRect = toc.getBoundingClientRect();
-            var listRect = list.getBoundingClientRect();
-            var activeRect = active.getBoundingClientRect();
-            /* Inset the marker vertically to match the static ::before
-               (4px top/bottom of the link box). */
-            indicator.style.left = (listRect.left - tocRect.left) + "px";
-            indicator.style.height = Math.max(activeRect.height - 8, 0) + "px";
-            indicator.style.transform = "translateY(" + (activeRect.top - tocRect.top + 4) + "px)";
-            indicator.classList.add("is-visible");
-        });
-    }
-
-    /* The heading whose section is under the header right now. Shared by
-       the scroll-spy and the </> jump keys so both agree on "current". */
-    function currentIndex() {
-        var offset = 90; /* sticky header + a little */
-        var idx = -1;
-        headings.forEach(function(h, i) {
-            if (h.getBoundingClientRect().top <= offset) idx = i;
-        });
-        /* A run of short trailing sections can be squeezed into less
-           room than the 90px crossing test needs, so none of their
-           headings ever reaches it — the page simply runs out of room
-           to scroll them that far up. Once we've scrolled past the
-           *midpoint* to the next heading, hand "current" to it anyway;
-           repeat for a whole run of squeezed sections. */
-        while (idx + 1 < headings.length) {
-            var a = idx >= 0 ? headings[idx].getBoundingClientRect().top : -Infinity;
-            var b = headings[idx + 1].getBoundingClientRect().top;
-            if (offset < (a + b) / 2) break;
-            idx += 1;
-        }
-        return idx;
-    }
-
-    function onScroll() {
-        setActive(currentIndex());
-        updateRing();
-    }
-
-    /* Reading-progress ring in the inline popover trigger. */
-    var RING_C = 47.12388980384689;
-    var ring = document.querySelector(".toc--inline .toc-ring-progress");
-    var ringBar = document.querySelector(".toc--inline .toc-ring");
-
-    function updateRing() {
-        if (!ring) return;
-        var art = document.querySelector("article.doc") || document.querySelector("main.content");
-        if (!art) return;
-        var r = art.getBoundingClientRect();
-        var total = r.height - window.innerHeight;
-        var p = total > 0 ? Math.min(Math.max(-r.top / total, 0), 1) : (r.top <= 0 ? 1 : 0);
-        ring.style.strokeDashoffset = (RING_C * (1 - p)).toFixed(2);
-        if (ringBar) ringBar.setAttribute("aria-valuenow", p.toFixed(3));
-    }
-    window.addEventListener("scroll", onScroll, {
-        passive: true
-    });
-    onScroll();
-
-    /* Comma/period jump to the previous / next heading, from wherever
-       currentIndex() says we are — the same "current" the scroll-spy
-       highlights. */
-    function jump(delta) {
-        var target = currentIndex() + delta;
-        if (target < 0) target = 0;
-        if (target > headings.length - 1) target = headings.length - 1;
-        var el = headings[target];
-        if (!el || !el.id) return;
-        el.scrollIntoView({
-            block: "start"
-        });
-        /* Keep the URL shareable without spamming history. */
-        if (window.history && history.replaceState) history.replaceState(null, "", "#" + el.id);
-    }
-
-    /* Comma/period step through headings. The key binding itself lives in
-       ShortcutsOverlay.ep, with the other global shortcuts. */
-    document.addEventListener("epresso:shortcut", function(e) {
-        if (e.detail === "section-prev") jump(-1);
-        else if (e.detail === "section-next") jump(1);
-    });
-
-    /* Collapse the inline popover after choosing a heading, or on an
-       outside click. */
-    document.addEventListener("click", function(e) {
-        var a = e.target.closest ? e.target.closest(".toc--inline a") : null;
-        if (a) {
-            var d = a.closest("details");
-            if (d) d.open = false;
-            return;
-        }
-        Array.prototype.forEach.call(document.querySelectorAll(".toc--inline details[open]"), function(d) {
-            if (!d.contains(e.target)) d.open = false;
-        });
-    });
-})();
-
-;
-
-(function() {
-    "use strict";
-
-    document.querySelectorAll("pre.highlight").forEach(function(pre) {
-        var head = pre.querySelector(".code-head");
-        var body = pre.querySelector(".code-body");
-        if (!head || !body) return;
-        var linesBtn = head.querySelector(".code-lines-btn");
-        var copyBtn = head.querySelector(".code-copy");
-
-        if (linesBtn) {
-            linesBtn.addEventListener("click", function() {
-                var on = body.classList.toggle("no-numbers");
-                linesBtn.setAttribute("aria-pressed", String(!on));
-                linesBtn.setAttribute("aria-label", on ? "Show line numbers" : "Hide line numbers");
-                linesBtn.setAttribute("title", on ? "Show line numbers" : "Hide line numbers");
-            });
-        }
-
-        body.addEventListener("click", function(e) {
-            var line = e.target.closest(".code-line");
-            if (line) line.classList.toggle("selected");
-        });
-
-        if (copyBtn) {
-            copyBtn.addEventListener("click", function() {
-                var sel = body.querySelectorAll(".code-line.selected");
-                var text = sel.length ?
-                    Array.prototype.map.call(sel, function(l) {
-                        return l.innerText;
-                    }).join("\n") :
-                    body.innerText;
-                text = text.replace(/\n$/, "");
-                (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject())
-                .then(function() {
-                        copyBtn.classList.add("copied");
-                        copyBtn.setAttribute("aria-label", "Copied");
-                        setTimeout(function() {
-                            copyBtn.classList.remove("copied");
-                            copyBtn.setAttribute("aria-label", "Copy code");
-                        }, 1600);
-                    })
-                    .catch(function() {});
-            });
-        }
     });
 })();
 
