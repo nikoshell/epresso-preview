@@ -220,6 +220,10 @@ window.addEventListener("load", function() {
                         <li class="toc-depth-2" data-epresso-81940ac6><a href="#epresso-clean" data-epresso-81940ac6>`epresso clean`</a></li>
                     
                 
+                    
+                        <li class="toc-depth-2" data-epresso-81940ac6><a href="#parallel-rendering" data-epresso-81940ac6>Parallel rendering</a></li>
+                    
+                
             </ul>
         </details>
     </nav>
@@ -347,6 +351,13 @@ outputs (islands, assets, images) are regenerated.</p>
 always produces identical output — ideal for caching and reproducible deploys.</p>
 <h2 id="epresso-clean" data-epresso-b39e7886><a class="heading-anchor" href="#epresso-clean" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a><code data-epresso-b39e7886>epresso clean</code></h2>
 <p data-epresso-b39e7886>Removes <code data-epresso-b39e7886>dist/</code> and the <code data-epresso-b39e7886>.cache</code> build cache.</p>
+<h2 id="parallel-rendering" data-epresso-b39e7886><a class="heading-anchor" href="#parallel-rendering" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>Parallel rendering</h2>
+<p data-epresso-b39e7886>Builds with 64 or more pages to render are split across worker processes, one per
+CPU (up to 8). Workers are forked after the site is loaded, so they share the
+loaded content and compiled templates; plugin html transforms still run in the
+main process, in page order, so the output is identical to a serial build. Set
+<code data-epresso-b39e7886>[build] jobs = 1</code> (or <code data-epresso-b39e7886>EPRESSO_JOBS=1</code>) to render serially, or a number to cap
+the workers. Platforms without <code data-epresso-b39e7886>fork()</code> (Windows) always render serially.</p>
 
 </div>
 
@@ -394,6 +405,10 @@ always produces identical output — ideal for caching and reproducible deploys.
             
                 
                     <li class="toc-depth-2" data-epresso-81940ac6><a href="#epresso-clean" data-epresso-81940ac6>`epresso clean`</a></li>
+                
+            
+                
+                    <li class="toc-depth-2" data-epresso-81940ac6><a href="#parallel-rendering" data-epresso-81940ac6>Parallel rendering</a></li>
                 
             
         </ul>
