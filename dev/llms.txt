@@ -46,9 +46,11 @@
 - [Plugins](https://epresso.top/guides/extending/plugins/)
 - [Fonts](https://epresso.top/guides/styling/fonts/)
 - [Images](https://epresso.top/guides/styling/images/)
+- [Social cards](https://epresso.top/guides/styling/social-cards/): Generate og:image preview cards for link shares with the epresso_social plugin.
 - [Styling and CSS](https://epresso.top/guides/styling/styling/)
 - [Create a theme](https://epresso.top/guides/themes/create-a-theme/): Structure a project so epresso new can scaffold others from it.
 - [Start from a template](https://epresso.top/guides/themes/from-template/): Scaffold a full site from a ready-made theme with epresso new.
+- [Migrate from MkDocs](https://epresso.top/guides/themes/migrate-from-mkdocs/): Build an MkDocs / Material for MkDocs project with epresso — live from mkdocs.yml, or imported once into docs.toml.
 - [Create a new website](https://epresso.top/guides/themes/new-website/): Scaffold an empty epresso project and add your first page and component.
 - [Preview a repository's docs](https://epresso.top/guides/themes/preview-repo-docs/)
 
