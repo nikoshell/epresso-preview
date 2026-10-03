@@ -3,16 +3,16 @@
 <!doctype html>
 <html lang="en" data-epresso-f29ce0a9>
     <head data-epresso-f29ce0a9>
-        <title data-epresso-f29ce0a9>Data fetching · epresso</title>
+        <title data-epresso-f29ce0a9>Blog · epresso</title>
 <meta charset="utf-8" data-epresso-f29ce0a9>
 <meta name="description" content="A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy." data-epresso-f29ce0a9>
-<link rel="canonical" href="https://epresso.top/guides/content/data-fetching/" data-epresso-f29ce0a9>
-<meta property="og:title" content="Data fetching · epresso" data-epresso-f29ce0a9>
+<link rel="canonical" href="https://epresso.top/guides/content/blog/" data-epresso-f29ce0a9>
+<meta property="og:title" content="Blog · epresso" data-epresso-f29ce0a9>
 <meta property="og:type" content="website" data-epresso-f29ce0a9>
-<meta property="og:url" content="https://epresso.top/guides/content/data-fetching/" data-epresso-f29ce0a9>
+<meta property="og:url" content="https://epresso.top/guides/content/blog/" data-epresso-f29ce0a9>
 <meta property="og:description" content="A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy." data-epresso-f29ce0a9>
 
-<meta name="twitter:title" content="Data fetching · epresso" data-epresso-f29ce0a9>
+<meta name="twitter:title" content="Blog · epresso" data-epresso-f29ce0a9>
 <meta name="twitter:description" content="A modern, Python-first static site generator. Routes-as-code, content collections, deterministic + incremental builds, and a no-JavaScript-by-default philosophy." data-epresso-f29ce0a9>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" data-epresso-f29ce0a9>
         <meta name="color-scheme" content="light dark" data-epresso-f29ce0a9>
@@ -205,19 +205,11 @@ window.addEventListener("load", function() {
             <ul data-epresso-81940ac6>
                 
                     
-                        <li class="toc-depth-2" data-epresso-81940ac6><a href="#python-loader" data-epresso-81940ac6>Python loader</a></li>
+                        <li class="toc-depth-2" data-epresso-81940ac6><a href="#options" data-epresso-81940ac6>Options</a></li>
                     
                 
                     
-                        <li class="toc-depth-2" data-epresso-81940ac6><a href="#remote-data" data-epresso-81940ac6>Remote data</a></li>
-                    
-                
-                    
-                        <li class="toc-depth-2" data-epresso-81940ac6><a href="#environment-aware" data-epresso-81940ac6>Environment-aware</a></li>
-                    
-                
-                    
-                        <li class="toc-depth-2" data-epresso-81940ac6><a href="#see-also" data-epresso-81940ac6>See also</a></li>
+                        <li class="toc-depth-2" data-epresso-81940ac6><a href="#look" data-epresso-81940ac6>Look</a></li>
                     
                 
             </ul>
@@ -234,7 +226,7 @@ window.addEventListener("load", function() {
         
     
 <nav class="breadcrumbs" aria-label="Breadcrumb" data-epresso-dca72d10>
-    <a href="/epresso-preview/dev/" data-epresso-dca72d10>Home</a><span class="crumb-sep" data-epresso-dca72d10>/</span><span data-epresso-dca72d10>Guides</span><span class="crumb-sep" data-epresso-dca72d10>/</span><span data-epresso-dca72d10>Content</span><span class="crumb-sep" data-epresso-dca72d10>/</span><span class="crumb-cur" data-epresso-dca72d10>Data fetching</span>
+    <a href="/epresso-preview/dev/" data-epresso-dca72d10>Home</a><span class="crumb-sep" data-epresso-dca72d10>/</span><span data-epresso-dca72d10>Guides</span><span class="crumb-sep" data-epresso-dca72d10>/</span><span data-epresso-dca72d10>Content</span><span class="crumb-sep" data-epresso-dca72d10>/</span><span class="crumb-cur" data-epresso-dca72d10>Blog</span>
 </nav>
 
 
@@ -243,7 +235,7 @@ window.addEventListener("load", function() {
         
 <div class="page-actions" data-epresso-b7ca4d55>
     <div class="pa-group" data-epresso-b7ca4d55>
-        <button type="button" class="pa-btn pa-copy" id="page-copy" data-md="/guides/content/data-fetching.md" aria-label="Copy page" data-epresso-b7ca4d55>
+        <button type="button" class="pa-btn pa-copy" id="page-copy" data-md="/guides/content/blog.md" aria-label="Copy page" data-epresso-b7ca4d55>
             
 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="pa-icon pa-icon--copy" data-epresso-b7ca4d55>
     <rect x="5.75" y="5.75" width="8.5" height="8.5" rx="1.5" data-epresso-b7ca4d55/><path d="M3.75 10.25A1.5 1.5 0 0 1 2.25 8.75V3.75a1.5 1.5 0 0 1 1.5-1.5h5a1.5 1.5 0 0 1 1.5 1.5" data-epresso-b7ca4d55/>
@@ -276,23 +268,23 @@ window.addEventListener("load", function() {
                         </button>
                     </li>
                     <li data-epresso-b7ca4d55>
-                        <a href="/epresso-preview/dev/guides/content/data-fetching.md" target="_blank" rel="noopener" data-epresso-b7ca4d55>
+                        <a href="/epresso-preview/dev/guides/content/blog.md" target="_blank" rel="noopener" data-epresso-b7ca4d55>
                             <span class="pa-item-label" data-epresso-b7ca4d55>View as Markdown</span>
                             <span class="pa-hint" data-epresso-b7ca4d55>Open this page as plain Markdown</span>
                         </a>
                     </li>
                     
                         <li data-epresso-b7ca4d55>
-                            <a href="https://github.com/nikoshell/epresso/blob/main/docs/guides/content/data-fetching.md" target="_blank" rel="noopener" data-epresso-b7ca4d55>
+                            <a href="https://github.com/nikoshell/epresso/blob/main/docs/guides/content/blog.md" target="_blank" rel="noopener" data-epresso-b7ca4d55>
                                 <span class="pa-item-label" data-epresso-b7ca4d55>View source of this page</span>
                                 <span class="pa-hint" data-epresso-b7ca4d55>
-                                    docs/guides/content/data-fetching.md
+                                    docs/guides/content/blog.md
                                 </span>
                             </a>
                         </li>
                     
                     <li data-epresso-b7ca4d55>
-                        <a href="https://chatgpt.com/?q=Read%20https%3A//epresso.top/guides/content/data-fetching.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener" data-epresso-b7ca4d55>
+                        <a href="https://chatgpt.com/?q=Read%20https%3A//epresso.top/guides/content/blog.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener" data-epresso-b7ca4d55>
                             <span class="pa-item-label" data-epresso-b7ca4d55>Open in ChatGPT</span>
                             <span class="pa-hint" data-epresso-b7ca4d55>
                                 Ask questions about this page
@@ -300,7 +292,7 @@ window.addEventListener("load", function() {
                         </a>
                     </li>
                     <li data-epresso-b7ca4d55>
-                        <a href="https://claude.ai/new?q=Read%20https%3A//epresso.top/guides/content/data-fetching.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener" data-epresso-b7ca4d55>
+                        <a href="https://claude.ai/new?q=Read%20https%3A//epresso.top/guides/content/blog.md%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="noopener" data-epresso-b7ca4d55>
                             <span class="pa-item-label" data-epresso-b7ca4d55>Open in Claude</span>
                             <span class="pa-hint" data-epresso-b7ca4d55>
                                 Ask questions about this page
@@ -320,16 +312,19 @@ window.addEventListener("load", function() {
     
     <article class="doc" data-epresso-f29ce0a9>
         <h1 data-epresso-f29ce0a9>
-            Data fetching
+            Blog
         </h1>
+        
+            <p class="doc-description" data-epresso-f29ce0a9>
+                A blog with posts, archive, categories, pagination and RSS — MkDocs/Material blog posts work unchanged.
+            </p>
         
         
 <div class="prose" data-epresso-b39e7886>
-    <p data-epresso-b39e7886>Content collections are loaded from disk (glob) or from a <strong data-epresso-b39e7886>loader</strong> function,
-which can fetch remote/derived data at build time.</p>
-<h2 id="python-loader" data-epresso-b39e7886><a class="heading-anchor" href="#python-loader" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>Python loader</h2>
-<p data-epresso-b39e7886>Pass <code data-epresso-b39e7886>loader=</code> to <code data-epresso-b39e7886>define_collection</code>. The function returns an iterable of
-<code data-epresso-b39e7886>{&quot;id&quot;, &quot;data&quot;, &quot;body&quot;}</code> dicts:</p>
+    <p data-epresso-b39e7886>The <code data-epresso-b39e7886>epresso_blog</code> plugin turns a folder of Markdown posts into a blog: a
+paginated index, an archive per year, a page per category and an RSS feed. It
+reads Material for MkDocs blog posts as they are and builds the same URLs, so a
+migrated blog keeps its links. The docs theme enables it.</p>
 <style>.highlight.no-copy .code-copy{display:none !important}</style>
 <pre class="highlight" data-epresso-93c638e7>
   
@@ -341,7 +336,7 @@ which can fetch remote/derived data at build time.</p>
     <span class="code-trailing" data-epresso-f8fc1584>
         
             <span class="code-lang" data-epresso-f8fc1584>
-                python
+                text
             </span>
         
         <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-f8fc1584>
@@ -370,25 +365,165 @@ which can fetch remote/derived data at build time.</p>
 
 
 
-  <div class="code-body no-numbers" data-epresso-93c638e7><span class="code-line" data-epresso-93c638e7><span class="k" data-epresso-93c638e7>def</span><span class="w" data-epresso-93c638e7> </span><span class="nf" data-epresso-93c638e7>fetch_authors</span><span class="p" data-epresso-93c638e7>():</span></span><span class="code-line" data-epresso-93c638e7>    <span class="n" data-epresso-93c638e7>resp</span> <span class="o" data-epresso-93c638e7>=</span> <span class="n" data-epresso-93c638e7>requests</span><span class="o" data-epresso-93c638e7>.</span><span class="n" data-epresso-93c638e7>get</span><span class="p" data-epresso-93c638e7>(</span><span class="s2" data-epresso-93c638e7>"https://api.example.com/authors"</span><span class="p" data-epresso-93c638e7>)</span><span class="o" data-epresso-93c638e7>.</span><span class="n" data-epresso-93c638e7>json</span><span class="p" data-epresso-93c638e7>()</span></span><span class="code-line" data-epresso-93c638e7>    <span class="k" data-epresso-93c638e7>return</span> <span class="p" data-epresso-93c638e7>[{</span><span class="s2" data-epresso-93c638e7>"id"</span><span class="p" data-epresso-93c638e7>:</span> <span class="n" data-epresso-93c638e7>a</span><span class="p" data-epresso-93c638e7>[</span><span class="s2" data-epresso-93c638e7>"id"</span><span class="p" data-epresso-93c638e7>],</span> <span class="s2" data-epresso-93c638e7>"data"</span><span class="p" data-epresso-93c638e7>:</span> <span class="n" data-epresso-93c638e7>a</span><span class="p" data-epresso-93c638e7>}</span> <span class="k" data-epresso-93c638e7>for</span> <span class="n" data-epresso-93c638e7>a</span> <span class="ow" data-epresso-93c638e7>in</span> <span class="n" data-epresso-93c638e7>resp</span><span class="p" data-epresso-93c638e7>]</span></span><span class="code-line" data-epresso-93c638e7></span><span class="code-line" data-epresso-93c638e7><span class="n" data-epresso-93c638e7>authors</span> <span class="o" data-epresso-93c638e7>=</span> <span class="n" data-epresso-93c638e7>define_collection</span><span class="p" data-epresso-93c638e7>(</span><span class="s2" data-epresso-93c638e7>"authors"</span><span class="p" data-epresso-93c638e7>,</span> <span class="n" data-epresso-93c638e7>loader</span><span class="o" data-epresso-93c638e7>=</span><span class="n" data-epresso-93c638e7>fetch_authors</span><span class="p" data-epresso-93c638e7>,</span> <span class="n" data-epresso-93c638e7>schema</span><span class="o" data-epresso-93c638e7>=</span><span class="n" data-epresso-93c638e7>Author</span><span class="p" data-epresso-93c638e7>)</span></span><span class="code-line" data-epresso-93c638e7></span></div>
+  <div class="code-body no-numbers" data-epresso-93c638e7><span class="code-line" data-epresso-93c638e7>docs/</span><span class="code-line" data-epresso-93c638e7>└── blog/</span><span class="code-line" data-epresso-93c638e7>    ├── index.md          ← text above the post list (optional)</span><span class="code-line" data-epresso-93c638e7>    ├── .authors.yml      ← author names / avatars (optional)</span><span class="code-line" data-epresso-93c638e7>    └── posts/</span><span class="code-line" data-epresso-93c638e7>        ├── hello.md</span><span class="code-line" data-epresso-93c638e7>        └── hello/</span><span class="code-line" data-epresso-93c638e7>            └── chart.png ← relative images work</span><span class="code-line" data-epresso-93c638e7></span></div>
 </pre>
 
 
 
 
 
-<p data-epresso-b39e7886>The loader may be <code data-epresso-b39e7886>async</code> (epresso awaits it). Entries are validated against the
-schema and get a content digest for incremental builds.</p>
-<h2 id="remote-data" data-epresso-b39e7886><a class="heading-anchor" href="#remote-data" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>Remote data</h2>
-<p data-epresso-b39e7886>Loaders run at build time, so you can pull from any HTTP API, database, or
-service — the data is fetched once and baked into the static site.</p>
-<h2 id="environment-aware" data-epresso-b39e7886><a class="heading-anchor" href="#environment-aware" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>Environment-aware</h2>
-<p data-epresso-b39e7886>Loaders/plugins see environment variables via <code data-epresso-b39e7886>os.environ</code> and the per-env
-dotenv files — see <a href="/epresso-preview/dev/guides/build/environment-variables/" data-epresso-b39e7886>Environment variables</a>.</p>
-<h2 id="see-also" data-epresso-b39e7886><a class="heading-anchor" href="#see-also" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>See also</h2>
-<ul data-epresso-b39e7886>
-<li data-epresso-b39e7886>[Content collections](content-collections.md — the collection model</li>
-</ul>
+<p data-epresso-b39e7886>A post:</p>
+
+<pre class="highlight" data-epresso-93c638e7>
+  
+<div class="code-head" data-epresso-f8fc1584>
+    <span class="code-dots" data-epresso-f8fc1584>
+        <span data-epresso-f8fc1584></span><span data-epresso-f8fc1584></span><span data-epresso-f8fc1584></span>
+    </span>
+    
+    <span class="code-trailing" data-epresso-f8fc1584>
+        
+            <span class="code-lang" data-epresso-f8fc1584>
+                markdown
+            </span>
+        
+        <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-f8fc1584>
+            
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-f8fc1584>
+    <path d="M9 4.75A.75.75 0 0 1 9.75 4h4a.75.75 0 0 1 .53 1.28l-1.89 1.892c.312.076.604.18.867.319.742.391 1.244 1.063 1.244 2.005 0 .653-.231 1.208-.629 1.627-.386.408-.894.653-1.408.777-1.01.243-2.225.063-3.124-.527a.751.751 0 0 1 .822-1.254c.534.35 1.32.474 1.951.322.306-.073.53-.201.67-.349.129-.136.218-.32.218-.596 0-.308-.123-.509-.444-.678-.373-.197-.98-.318-1.806-.318a.75.75 0 0 1-.53-1.28l1.72-1.72H9.75A.75.75 0 0 1 9 4.75Zm-3.587 5.763c-.35-.05-.77.113-.983.572a.75.75 0 1 1-1.36-.632c.508-1.094 1.589-1.565 2.558-1.425 1 .145 1.872.945 1.872 2.222 0 1.433-1.088 2.192-1.79 2.681-.308.216-.571.397-.772.573H7a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75c0-.69.3-1.211.67-1.61.348-.372.8-.676 1.15-.92.8-.56 1.18-.904 1.18-1.474 0-.473-.267-.69-.587-.737ZM5.604.089A.75.75 0 0 1 6 .75v4.77h.711a.75.75 0 0 1 0 1.5H3.759a.75.75 0 0 1 0-1.5H4.5V2.15l-.334.223a.75.75 0 0 1-.832-1.248l1.5-1a.75.75 0 0 1 .77-.037Z" data-epresso-f8fc1584/>
+</svg>
+
+        </button>
+        <button type="button" class="code-btn code-copy" aria-label="Copy code" title="Copy code" data-epresso-f8fc1584>
+            
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--copy" data-epresso-f8fc1584>
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z" data-epresso-f8fc1584/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z" data-epresso-f8fc1584/>
+</svg>
+
+            
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--check" data-epresso-f8fc1584>
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" data-epresso-f8fc1584/>
+</svg>
+
+        </button>
+    </span>
+</div>
+
+
+
+
+
+  <div class="code-body no-numbers" data-epresso-93c638e7><span class="code-line" data-epresso-93c638e7>---</span><span class="code-line" data-epresso-93c638e7>date: 2026-10-03          # a date, a datetime, or {created: …}</span><span class="code-line" data-epresso-93c638e7>authors: [jo]</span><span class="code-line" data-epresso-93c638e7>categories: [Release]</span><span class="code-line" data-epresso-93c638e7>tags: [launch]</span><span class="code-line" data-epresso-93c638e7>draft: false</span><span class="code-line" data-epresso-93c638e7><span class="gu" data-epresso-93c638e7>slug: hello-world         # optional; default: from the title</span></span><span class="code-line" data-epresso-93c638e7><span class="gu" data-epresso-93c638e7>---</span></span><span class="code-line" data-epresso-93c638e7></span><span class="code-line" data-epresso-93c638e7><span class="gh" data-epresso-93c638e7># Hello world</span></span><span class="code-line" data-epresso-93c638e7></span><span class="code-line" data-epresso-93c638e7>The excerpt shown on the index.</span><span class="code-line" data-epresso-93c638e7></span><span class="code-line" data-epresso-93c638e7>&lt;!-- more --&gt;</span><span class="code-line" data-epresso-93c638e7></span><span class="code-line" data-epresso-93c638e7>The rest of the post.</span><span class="code-line" data-epresso-93c638e7></span></div>
+</pre>
+
+
+
+
+
+<p data-epresso-b39e7886><code data-epresso-b39e7886>.authors.yml</code>:</p>
+
+<pre class="highlight" data-epresso-93c638e7>
+  
+<div class="code-head" data-epresso-f8fc1584>
+    <span class="code-dots" data-epresso-f8fc1584>
+        <span data-epresso-f8fc1584></span><span data-epresso-f8fc1584></span><span data-epresso-f8fc1584></span>
+    </span>
+    
+    <span class="code-trailing" data-epresso-f8fc1584>
+        
+            <span class="code-lang" data-epresso-f8fc1584>
+                yaml
+            </span>
+        
+        <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-f8fc1584>
+            
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-f8fc1584>
+    <path d="M9 4.75A.75.75 0 0 1 9.75 4h4a.75.75 0 0 1 .53 1.28l-1.89 1.892c.312.076.604.18.867.319.742.391 1.244 1.063 1.244 2.005 0 .653-.231 1.208-.629 1.627-.386.408-.894.653-1.408.777-1.01.243-2.225.063-3.124-.527a.751.751 0 0 1 .822-1.254c.534.35 1.32.474 1.951.322.306-.073.53-.201.67-.349.129-.136.218-.32.218-.596 0-.308-.123-.509-.444-.678-.373-.197-.98-.318-1.806-.318a.75.75 0 0 1-.53-1.28l1.72-1.72H9.75A.75.75 0 0 1 9 4.75Zm-3.587 5.763c-.35-.05-.77.113-.983.572a.75.75 0 1 1-1.36-.632c.508-1.094 1.589-1.565 2.558-1.425 1 .145 1.872.945 1.872 2.222 0 1.433-1.088 2.192-1.79 2.681-.308.216-.571.397-.772.573H7a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75c0-.69.3-1.211.67-1.61.348-.372.8-.676 1.15-.92.8-.56 1.18-.904 1.18-1.474 0-.473-.267-.69-.587-.737ZM5.604.089A.75.75 0 0 1 6 .75v4.77h.711a.75.75 0 0 1 0 1.5H3.759a.75.75 0 0 1 0-1.5H4.5V2.15l-.334.223a.75.75 0 0 1-.832-1.248l1.5-1a.75.75 0 0 1 .77-.037Z" data-epresso-f8fc1584/>
+</svg>
+
+        </button>
+        <button type="button" class="code-btn code-copy" aria-label="Copy code" title="Copy code" data-epresso-f8fc1584>
+            
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--copy" data-epresso-f8fc1584>
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z" data-epresso-f8fc1584/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z" data-epresso-f8fc1584/>
+</svg>
+
+            
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--check" data-epresso-f8fc1584>
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" data-epresso-f8fc1584/>
+</svg>
+
+        </button>
+    </span>
+</div>
+
+
+
+
+
+  <div class="code-body no-numbers" data-epresso-93c638e7><span class="code-line" data-epresso-93c638e7><span class="nt" data-epresso-93c638e7>authors</span><span class="p" data-epresso-93c638e7>:</span></span><span class="code-line" data-epresso-93c638e7><span class="w" data-epresso-93c638e7>  </span><span class="nt" data-epresso-93c638e7>jo</span><span class="p" data-epresso-93c638e7>:</span></span><span class="code-line" data-epresso-93c638e7><span class="w" data-epresso-93c638e7>    </span><span class="nt" data-epresso-93c638e7>name</span><span class="p" data-epresso-93c638e7>:</span><span class="w" data-epresso-93c638e7> </span><span class="l l-Scalar l-Scalar-Plain" data-epresso-93c638e7>Jo Doe</span></span><span class="code-line" data-epresso-93c638e7><span class="w" data-epresso-93c638e7>    </span><span class="nt" data-epresso-93c638e7>avatar</span><span class="p" data-epresso-93c638e7>:</span><span class="w" data-epresso-93c638e7> </span><span class="l l-Scalar l-Scalar-Plain" data-epresso-93c638e7>https://example.com/jo.png</span></span><span class="code-line" data-epresso-93c638e7><span class="w" data-epresso-93c638e7>    </span><span class="nt" data-epresso-93c638e7>url</span><span class="p" data-epresso-93c638e7>:</span><span class="w" data-epresso-93c638e7> </span><span class="l l-Scalar l-Scalar-Plain" data-epresso-93c638e7>https://example.com</span></span><span class="code-line" data-epresso-93c638e7></span></div>
+</pre>
+
+
+
+
+
+<h2 id="options" data-epresso-b39e7886><a class="heading-anchor" href="#options" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>Options</h2>
+<p data-epresso-b39e7886>The option names and defaults are MkDocs' blog plugin's:</p>
+
+<pre class="highlight" data-epresso-93c638e7>
+  
+<div class="code-head" data-epresso-f8fc1584>
+    <span class="code-dots" data-epresso-f8fc1584>
+        <span data-epresso-f8fc1584></span><span data-epresso-f8fc1584></span><span data-epresso-f8fc1584></span>
+    </span>
+    
+    <span class="code-trailing" data-epresso-f8fc1584>
+        
+            <span class="code-lang" data-epresso-f8fc1584>
+                toml
+            </span>
+        
+        <button type="button" class="code-btn code-lines-btn" aria-pressed="false" aria-label="Show line numbers" title="Show line numbers" data-epresso-f8fc1584>
+            
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-epresso-f8fc1584>
+    <path d="M9 4.75A.75.75 0 0 1 9.75 4h4a.75.75 0 0 1 .53 1.28l-1.89 1.892c.312.076.604.18.867.319.742.391 1.244 1.063 1.244 2.005 0 .653-.231 1.208-.629 1.627-.386.408-.894.653-1.408.777-1.01.243-2.225.063-3.124-.527a.751.751 0 0 1 .822-1.254c.534.35 1.32.474 1.951.322.306-.073.53-.201.67-.349.129-.136.218-.32.218-.596 0-.308-.123-.509-.444-.678-.373-.197-.98-.318-1.806-.318a.75.75 0 0 1-.53-1.28l1.72-1.72H9.75A.75.75 0 0 1 9 4.75Zm-3.587 5.763c-.35-.05-.77.113-.983.572a.75.75 0 1 1-1.36-.632c.508-1.094 1.589-1.565 2.558-1.425 1 .145 1.872.945 1.872 2.222 0 1.433-1.088 2.192-1.79 2.681-.308.216-.571.397-.772.573H7a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75c0-.69.3-1.211.67-1.61.348-.372.8-.676 1.15-.92.8-.56 1.18-.904 1.18-1.474 0-.473-.267-.69-.587-.737ZM5.604.089A.75.75 0 0 1 6 .75v4.77h.711a.75.75 0 0 1 0 1.5H3.759a.75.75 0 0 1 0-1.5H4.5V2.15l-.334.223a.75.75 0 0 1-.832-1.248l1.5-1a.75.75 0 0 1 .77-.037Z" data-epresso-f8fc1584/>
+</svg>
+
+        </button>
+        <button type="button" class="code-btn code-copy" aria-label="Copy code" title="Copy code" data-epresso-f8fc1584>
+            
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--copy" data-epresso-f8fc1584>
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z" data-epresso-f8fc1584/><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z" data-epresso-f8fc1584/>
+</svg>
+
+            
+<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" class="code-copy-icon code-copy-icon--check" data-epresso-f8fc1584>
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z" data-epresso-f8fc1584/>
+</svg>
+
+        </button>
+    </span>
+</div>
+
+
+
+
+
+  <div class="code-body no-numbers" data-epresso-93c638e7><span class="code-line" data-epresso-93c638e7><span class="k" data-epresso-93c638e7>[plugin.epresso_blog]</span></span><span class="code-line" data-epresso-93c638e7><span class="n" data-epresso-93c638e7>blog_dir</span><span class="w" data-epresso-93c638e7> </span><span class="o" data-epresso-93c638e7>=</span><span class="w" data-epresso-93c638e7> </span><span class="s2" data-epresso-93c638e7>"blog"</span><span class="w" data-epresso-93c638e7>                  </span><span class="c1" data-epresso-93c638e7># under the docs dir (content/ without epresso_docs)</span></span><span class="code-line" data-epresso-93c638e7><span class="n" data-epresso-93c638e7>post_url_format</span><span class="w" data-epresso-93c638e7> </span><span class="o" data-epresso-93c638e7>=</span><span class="w" data-epresso-93c638e7> </span><span class="s2" data-epresso-93c638e7>"{date}/{slug}"</span><span class="w" data-epresso-93c638e7>  </span><span class="c1" data-epresso-93c638e7># /blog/2026/10/03/hello-world/; also {file}, {categories}</span></span><span class="code-line" data-epresso-93c638e7><span class="n" data-epresso-93c638e7>post_slugify</span><span class="w" data-epresso-93c638e7> </span><span class="o" data-epresso-93c638e7>=</span><span class="w" data-epresso-93c638e7> </span><span class="s2" data-epresso-93c638e7>"title"</span><span class="w" data-epresso-93c638e7>             </span><span class="c1" data-epresso-93c638e7># or "file"</span></span><span class="code-line" data-epresso-93c638e7><span class="n" data-epresso-93c638e7>pagination_per_page</span><span class="w" data-epresso-93c638e7> </span><span class="o" data-epresso-93c638e7>=</span><span class="w" data-epresso-93c638e7> </span><span class="mi" data-epresso-93c638e7>10</span></span><span class="code-line" data-epresso-93c638e7><span class="n" data-epresso-93c638e7>archive</span><span class="w" data-epresso-93c638e7> </span><span class="o" data-epresso-93c638e7>=</span><span class="w" data-epresso-93c638e7> </span><span class="kc" data-epresso-93c638e7>true</span><span class="w" data-epresso-93c638e7>                     </span><span class="c1" data-epresso-93c638e7># /blog/archive/2026/</span></span><span class="code-line" data-epresso-93c638e7><span class="n" data-epresso-93c638e7>categories</span><span class="w" data-epresso-93c638e7> </span><span class="o" data-epresso-93c638e7>=</span><span class="w" data-epresso-93c638e7> </span><span class="kc" data-epresso-93c638e7>true</span><span class="w" data-epresso-93c638e7>                  </span><span class="c1" data-epresso-93c638e7># /blog/category/release/</span></span><span class="code-line" data-epresso-93c638e7><span class="n" data-epresso-93c638e7>authors_file</span><span class="w" data-epresso-93c638e7> </span><span class="o" data-epresso-93c638e7>=</span><span class="w" data-epresso-93c638e7> </span><span class="s2" data-epresso-93c638e7>"{blog_dir}/.authors.yml"</span></span><span class="code-line" data-epresso-93c638e7><span class="n" data-epresso-93c638e7>draft</span><span class="w" data-epresso-93c638e7> </span><span class="o" data-epresso-93c638e7>=</span><span class="w" data-epresso-93c638e7> </span><span class="kc" data-epresso-93c638e7>false</span><span class="w" data-epresso-93c638e7>                      </span><span class="c1" data-epresso-93c638e7># true: publish drafts in production too</span></span><span class="code-line" data-epresso-93c638e7><span class="n" data-epresso-93c638e7>rss</span><span class="w" data-epresso-93c638e7> </span><span class="o" data-epresso-93c638e7>=</span><span class="w" data-epresso-93c638e7> </span><span class="kc" data-epresso-93c638e7>true</span><span class="w" data-epresso-93c638e7>                         </span><span class="c1" data-epresso-93c638e7># /blog/rss.xml</span></span><span class="code-line" data-epresso-93c638e7><span class="n" data-epresso-93c638e7>layout</span><span class="w" data-epresso-93c638e7> </span><span class="o" data-epresso-93c638e7>=</span><span class="w" data-epresso-93c638e7> </span><span class="s2" data-epresso-93c638e7>"DocsPage"</span><span class="w" data-epresso-93c638e7>                </span><span class="c1" data-epresso-93c638e7># page layout (default DocsPage with epresso_docs, else Base)</span></span><span class="code-line" data-epresso-93c638e7></span></div>
+</pre>
+
+
+
+
+
+<p data-epresso-b39e7886>In <code data-epresso-b39e7886>docs.toml</code> the same keys go under <code data-epresso-b39e7886>[blog]</code>; <code data-epresso-b39e7886>epresso import mkdocs</code> fills
+them in from the MkDocs <code data-epresso-b39e7886>blog</code> plugin.</p>
+<h2 id="look" data-epresso-b39e7886><a class="heading-anchor" href="#look" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>Look</h2>
+<p data-epresso-b39e7886>Pages render with the <code data-epresso-b39e7886>BlogIndex</code>, <code data-epresso-b39e7886>BlogPost</code>, <code data-epresso-b39e7886>BlogMeta</code> and <code data-epresso-b39e7886>BlogArchive</code>
+components inside the <code data-epresso-b39e7886>layout</code>. Ship a component with the same name in your
+site's <code data-epresso-b39e7886>components/</code> to replace one. In the docs theme the blog also gets a
+&quot;Blog&quot; sidebar section: all posts and the ten newest.</p>
 
 </div>
 
@@ -397,13 +532,13 @@ dotenv files — see <a href="/epresso-preview/dev/guides/build/environment-vari
         
 <nav class="pager" aria-label="Docs pagination" data-epresso-a5a922bd>
     
-        <a class="pager-link" data-pager-prev href="/epresso-preview/dev/guides/content/content-collections/" data-epresso-a5a922bd>
-            <span class="pager-label" data-epresso-a5a922bd>Previous</span><span class="pager-title" data-epresso-a5a922bd>Content collections</span>
+        <a class="pager-link" data-pager-prev href="/epresso-preview/dev/guides/content/i18n/" data-epresso-a5a922bd>
+            <span class="pager-label" data-epresso-a5a922bd>Previous</span><span class="pager-title" data-epresso-a5a922bd>Internationalization (i18n)</span>
         </a>
     
     
-        <a class="pager-link pager-next" data-pager-next href="/epresso-preview/dev/guides/content/endpoints/" data-epresso-a5a922bd>
-            <span class="pager-label" data-epresso-a5a922bd>Next</span><span class="pager-title" data-epresso-a5a922bd>Endpoints</span>
+        <a class="pager-link pager-next" data-pager-next href="/epresso-preview/dev/guides/styling/styling/" data-epresso-a5a922bd>
+            <span class="pager-label" data-epresso-a5a922bd>Next</span><span class="pager-title" data-epresso-a5a922bd>Styling and CSS</span>
         </a>
     
 </nav>
@@ -423,19 +558,11 @@ dotenv files — see <a href="/epresso-preview/dev/guides/build/environment-vari
         <ul data-epresso-81940ac6>
             
                 
-                    <li class="toc-depth-2" data-epresso-81940ac6><a href="#python-loader" data-epresso-81940ac6>Python loader</a></li>
+                    <li class="toc-depth-2" data-epresso-81940ac6><a href="#options" data-epresso-81940ac6>Options</a></li>
                 
             
                 
-                    <li class="toc-depth-2" data-epresso-81940ac6><a href="#remote-data" data-epresso-81940ac6>Remote data</a></li>
-                
-            
-                
-                    <li class="toc-depth-2" data-epresso-81940ac6><a href="#environment-aware" data-epresso-81940ac6>Environment-aware</a></li>
-                
-            
-                
-                    <li class="toc-depth-2" data-epresso-81940ac6><a href="#see-also" data-epresso-81940ac6>See also</a></li>
+                    <li class="toc-depth-2" data-epresso-81940ac6><a href="#look" data-epresso-81940ac6>Look</a></li>
                 
             
         </ul>

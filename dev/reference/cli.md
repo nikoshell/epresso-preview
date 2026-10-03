@@ -97,7 +97,7 @@ give one a `prefix`. `docs.toml` is a shorthand: epresso compiles it into a
 table, which is exactly what a full site would write. Without `sources` it
 reads `./docs`. Relative images in every source resolve (see the plugins guide).
 Allowed top-level keys: `title`, `theme`, `site`, `sources`, `base`, `redirects`,
-`extra_css`, `extra_javascript`; per source: `source`, `dir`, `prefix`, `title`,
+`extra_css`, `extra_javascript`, `blog` (options for [`epresso_blog`](/guides/content/blog/)); per source: `source`, `dir`, `prefix`, `title`,
 `repo_url`, `nav`. Anything else is an error.
 
 ### The link back to the repository

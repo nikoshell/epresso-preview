@@ -32,6 +32,7 @@
 - [Environment variables](https://epresso.top/guides/build/environment-variables/)
 - [Incremental builds & caching](https://epresso.top/guides/build/incremental/)
 - [Testing](https://epresso.top/guides/build/testing/)
+- [Blog](https://epresso.top/guides/content/blog/): A blog with posts, archive, categories, pagination and RSS — MkDocs/Material blog posts work unchanged.
 - [Content collections](https://epresso.top/guides/content/content-collections/)
 - [Data fetching](https://epresso.top/guides/content/data-fetching/)
 - [Endpoints](https://epresso.top/guides/content/endpoints/)

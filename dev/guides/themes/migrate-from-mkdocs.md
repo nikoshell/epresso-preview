@@ -42,6 +42,7 @@ won't overwrite an existing `docs.toml` unless you pass `--force`. Pass
 | `redirects` plugin `redirect_maps` | `[[redirects]]` |
 | `search`, `minify` plugins | built in |
 | `social` plugin | [`epresso_social`](/guides/styling/social-cards/) (on in the docs theme) |
+| `blog` plugin | [`epresso_blog`](/guides/content/blog/) (on in the docs theme), same URLs |
 | `optimize` plugin | [`epresso_optimize`](/guides/styling/images/) (on in the docs theme) |
 | `theme` | ignored — the look comes from the docs theme or `--theme` |
 
@@ -71,5 +72,5 @@ working.
 
 ## Plugins without an equivalent yet
 
-`blog`, `mkdocstrings` and `macros` are reported as
+`mkdocstrings` and `macros` are reported as
 warnings and skipped. The rest of the site still builds.
