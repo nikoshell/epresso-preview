@@ -542,6 +542,11 @@ line for every page; <code data-epresso-b39e7886>*</code> enables debug everywhe
 <li data-epresso-b39e7886><code data-epresso-b39e7886>EPRESSO_LOG=&lt;path&gt;</code> additionally <strong data-epresso-b39e7886>appends every log line to a file</strong> (plain
 text, no color) while still printing to the console — handy for CI or
 capturing <code data-epresso-b39e7886>EPRESSO_DEBUG</code> output to disk.</li>
+<li data-epresso-b39e7886><code data-epresso-b39e7886>EPRESSO_JOBS=&lt;n&gt;</code> sets the render worker processes (<code data-epresso-b39e7886>[build] jobs</code>; <code data-epresso-b39e7886>1</code> =
+serial).</li>
+<li data-epresso-b39e7886><code data-epresso-b39e7886>EPRESSO_DISABLE_PLUGINS=name1,name2</code> turns plugins off without editing
+<code data-epresso-b39e7886>site.toml</code> — e.g. <code data-epresso-b39e7886>EPRESSO_DISABLE_PLUGINS=epresso_social,epresso_optimize</code>
+for a build without social cards or image variants.</li>
 <li data-epresso-b39e7886><code data-epresso-b39e7886>load_env_file(root, env)</code> returns the vars as a dict without mutating
 <code data-epresso-b39e7886>os.environ</code>; the site exposes them to templates as <code data-epresso-b39e7886>env_vars</code>.</li>
 <li data-epresso-b39e7886>epresso is single-locale for now; i18n is reserved for a future release.</li>
