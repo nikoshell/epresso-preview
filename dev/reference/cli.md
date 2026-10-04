@@ -95,7 +95,7 @@ one prev/next chain. Two sources producing the same page are a build error;
 give one a `prefix`. `docs.toml` is a shorthand: epresso compiles it into a
 `site.toml` with `plugins = ["epresso_docs"]` and a `[plugin.epresso_docs]`
 table, which is exactly what a full site would write. Without `sources` it
-reads `./docs`. Relative images in every source resolve (see the plugins guide).
+reads `./docs`. Relative images in every source resolve (see the plugins guide); only files a built page references are published.
 Allowed top-level keys: `title`, `theme`, `site`, `sources`, `base`, `redirects`,
 `extra_css`, `extra_javascript`, `blog` (options for [`epresso_blog`](/guides/content/blog/)); per source: `source`, `dir`, `prefix`, `title`,
 `repo_url`, `nav`. Anything else is an error.

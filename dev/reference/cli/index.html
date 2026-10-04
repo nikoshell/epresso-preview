@@ -591,7 +591,7 @@ one prev/next chain. Two sources producing the same page are a build error;
 give one a <code data-epresso-b39e7886>prefix</code>. <code data-epresso-b39e7886>docs.toml</code> is a shorthand: epresso compiles it into a
 <code data-epresso-b39e7886>site.toml</code> with <code data-epresso-b39e7886>plugins = [&quot;epresso_docs&quot;]</code> and a <code data-epresso-b39e7886>[plugin.epresso_docs]</code>
 table, which is exactly what a full site would write. Without <code data-epresso-b39e7886>sources</code> it
-reads <code data-epresso-b39e7886>./docs</code>. Relative images in every source resolve (see the plugins guide).
+reads <code data-epresso-b39e7886>./docs</code>. Relative images in every source resolve (see the plugins guide); only files a built page references are published.
 Allowed top-level keys: <code data-epresso-b39e7886>title</code>, <code data-epresso-b39e7886>theme</code>, <code data-epresso-b39e7886>site</code>, <code data-epresso-b39e7886>sources</code>, <code data-epresso-b39e7886>base</code>, <code data-epresso-b39e7886>redirects</code>,
 <code data-epresso-b39e7886>extra_css</code>, <code data-epresso-b39e7886>extra_javascript</code>, <code data-epresso-b39e7886>blog</code> (options for <a href="/epresso-preview/dev/guides/content/blog/" data-epresso-b39e7886><code data-epresso-b39e7886>epresso_blog</code></a>); per source: <code data-epresso-b39e7886>source</code>, <code data-epresso-b39e7886>dir</code>, <code data-epresso-b39e7886>prefix</code>, <code data-epresso-b39e7886>title</code>,
 <code data-epresso-b39e7886>repo_url</code>, <code data-epresso-b39e7886>nav</code>. Anything else is an error.</p>
