@@ -10,7 +10,8 @@ optional project directory (`root`), defaulting to the current directory.
 | `epresso dev [root]` | Development server with live reload |
 | `epresso build [root]` | Deterministic + incremental production build |
 | `epresso preview [root]` | Build then serve `dist/` (production preview) |
-| `epresso docs [root]` | Build + serve a project's documentation (port 4321), or write it with `--out` |
+| `epresso docs [root]` | Build + serve docs (port 4321) or write them with `--out`; no `root` = epresso's own docs, `.` = this project |
+| `epresso import mkdocs` | Write a `docs.toml` from an MkDocs `mkdocs.yml` |
 | `epresso serve [root]` | Serve an already-built `dist/` (no build) |
 | `epresso clean [root]` | Remove `dist/` and the build cache |
 | `epresso layers [root]` | List the component/layout layers resolved from `[layers] use` |

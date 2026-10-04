@@ -233,6 +233,10 @@ window.addEventListener("load", function() {
                     
                 
                     
+                        <li class="toc-depth-2" data-epresso-81940ac6><a href="#bundled-plugins" data-epresso-81940ac6>Bundled plugins</a></li>
+                    
+                
+                    
                         <li class="toc-depth-2" data-epresso-81940ac6><a href="#docs-from-several-sources-epresso-docs" data-epresso-81940ac6>Docs from several sources: `epresso_docs`</a></li>
                     
                 
@@ -481,6 +485,21 @@ automatically:</p>
 <td data-epresso-b39e7886>register a Markdown extension (idempotent)</td>
 </tr>
 <tr data-epresso-b39e7886>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>add_markdown_it_plugin(fn)</code></td>
+<td data-epresso-b39e7886>any</td>
+<td data-epresso-b39e7886>apply a markdown-it-py plugin <code data-epresso-b39e7886>fn(md)</code> (e.g. from <code data-epresso-b39e7886>mdit_py_plugins</code>) to every Markdown renderer</td>
+</tr>
+<tr data-epresso-b39e7886>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>add_markdown_source_transform(fn)</code></td>
+<td data-epresso-b39e7886>any</td>
+<td data-epresso-b39e7886>rewrite Markdown source before rendering (<code data-epresso-b39e7886>str -&gt; str</code>)</td>
+</tr>
+<tr data-epresso-b39e7886>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>add_markdown_render_transform(fn)</code></td>
+<td data-epresso-b39e7886>any</td>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>fn(md, src, depth) -&gt; str</code> — for syntax that renders inner Markdown (tabs)</td>
+</tr>
+<tr data-epresso-b39e7886>
 <td data-epresso-b39e7886><code data-epresso-b39e7886>add_layer(root)</code></td>
 <td data-epresso-b39e7886><code data-epresso-b39e7886>before_load</code></td>
 <td data-epresso-b39e7886>add a component/layout/asset root after the site's own</td>
@@ -491,9 +510,9 @@ automatically:</p>
 <td data-epresso-b39e7886>serve <code data-epresso-b39e7886>file</code> as if it were <code data-epresso-b39e7886>pages/&lt;rel&gt;</code> (e.g. <code data-epresso-b39e7886>&quot;[...slug].ep&quot;</code>)</td>
 </tr>
 <tr data-epresso-b39e7886>
-<td data-epresso-b39e7886><code data-epresso-b39e7886>add_static(dir, prefix)</code></td>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>add_static(dir, prefix, exclude=())</code></td>
 <td data-epresso-b39e7886><code data-epresso-b39e7886>before_load</code></td>
-<td data-epresso-b39e7886>publish <code data-epresso-b39e7886>dir</code>'s non-Markdown files verbatim under <code data-epresso-b39e7886>prefix</code></td>
+<td data-epresso-b39e7886>publish <code data-epresso-b39e7886>dir</code>'s non-Markdown files verbatim under <code data-epresso-b39e7886>prefix</code>, minus the subdirs in <code data-epresso-b39e7886>exclude</code></td>
 </tr>
 <tr data-epresso-b39e7886>
 <td data-epresso-b39e7886><code data-epresso-b39e7886>transform_html(fn)</code></td>
@@ -622,7 +641,10 @@ transforms, content collections, markdown extensions. A package can do both.</p>
 exactly like a <code data-epresso-b39e7886>content.config.py</code> collection.</p>
 <h2 id="transforming-rendered-output" data-epresso-b39e7886><a class="heading-anchor" href="#transforming-rendered-output" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>Transforming rendered output</h2>
 <p data-epresso-b39e7886><code data-epresso-b39e7886>transform_html(fn)</code> runs a pure function over each rendered HTML route. <code data-epresso-b39e7886>ctx</code>
-carries <code data-epresso-b39e7886>{&quot;path&quot;, &quot;params&quot;}</code> for the route:</p>
+carries <code data-epresso-b39e7886>{&quot;path&quot;, &quot;params&quot;, &quot;data&quot;}</code> for the route (<code data-epresso-b39e7886>data</code> is the route's
+content entry, if any). The page cache stores HTML <em data-epresso-b39e7886>before</em> transforms run, and
+transforms re-run on reused pages too, so a transform never sees or leaves stale
+output and doesn't turn incremental builds off:</p>
 
 <pre class="highlight" data-epresso-93c638e7>
   
@@ -787,6 +809,61 @@ freshly built environment each load.</li>
 </ul>
 <p data-epresso-b39e7886>The lifecycle hooks, in order: <code data-epresso-b39e7886>before_load</code>, <code data-epresso-b39e7886>on_setup</code>, <code data-epresso-b39e7886>after_load</code>,
 <code data-epresso-b39e7886>before_build</code>, <code data-epresso-b39e7886>after_build(caps, result)</code>, <code data-epresso-b39e7886>on_assets</code>.</p>
+<h2 id="bundled-plugins" data-epresso-b39e7886><a class="heading-anchor" href="#bundled-plugins" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>Bundled plugins</h2>
+<p data-epresso-b39e7886>These ship with epresso; list them in <code data-epresso-b39e7886>plugins = [...]</code> (the docs theme enables
+the first seven). <code data-epresso-b39e7886>EPRESSO_DISABLE_PLUGINS=a,b</code> turns named plugins off for one
+build without editing <code data-epresso-b39e7886>site.toml</code>.</p>
+<table data-epresso-b39e7886>
+<thead data-epresso-b39e7886>
+<tr data-epresso-b39e7886>
+<th data-epresso-b39e7886>Plugin</th>
+<th data-epresso-b39e7886>What it does</th>
+<th data-epresso-b39e7886>Guide</th>
+</tr>
+</thead>
+<tbody data-epresso-b39e7886>
+<tr data-epresso-b39e7886>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>epresso_docs</code></td>
+<td data-epresso-b39e7886>the <code data-epresso-b39e7886>docs</code> collection from one or many Markdown sources</td>
+<td data-epresso-b39e7886><a href="#docs-from-several-sources-epresso_docs" data-epresso-b39e7886>below</a></td>
+</tr>
+<tr data-epresso-b39e7886>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>epresso_blog</code></td>
+<td data-epresso-b39e7886>blog: posts, paginated index, archive, categories, RSS (MkDocs-compatible)</td>
+<td data-epresso-b39e7886><a href="/epresso-preview/dev/guides/content/blog/" data-epresso-b39e7886>Blog</a></td>
+</tr>
+<tr data-epresso-b39e7886>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>epresso_mkdocs</code></td>
+<td data-epresso-b39e7886>MkDocs/Material Markdown syntax: admonitions, tabs, attr_list, snippets, … (<code data-epresso-b39e7886>epresso_mkdocs_tabs</code> is an alias)</td>
+<td data-epresso-b39e7886><a href="/epresso-preview/dev/guides/themes/migrate-from-mkdocs/" data-epresso-b39e7886>Migrate from MkDocs</a></td>
+</tr>
+<tr data-epresso-b39e7886>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>epresso_social</code></td>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>og:image</code> social cards</td>
+<td data-epresso-b39e7886><a href="/epresso-preview/dev/guides/styling/social-cards/" data-epresso-b39e7886>Social cards</a></td>
+</tr>
+<tr data-epresso-b39e7886>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>epresso_optimize</code></td>
+<td data-epresso-b39e7886>responsive WebP <code data-epresso-b39e7886>srcset</code> for content images</td>
+<td data-epresso-b39e7886><a href="/epresso-preview/dev/guides/styling/images/" data-epresso-b39e7886>Images</a></td>
+</tr>
+<tr data-epresso-b39e7886>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>epresso_pandoc</code></td>
+<td data-epresso-b39e7886>Pandoc fenced-code / image attributes</td>
+<td data-epresso-b39e7886>—</td>
+</tr>
+<tr data-epresso-b39e7886>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>epresso_umami</code></td>
+<td data-epresso-b39e7886>Umami analytics snippet (<code data-epresso-b39e7886>UMAMI_WEBSITE_ID</code>)</td>
+<td data-epresso-b39e7886>—</td>
+</tr>
+<tr data-epresso-b39e7886>
+<td data-epresso-b39e7886><code data-epresso-b39e7886>epresso_page_feedback</code></td>
+<td data-epresso-b39e7886>&quot;Was this page helpful?&quot; widget on docs pages</td>
+<td data-epresso-b39e7886>—</td>
+</tr>
+</tbody>
+</table>
 <h2 id="docs-from-several-sources-epresso-docs" data-epresso-b39e7886><a class="heading-anchor" href="#docs-from-several-sources-epresso-docs" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>Docs from several sources: <code data-epresso-b39e7886>epresso_docs</code></h2>
 <p data-epresso-b39e7886>The bundled <code data-epresso-b39e7886>epresso_docs</code> plugin owns a <code data-epresso-b39e7886>docs</code> collection built from one or
 more Markdown sources — local directories or git repositories — merged into one
@@ -859,6 +936,10 @@ page.</li>
 pages, unless <code data-epresso-b39e7886>[theme] logo</code> / <code data-epresso-b39e7886>favicon</code> / <code data-epresso-b39e7886>og_image</code> is set. Under <code data-epresso-b39e7886>base</code> the
 host's own favicon and pages are untouched.</li>
 </ul>
+<p data-epresso-b39e7886>Every source's files (images, downloads) are published, then after the build
+only the files some built page, stylesheet or script references are kept.
+Relative URLs resolve like MkDocs: Markdown <code data-epresso-b39e7886>![]()</code>/<code data-epresso-b39e7886>[]()</code> against the source
+file, raw HTML <code data-epresso-b39e7886>&lt;img src&gt;</code> against the page's own URL.</p>
 <h2 id="bundled-example-plugins" data-epresso-b39e7886><a class="heading-anchor" href="#bundled-example-plugins" aria-label="Link to this section" data-epresso-b39e7886><span aria-hidden="true" data-epresso-b39e7886>#</span></a>Bundled example plugins</h2>
 <p data-epresso-b39e7886>Ready-made, runnable example plugins ship in <code data-epresso-b39e7886>examples/plugins/</code>. Each module is
 a real plugin you can read and copy into your own project:</p>
@@ -1003,6 +1084,10 @@ and a “Made by epresso” pill stamped inside every code block.</p>
             
                 
                     <li class="toc-depth-2" data-epresso-81940ac6><a href="#lifecycle-ordering" data-epresso-81940ac6>Lifecycle &amp; ordering</a></li>
+                
+            
+                
+                    <li class="toc-depth-2" data-epresso-81940ac6><a href="#bundled-plugins" data-epresso-81940ac6>Bundled plugins</a></li>
                 
             
                 

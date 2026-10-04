@@ -517,6 +517,11 @@ as a <code data-epresso-b39e7886>PythonLoader</code>. Use it for remote or deriv
 
 
 
+<p data-epresso-b39e7886><code data-epresso-b39e7886>get_collection_index(name)</code> returns the same entries for navigation and
+listings that read only <code data-epresso-b39e7886>id</code>, <code data-epresso-b39e7886>data</code> and <code data-epresso-b39e7886>computed</code> — never a body. A page that
+uses it is re-rendered when an entry's title/frontmatter/order changes, not when
+some other entry's body does (the docs theme's sidebar uses it, so editing one
+page rebuilds one page).</p>
 <p data-epresso-b39e7886><code data-epresso-b39e7886>get_entry(collection, id)</code> fetches a single entry. These helpers also <strong data-epresso-b39e7886>record
 the dependency edge</strong> for incremental builds — a change to an entry re-renders
 only the pages that consume it.</p>
